@@ -8,6 +8,7 @@ class AppString {
   static const bedRoom = "bedroom";
   static const livingRoom = "living room";
   static const kitchen = "kitchen";
-  static const bedRoom = "bedroom";
-  static const bedRoom = "bedroom";
+  static const dining = "dining";
+  static const bathroom = "bathroom";
+  static const popularItem = "popular";
 }

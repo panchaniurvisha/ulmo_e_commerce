@@ -17,7 +17,7 @@ class SearchBar extends StatelessWidget {
       style: TextStyle(
         color: AppColors.black,
         fontWeight: FontWeight.w400,
-        fontSize: height / 45,
+        fontSize: height / 42,
         fontFamily: "Poppins",
         fontStyle: FontStyle.normal,
       ),

@@ -13,6 +13,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> data = [
+    AppString.bedRoom,
+    AppString.livingRoom,
+    AppString.kitchen,
+    AppString.dining,
+    AppString.bathroom,
+  ];
   TextEditingController searchEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -23,71 +30,186 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
-          child: Column(
-            children: [
-              Text(
-                AppString.appName,
-                style: TextStyle(
-                    fontSize: height / 30,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.black,
-                    fontFamily: AppString.appFontFamily),
-              ),
-              SearchBar(controller: searchEditingController),
-              SizedBox(
-                height: height / 10,
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: AlwaysScrollableScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(width / 1),
-                              ),
-                              child: Image.asset(
-                                "${userModel.pageContent![index].image}",
-                              ),
-                            ),
-                            Positioned(
-                              top: height / 20,
-                              child: Text(
-                                "${userModel.pageContent![index].label}",
-                                style: TextStyle(
-                                  color: AppColors.skyWhite,
-                                  fontFamily: AppString.appFontFamily,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: height / 60,
+          child: Padding(
+            padding: EdgeInsets.all(height / 50),
+            child: Column(
+              children: [
+                Text(
+                  AppString.appName,
+                  style: TextStyle(
+                      fontSize: height / 30,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.black,
+                      fontFamily: AppString.appFontFamily),
+                ),
+                SearchBar(controller: searchEditingController),
+                SizedBox(
+                  height: height / 7,
+                  child: ListView.separated(
+                      padding: EdgeInsets.symmetric(
+                        vertical: height / 60,
+                      ),
+                      shrinkWrap: true,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(width / 50),
+                                child: Image.asset(
+                                  "${userModel.pageContent![index].image}",
                                 ),
                               ),
-                            )
-                          ],
+                              Positioned(
+                                top: height / 20,
+                                left: width / 40,
+                                child: Text(
+                                  "${userModel.pageContent![index].label}",
+                                  style: TextStyle(
+                                    color: AppColors.skyWhite,
+                                    fontFamily: AppString.appFontFamily,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: height / 50,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                      separatorBuilder: (context, index) => SizedBox(
+                            width: width / 40,
+                          ),
+                      itemCount: userModel.pageContent!.length),
+                ),
+                ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => Container(
+                          height: height / 8,
+                          decoration: BoxDecoration(
+                            color: AppColors.skyWhite,
+                            borderRadius: BorderRadius.circular(width / 50),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: height / 15, left: width / 30),
+                                child: Text(data[index],
+                                    style: TextStyle(
+                                      fontSize: height / 35,
+                                      fontWeight: FontWeight.w600,
+                                      fontFamily: AppString.appFontFamily,
+                                      color: AppColors.black,
+                                    )),
+                              ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(
+                                      width / 50,
+                                    ),
+                                    topRight: Radius.circular(width / 50)),
+                                child: Image.asset(
+                                    "${userModel.roomFacility![index].facilityImage}"),
+                              )
+                            ],
+                          ),
                         ),
                     separatorBuilder: (context, index) => SizedBox(
-                          width: width / 20,
+                          height: height / 50,
                         ),
-                    itemCount: userModel.pageContent!.length),
-              ),
-              ListView.separated(
-                  shrinkWrap: true,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) => Container(
-                        height: height / 10,
-                        decoration: BoxDecoration(
-                          color: AppColors.skyWhite,
-                          borderRadius: BorderRadius.circular(width / 10),
-                        ),
-                        child: Row(
-                          children: [Text()],
+                    itemCount: userModel.roomFacility!.length),
+                SizedBox(
+                  height: height / 10,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: height / 35,
+                    ),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        AppString.popularItem,
+                        style: TextStyle(
+                          color: AppColors.black,
+                          fontFamily: AppString.appFontFamily,
+                          fontWeight: FontWeight.w600,
+                          fontSize: height / 35,
                         ),
                       ),
-                  separatorBuilder: (context, index) => SizedBox(
-                        width: width / 20,
-                      ),
-                  itemCount: userModel.roomFacility!.length),
-            ],
+                    ),
+                  ),
+                ),
+                GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: userModel.roomFacility!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.50,
+                      mainAxisExtent: height / 2.9,
+                      crossAxisSpacing: width / 20,
+                    ),
+                    itemBuilder: (context, index) => Column(
+                          children: [
+                            Stack(children: [
+                              Image.asset(
+                                "${userModel.popularItem![index].popularImage}",
+                              ),
+                              index == 0
+                                  ? Container(
+                                      margin: EdgeInsets.only(
+                                        top: height / 70,
+                                        left: width / 40,
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: AppColors.lightYellowTwo,
+                                          borderRadius: BorderRadius.circular(
+                                              width / 100)),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: height / 300,
+                                            horizontal: width / 50),
+                                        child: Text(
+                                          "${userModel.popularItem![index].recentlyNew}",
+                                          style: TextStyle(
+                                            color: AppColors.black,
+                                            fontFamily: AppString.appFontFamily,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: height / 70,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : const SizedBox()
+                            ]),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("${userModel.popularItem![index].price}",
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      fontSize: height / 45,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: AppString.appFontFamily,
+                                      color: AppColors.black,
+                                    )),
+                                Image.asset(
+                                  "${userModel.popularItem![index].icon}",
+                                  height: height / 45,
+                                )
+                              ],
+                            ),
+                            Text("${userModel.popularItem![index].itemName}",
+                                style: TextStyle(
+                                  fontSize: height / 70,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: AppString.appFontFamily,
+                                  color: AppColors.gray,
+                                )),
+                          ],
+                        ))
+              ],
+            ),
           ),
         ),
       ),
