@@ -34,4 +34,7 @@ class AppString {
 
   //catalog Screen
   static const title = "Furniture";
+  static const text = "Hard to decide?";
+  static const help = "We are ready for help";
+  static const data = "Need help";
 }
