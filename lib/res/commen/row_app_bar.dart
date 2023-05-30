@@ -3,7 +3,8 @@ import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 class RowAppBar extends StatelessWidget {
-  const RowAppBar({Key? key}) : super(key: key);
+  final String? text;
+  const RowAppBar({Key? key, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class RowAppBar extends StatelessWidget {
           width: width / 5,
         ),
         Text(
-          AppString.room,
+          text ?? AppString.room,
           style: TextStyle(
             color: AppColors.black,
             fontSize: height / 50,

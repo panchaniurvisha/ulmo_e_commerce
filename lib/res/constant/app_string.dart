@@ -31,4 +31,7 @@ class AppString {
   ///key of  categories screen
   static const image = "image";
   static const name = "name";
+
+  //catalog Screen
+  static const title = "Furniture";
 }
