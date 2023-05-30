@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/view/splash/splash_screen.dart';
+import 'package:ulmo_e_commerce_app/view/categories_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const SplashScreen());
+        home: const Categories());
   }
 }

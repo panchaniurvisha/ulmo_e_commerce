@@ -31,7 +31,10 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SingleChildScrollView(
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
           child: Padding(
-            padding: EdgeInsets.all(height / 50),
+            padding: EdgeInsets.symmetric(
+              vertical: height / 15,
+              horizontal: width / 35,
+            ),
             child: Column(
               children: [
                 Text(
