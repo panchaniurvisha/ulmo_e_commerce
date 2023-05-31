@@ -14,4 +14,8 @@ class AppImages {
   static const String basket = "${basePath}basket_image.png";
   static const String vases = "${basePath}vases_image.png";
   static const String boxes = "${basePath}boxes_image.png";
+
+  //product page
+  ///images
+  static const String bedSideTable = "${basePath}big_bed_side_table.png";
 }

@@ -48,14 +48,14 @@ Map<String, dynamic> userData = {
       "price": "\$160.00",
       "recentlyNew": "new",
       "icon": "assets/icons/heart_shape_icon.png",
-      "itemName": "Wooden bedside table featuring a raised desi..."
+      "itemName": "Mango wood chair with a woven design"
     },
     {
       "popularImage": "assets/images/square_bedside_table.png",
       "price": "\$189.00",
       "recentlyNew": "",
       "icon": "assets/icons/heart_shape_icon.png",
-      "itemName": "Wooden bedside table featuring a raised desi..."
+      "itemName": "Square bedside table with legs, a rattan shelf and ..."
     }
   ]
 };
