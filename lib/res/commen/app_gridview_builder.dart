@@ -5,9 +5,19 @@ import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 import '../../data/user_data_first_screen.dart';
 
-class AppGridBuilder extends StatelessWidget {
-  const AppGridBuilder({
+class AppGridViewBuilder extends StatelessWidget {
+  final int? itemCount;
+  final Image? image;
+  final Image? imageOne;
+  final String? data;
+  final String? text;
+  const AppGridViewBuilder({
     Key? key,
+    this.itemCount,
+    this.image,
+    this.text,
+    this.imageOne,
+    this.data,
   }) : super(key: key);
 
   @override
@@ -18,7 +28,7 @@ class AppGridBuilder extends StatelessWidget {
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: userModel.popularItem!.length,
+      itemCount: itemCount ?? userModel.popularItem!.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 0.50,
@@ -28,18 +38,22 @@ class AppGridBuilder extends StatelessWidget {
       itemBuilder: (context, index) => Column(
         children: [
           Stack(children: [
-            Image.asset(
-              "${userModel.popularItem![index].popularImage}",
-            ),
+            image ??
+                Image.asset(
+                  "${userModel.popularItem![index].popularImage}",
+                ),
             index == 0
                 ? Container(
                     margin: EdgeInsets.only(
                       top: height / 70,
                       left: width / 40,
                     ),
-                    decoration: BoxDecoration(color: AppColors.lightYellowTwo, borderRadius: BorderRadius.circular(width / 100)),
+                    decoration: BoxDecoration(
+                        color: AppColors.lightYellowTwo,
+                        borderRadius: BorderRadius.circular(width / 100)),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: height / 300, horizontal: width / 50),
+                      padding: EdgeInsets.symmetric(
+                          vertical: height / 300, horizontal: width / 50),
                       child: Text(
                         "${userModel.popularItem![index].recentlyNew}",
                         style: TextStyle(
@@ -56,7 +70,7 @@ class AppGridBuilder extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("${userModel.popularItem![index].price}",
+              Text(text ?? "${userModel.popularItem![index].price}",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: height / 45,
@@ -64,13 +78,14 @@ class AppGridBuilder extends StatelessWidget {
                     fontFamily: AppString.appFontFamily,
                     color: AppColors.black,
                   )),
-              Image.asset(
-                "${userModel.popularItem![index].icon}",
-                height: height / 45,
-              )
+              imageOne ??
+                  Image.asset(
+                    "${userModel.popularItem![index].icon}",
+                    height: height / 45,
+                  )
             ],
           ),
-          Text("${userModel.popularItem![index].itemName}",
+          Text(data ?? "${userModel.popularItem![index].itemName}",
               style: TextStyle(
                 fontSize: height / 70,
                 fontWeight: FontWeight.w400,

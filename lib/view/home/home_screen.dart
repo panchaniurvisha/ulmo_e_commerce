@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const AppGridBuilder(),
+                const AppGridViewBuilder(),
               ],
             ),
           ),

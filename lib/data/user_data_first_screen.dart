@@ -13,9 +13,49 @@ Map<String, dynamic> userData = {
     {"facilityImage": "assets/images/bathroom.png"}
   ],
   "popularItem": [
-    {"popularImage": "assets/images/bedside_table.png", "price": "\$150.00", "recentlyNew": "new", "icon": "assets/icons/heart_filled_icon.png", "itemName": "Wooden bedside table featuring a raised desi..."},
-    {"popularImage": "assets/images/chair.png", "price": "\$149.99", "recentlyNew": "", "icon": "assets/icons/heart_shape_icon.png", "itemName": "Chair made of ash wood sourced from responsible..."},
-    {"popularImage": "assets/images/square_table.png", "price": "\$140.25", "recentlyNew": "-40%", "icon": "assets/icons/heart_shape_icon.png", "itemName": "Square bedside table with legs, a rattan shelf and a..."},
-    {"popularImage": "assets/images/board_drawer.png", "price": "\$450.00", "recentlyNew": "", "icon": "assets/icons/heart_shape_icon.png", "itemName": "Dark wood side board with a faceted drawer"},
+    {
+      "popularImage": "assets/images/bedside_table.png",
+      "price": "\$150.00",
+      "recentlyNew": "new",
+      "icon": "assets/icons/heart_filled_icon.png",
+      "itemName": "Wooden bedside table featuring a raised desi..."
+    },
+    {
+      "popularImage": "assets/images/chair.png",
+      "price": "\$149.99",
+      "recentlyNew": "",
+      "icon": "assets/icons/heart_shape_icon.png",
+      "itemName": "Chair made of ash wood sourced from responsible..."
+    },
+    {
+      "popularImage": "assets/images/square_table.png",
+      "price": "\$140.25",
+      "recentlyNew": "-40%",
+      "icon": "assets/icons/heart_shape_icon.png",
+      "itemName": "Square bedside table with legs, a rattan shelf and a..."
+    },
+    {
+      "popularImage": "assets/images/board_drawer.png",
+      "price": "\$450.00",
+      "recentlyNew": "",
+      "icon": "assets/icons/heart_shape_icon.png",
+      "itemName": "Dark wood side board with a faceted drawer"
+    },
+  ],
+  "catalogItem": [
+    {
+      "popularImage": "assets/images/mango_wood_chair.png",
+      "price": "\$160.00",
+      "recentlyNew": "new",
+      "icon": "assets/icons/heart_shape_icon.png",
+      "itemName": "Wooden bedside table featuring a raised desi..."
+    },
+    {
+      "popularImage": "assets/images/square_bedside_table.png",
+      "price": "\$189.00",
+      "recentlyNew": "",
+      "icon": "assets/icons/heart_shape_icon.png",
+      "itemName": "Wooden bedside table featuring a raised desi..."
+    }
   ]
 };

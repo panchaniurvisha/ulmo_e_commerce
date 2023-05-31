@@ -2,12 +2,13 @@ class FirstScreenModel {
   List<RoomModel>? pageContent;
   List<RoomFacility>? roomFacility;
   List<PopularItem>? popularItem;
+  List<PopularItem>? catalogItem;
 
-  FirstScreenModel({
-    this.pageContent,
-    this.roomFacility,
-    this.popularItem,
-  });
+  FirstScreenModel(
+      {this.pageContent,
+      this.roomFacility,
+      this.popularItem,
+      this.catalogItem});
   FirstScreenModel.fromJson(Map<String, dynamic> data) {
     pageContent = (data["pageContent"] as List)
         .map((value) => RoomModel.fromJson(value))
@@ -16,6 +17,9 @@ class FirstScreenModel {
         .map((value) => RoomFacility.fromJson(value))
         .toList();
     popularItem = (data["popularItem"] as List)
+        .map((value) => PopularItem.fromJson(value))
+        .toList();
+    catalogItem = (data["catalogItem"] as List)
         .map((value) => PopularItem.fromJson(value))
         .toList();
   }
@@ -52,6 +56,27 @@ class PopularItem {
     this.itemName,
   });
   PopularItem.fromJson(Map<String, dynamic> data) {
+    popularImage = data["popularImage"];
+    itemName = data["itemName"];
+    price = data["price"];
+    icon = data["icon"];
+    recentlyNew = data["recentlyNew"];
+  }
+}
+
+class CatalogItem {
+  String? popularImage;
+  String? price;
+  String? icon;
+  String? recentlyNew;
+  String? itemName;
+  CatalogItem({
+    this.popularImage,
+    this.price,
+    this.icon,
+    this.itemName,
+  });
+  CatalogItem.fromJson(Map<String, dynamic> data) {
     popularImage = data["popularImage"];
     itemName = data["itemName"];
     price = data["price"];
