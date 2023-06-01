@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/data/user_data_first_screen.dart';
 import 'package:ulmo_e_commerce_app/model/first_screen_model.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_gridview_builder.dart';
+import 'package:ulmo_e_commerce_app/res/commen/app_column.dart';
 import 'package:ulmo_e_commerce_app/res/commen/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
@@ -40,11 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   AppString.appName,
-                  style: TextStyle(
-                      fontSize: height / 30,
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.black,
-                      fontFamily: AppString.appFontFamily),
+                  style: TextStyle(fontSize: height / 30, fontWeight: FontWeight.w600, color: AppColors.black, fontFamily: AppString.appFontFamily),
                 ),
                 SearchBar(controller: searchEditingController),
                 SizedBox(
@@ -97,8 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(
-                                    bottom: height / 15, left: width / 30),
+                                padding: EdgeInsets.only(bottom: height / 15, left: width / 30),
                                 child: Text(data[index],
                                     style: TextStyle(
                                       fontSize: height / 35,
@@ -113,8 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width / 50,
                                     ),
                                     topRight: Radius.circular(width / 50)),
-                                child: Image.asset(
-                                    "${userModel.roomFacility![index].facilityImage}"),
+                                child: Image.asset("${userModel.roomFacility![index].facilityImage}"),
                               )
                             ],
                           ),
@@ -143,7 +137,23 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const AppGridViewBuilder(),
+                GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: userModel.popularItem!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.50,
+                      mainAxisExtent: height / 2.9,
+                      crossAxisSpacing: width / 20,
+                    ),
+                    itemBuilder: (context, index) => AppColumn(
+                          image: "${userModel.popularItem![index].popularImage}",
+                          text: "${userModel.popularItem![index].recentlyNew}",
+                          data: "${userModel.popularItem![index].price}",
+                          information: "${userModel.popularItem![index].itemName}",
+                          index: index,
+                        )),
               ],
             ),
           ),

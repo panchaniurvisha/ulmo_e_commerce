@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/data/user_data_first_screen.dart';
 import 'package:ulmo_e_commerce_app/model/first_screen_model.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_gridview_builder.dart';
+import 'package:ulmo_e_commerce_app/res/commen/app_column.dart';
 import 'package:ulmo_e_commerce_app/res/commen/row_app_bar.dart';
 import 'package:ulmo_e_commerce_app/res/commen/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
@@ -26,22 +26,36 @@ class _CatalogScreenState extends State<CatalogScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
           child: Padding(
             padding: EdgeInsets.all(height / 50),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                RowAppBar(
+                const RowAppBar(
                   text: AppString.title,
                 ),
-                SearchBar(),
-                AppGridViewBuilder(),
+                const SearchBar(),
+                GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: userModel.popularItem!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.50,
+                      mainAxisExtent: height / 2.9,
+                      crossAxisSpacing: width / 20,
+                    ),
+                    itemBuilder: (context, index) => AppColumn(
+                          image: "${userModel.popularItem![index].popularImage}",
+                          text: "${userModel.popularItem![index].recentlyNew}",
+                          data: "${userModel.popularItem![index].price}",
+                          information: "${userModel.popularItem![index].itemName}",
+                          index: index,
+                        )),
                 Container(
-                  decoration: BoxDecoration(
-                      color: AppColors.skyWhite,
-                      borderRadius: BorderRadius.circular(width / 60)),
+                  decoration: BoxDecoration(color: AppColors.skyWhite, borderRadius: BorderRadius.circular(width / 60)),
                   child: Row(
                     children: [
                       Padding(
@@ -72,12 +86,9 @@ class _CatalogScreenState extends State<CatalogScreen> {
                       ),
                       Container(
                         margin: EdgeInsets.only(left: width / 5),
-                        decoration: BoxDecoration(
-                            color: AppColors.lightYellowTwo,
-                            borderRadius: BorderRadius.circular(width / 80)),
+                        decoration: BoxDecoration(color: AppColors.lightYellowTwo, borderRadius: BorderRadius.circular(width / 80)),
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: width / 20, vertical: height / 150),
+                          padding: EdgeInsets.symmetric(horizontal: width / 20, vertical: height / 150),
                           child: Text(AppString.data,
                               style: TextStyle(
                                 color: AppColors.black,
@@ -90,18 +101,23 @@ class _CatalogScreenState extends State<CatalogScreen> {
                     ],
                   ),
                 ),
-                AppGridViewBuilder(
-                  itemCount: userModel.catalogItem!.length,
-                  image: Image.asset(
-                    "${userModel.catalogItem![index].popularImage}",
-                  ),
-                  text: "${userModel.popularItem![index].price}",
-                  imageOne: Image.asset(
-                    "${userModel.catalogItem![index].icon}",
-                    height: height / 45,
-                  ),
-                  data: "${userModel.popularItem![index].itemName}",
-                )
+                GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: userModel.catalogItem!.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.50,
+                      mainAxisExtent: height / 2.9,
+                      crossAxisSpacing: width / 20,
+                    ),
+                    itemBuilder: (context, index) => AppColumn(
+                          image: "${userModel.catalogItem![index].popularImage}",
+                          text: "${userModel.catalogItem![index].recentlyNew}",
+                          data: "${userModel.catalogItem![index].price}",
+                          information: "${userModel.catalogItem![index].itemName}",
+                          index: index,
+                        )),
               ],
             ),
           ),
