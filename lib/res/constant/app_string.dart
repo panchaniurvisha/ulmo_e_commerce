@@ -37,4 +37,21 @@ class AppString {
   static const text = "Hard to decide?";
   static const help = "We are ready for help";
   static const data = "Need help";
+
+  //product page Screen
+  static const information = "Product information";
+  static const review = "Reviews";
+  static const question = "Questions and answer";
+  static const number = "32";
+  static const five = "5";
+  static const headerName = "you might also like";
+  static const price = "\$150.00";
+  static const likesTable =
+      "Wooden bedside table featuring a raised design on the door";
+  static const brown = "Brown";
+  static const black = "Black";
+  static const addCart = "Add to bag";
+  static const discount = "Discount for you";
+  static const promoCode = "Use promo-code ULM";
+  static const copy = "Copy";
 }

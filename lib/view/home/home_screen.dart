@@ -40,7 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   AppString.appName,
-                  style: TextStyle(fontSize: height / 30, fontWeight: FontWeight.w600, color: AppColors.black, fontFamily: AppString.appFontFamily),
+                  style: TextStyle(
+                      fontSize: height / 30,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.black,
+                      fontFamily: AppString.appFontFamily),
                 ),
                 SearchBar(controller: searchEditingController),
                 SizedBox(
@@ -93,7 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(bottom: height / 15, left: width / 30),
+                                padding: EdgeInsets.only(
+                                    bottom: height / 15, left: width / 30),
                                 child: Text(data[index],
                                     style: TextStyle(
                                       fontSize: height / 35,
@@ -108,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       width / 50,
                                     ),
                                     topRight: Radius.circular(width / 50)),
-                                child: Image.asset("${userModel.roomFacility![index].facilityImage}"),
+                                child: Image.asset(
+                                    "${userModel.roomFacility![index].facilityImage}"),
                               )
                             ],
                           ),
@@ -148,10 +154,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisSpacing: width / 20,
                     ),
                     itemBuilder: (context, index) => AppColumn(
-                          image: "${userModel.popularItem![index].popularImage}",
+                          image:
+                              "${userModel.popularItem![index].popularImage}",
+                          icon: "${userModel.popularItem![index].icon}",
                           text: "${userModel.popularItem![index].recentlyNew}",
                           data: "${userModel.popularItem![index].price}",
-                          information: "${userModel.popularItem![index].itemName}",
+                          information:
+                              "${userModel.popularItem![index].itemName}",
                           index: index,
                         )),
               ],

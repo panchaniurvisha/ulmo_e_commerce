@@ -57,5 +57,21 @@ Map<String, dynamic> userData = {
       "icon": "assets/icons/heart_shape_icon.png",
       "itemName": "Square bedside table with legs, a rattan shelf and ..."
     }
+  ],
+  "pageContentItem": [
+    {
+      "popularImage": "assets/images/square_table.png",
+      "price": "\$140.25",
+      "recentlyNew": "",
+      "icon": "assets/icons/heart_shape_icon.png",
+      "itemName": "Square bedside table with legs, a rattan shelf and a..."
+    },
+    {
+      "popularImage": "assets/images/board_drawer.png",
+      "price": "\$450.00",
+      "recentlyNew": "",
+      "icon": "assets/icons/heart_shape_icon.png",
+      "itemName": "Dark wood side board with a faceted drawer"
+    },
   ]
 };
