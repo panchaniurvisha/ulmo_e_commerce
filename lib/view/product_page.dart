@@ -39,7 +39,7 @@ class _ProductPageState extends State<ProductPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: AppColors.skyWhite,
                               shape: BoxShape.circle),
                           child: IconButton(
@@ -49,7 +49,7 @@ class _ProductPageState extends State<ProductPage> {
                           ),
                         ),
                         Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: AppColors.skyWhite,
                               shape: BoxShape.circle),
                           child: IconButton(
@@ -82,29 +82,70 @@ class _ProductPageState extends State<ProductPage> {
                       text: AppString.likesTable,
                       color: AppColors.gray,
                     ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: height / 60),
+                      child: Row(
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(width / 50)),
+                            ),
+                            icon: Icon(Icons.circle_rounded,
+                                color: AppColors.orangeColor),
+                            label: Text(AppString.brown),
+                          ),
+                          SizedBox(
+                            width: width / 20,
+                          ),
+                          ElevatedButton.icon(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.skyWhite,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(width / 50)),
+                            ),
+                            icon: Icon(Icons.circle_rounded,
+                                color: AppColors.black),
+                            label: Text(AppString.black,
+                                style: TextStyle(color: AppColors.black)),
+                          ),
+                        ],
+                      ),
+                    ),
                     const AppElevatedButton(
                       text: AppString.addCart,
+                    ),
+                    SizedBox(
+                      height: height / 30,
                     ),
                     AppContainer(
                       padding: Padding(
                         padding: EdgeInsets.only(left: width / 20),
-                        child: Icon(Icons.percent_outlined),
+                        child: const Icon(Icons.percent_outlined),
                       ),
                       text: AppString.discount,
                       data: AppString.promoCode,
                       name: AppString.copy,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const AppText(
-                          text: AppString.information,
-                        ),
-                        Icon(
-                          Icons.navigate_next,
-                          size: height / 30,
-                        )
-                      ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: height / 50),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const AppText(
+                            text: AppString.information,
+                          ),
+                          Icon(
+                            Icons.navigate_next,
+                            size: height / 30,
+                          )
+                        ],
+                      ),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,17 +159,20 @@ class _ProductPageState extends State<ProductPage> {
                         ),
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        AppText(
-                          text: AppString.question,
-                        ),
-                        AppText(
-                          text: AppString.five,
-                          color: AppColors.gray,
-                        ),
-                      ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: height / 50),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          AppText(
+                            text: AppString.question,
+                          ),
+                          AppText(
+                            text: AppString.five,
+                            color: AppColors.gray,
+                          ),
+                        ],
+                      ),
                     ),
                     AppText(
                       text: AppString.headerName,
@@ -136,6 +180,7 @@ class _ProductPageState extends State<ProductPage> {
                       fontWeight: FontWeight.w600,
                     ),
                     GridView.builder(
+                        padding: EdgeInsets.only(top: height / 50),
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: userModel.pageContentItem!.length,
