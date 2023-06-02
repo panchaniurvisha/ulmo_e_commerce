@@ -4,7 +4,8 @@ import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 class RowAppBar extends StatelessWidget {
   final String? text;
-  const RowAppBar({Key? key, this.text}) : super(key: key);
+  final Icon? icon;
+  const RowAppBar({Key? key, this.text, this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class RowAppBar extends StatelessWidget {
         IconButton(
           padding: EdgeInsets.only(right: width / 15),
           onPressed: () {},
-          icon: Icon(Icons.arrow_back_rounded, size: height / 30),
+          icon: icon ?? Icon(Icons.arrow_back_rounded, size: height / 30),
         ),
         SizedBox(
           width: width / 5,

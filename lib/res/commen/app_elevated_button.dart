@@ -4,9 +4,11 @@ import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 
 class AppElevatedButton extends StatelessWidget {
   final String? text;
+  final SizedBox? sizeBox;
   const AppElevatedButton({
     Key? key,
     this.text,
+    this.sizeBox,
   }) : super(key: key);
 
   @override
@@ -29,11 +31,12 @@ class AppElevatedButton extends StatelessWidget {
           SizedBox(
             width: width / 30,
           ),
-          const Icon(
-            // <-- Icon
-            Icons.shopping_bag_outlined,
-            color: AppColors.black,
-          ),
+          sizeBox ??
+              Icon(
+                // <-- Icon
+                Icons.shopping_bag_outlined,
+                color: AppColors.black,
+              ),
         ],
       ),
     );

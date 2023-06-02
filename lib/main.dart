@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/view/product_page.dart';
-
-import 'view/review_screen.dart';
+import 'package:ulmo_e_commerce_app/view/new_review_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +17,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const ReviewScreen());
+        home: const NewReviewScreen());
   }
 }

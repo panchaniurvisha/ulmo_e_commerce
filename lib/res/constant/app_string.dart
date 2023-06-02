@@ -46,7 +46,8 @@ class AppString {
   static const five = "5";
   static const headerName = "you might also like";
   static const price = "\$150.00";
-  static const likesTable = "Wooden bedside table featuring a raised design on the door";
+  static const likesTable =
+      "Wooden bedside table featuring a raised design on the door";
   static const brown = "Brown";
   static const black = "Black";
   static const addCart = "Add to bag";
@@ -58,6 +59,18 @@ class AppString {
   static const reviewText = "Reviews";
   static const newReview = "New review";
   static const time = "Today, 12:30 pm";
+  static const timeSecond = "1 month ago";
+  static const timeThird = "2 month ago";
   static const personOne = "Erin Mango";
+  static const personTwo = "Corey Rosser";
+  static const personThree = "Paityn Saris";
   static const reviewOne = "Everything is good. Nice quality";
+  static const reviewTwo = "Could be better :(";
+  static const reviewThree =
+      "Bought this table 2 months ago and I wanted to say, this is the best bedside table I’ve ever used 😍";
+
+  //new Review Screen
+  static const nice = "Nice";
+  static const reviewTitle = "Your review";
+  static const sendButton = "Send review";
 }

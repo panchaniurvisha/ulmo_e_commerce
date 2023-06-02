@@ -6,7 +6,10 @@ class AppContainer extends StatelessWidget {
   final String? text;
   final String? data;
   final String? name;
+  final Widget? appText;
+  final Widget? appTextOne;
   final Padding? padding;
+  final SizedBox? sizedBox;
 
   const AppContainer({
     Key? key,
@@ -14,6 +17,9 @@ class AppContainer extends StatelessWidget {
     this.data,
     this.name,
     this.padding,
+    this.sizedBox,
+    this.appText,
+    this.appTextOne,
   }) : super(key: key);
 
   @override
@@ -22,7 +28,7 @@ class AppContainer extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
-          color: AppColors.skyWhite,
+          color: AppColors.white,
           borderRadius: BorderRadius.circular(width / 60)),
       child: Row(
         children: [
@@ -32,44 +38,47 @@ class AppContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  text!, //AppString.text,
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontWeight: FontWeight.w400,
-                    fontSize: height / 60,
-                    fontFamily: AppString.appFontFamily,
-                  ),
-                ),
-                Text(
-                  data!, //AppString.help,
-                  style: TextStyle(
-                    color: AppColors.gray,
-                    fontWeight: FontWeight.w400,
-                    fontSize: height / 70,
-                    fontFamily: AppString.appFontFamily,
-                  ),
-                )
+                appText ??
+                    Text(
+                      text!, //AppString.text,
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontWeight: FontWeight.w400,
+                        fontSize: height / 60,
+                        fontFamily: AppString.appFontFamily,
+                      ),
+                    ),
+                appTextOne ??
+                    Text(
+                      data!, //AppString.help,
+                      style: TextStyle(
+                        color: AppColors.gray,
+                        fontWeight: FontWeight.w400,
+                        fontSize: height / 70,
+                        fontFamily: AppString.appFontFamily,
+                      ),
+                    )
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(left: width / 5),
-            decoration: BoxDecoration(
-                color: AppColors.lightYellowTwo,
-                borderRadius: BorderRadius.circular(width / 80)),
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: width / 20, vertical: height / 150),
-              child: Text(name!, //AppString.data,
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontFamily: AppString.appFontFamily,
-                    fontSize: height / 60,
-                    fontWeight: FontWeight.w500,
-                  )),
-            ),
-          )
+          sizedBox ??
+              Container(
+                margin: EdgeInsets.only(left: width / 5),
+                decoration: BoxDecoration(
+                    color: AppColors.lightYellowTwo,
+                    borderRadius: BorderRadius.circular(width / 80)),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width / 20, vertical: height / 150),
+                  child: Text(name!, //AppString.data,
+                      style: TextStyle(
+                        color: AppColors.black,
+                        fontFamily: AppString.appFontFamily,
+                        fontSize: height / 60,
+                        fontWeight: FontWeight.w500,
+                      )),
+                ),
+              )
         ],
       ),
     );

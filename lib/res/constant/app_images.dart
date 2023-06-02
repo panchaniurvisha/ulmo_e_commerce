@@ -22,4 +22,12 @@ class AppImages {
 
   //review Screen
   static const String personOne = "${basePath}person_one.png";
+  static const String personTwo = "${basePath}person_two.png";
+  static const String personThree = "${basePath}person_three.png";
+  static const String reviewOne = "${basePath}quality_good_one.png";
+  static const String reviewTwo = "${basePath}quality_good_two.png";
+  static const String reviewThree = "${basePath}quality_good_three.png";
+
+  //new Review Screen
+  static const String cameraImageOne = "${basePath}camera_image.png";
 }

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
-import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 class AppRow extends StatelessWidget {
-  const AppRow({Key? key}) : super(key: key);
+  final String? text;
+  final Icon? icon;
+  final Icon? iconOne;
+  const AppRow({
+    Key? key,
+    this.text,
+    this.icon,
+    this.iconOne,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +34,21 @@ class AppRow extends StatelessWidget {
           color: AppColors.lightYellowTwo,
           size: height / 50,
         ),
-        Icon(
-          Icons.star,
-          color: AppColors.lightYellowTwo,
-          size: height / 50,
-        ),
-        Icon(
-          Icons.star,
-          color: AppColors.grayWhite,
-          size: height / 50,
-        ),
-        SizedBox(
-          width: width / 2.8,
-        ),
+        icon ??
+            Icon(
+              Icons.star,
+              color: AppColors.lightYellowTwo,
+              size: height / 50,
+            ),
+        iconOne ??
+            Icon(
+              Icons.star_border,
+              color: AppColors.grayWhite,
+              size: height / 50,
+            ),
+        Spacer(),
         AppText(
-          text: AppString.time,
+          text: text!,
           color: AppColors.gray,
           fontSize: height / 60,
         )
