@@ -19,4 +19,7 @@ class AppImages {
   ///images
   static const String bedSideTable = "${basePath}big_bed_side_table.png";
   static const String pageControl = "${basePath}page_controll_image.png";
+
+  //review Screen
+  static const String personOne = "${basePath}person_one.png";
 }

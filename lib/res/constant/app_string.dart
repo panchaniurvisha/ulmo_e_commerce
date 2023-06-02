@@ -46,12 +46,18 @@ class AppString {
   static const five = "5";
   static const headerName = "you might also like";
   static const price = "\$150.00";
-  static const likesTable =
-      "Wooden bedside table featuring a raised design on the door";
+  static const likesTable = "Wooden bedside table featuring a raised design on the door";
   static const brown = "Brown";
   static const black = "Black";
   static const addCart = "Add to bag";
   static const discount = "Discount for you";
   static const promoCode = "Use promo-code ULM";
   static const copy = "Copy";
+
+  //review Screen
+  static const reviewText = "Reviews";
+  static const newReview = "New review";
+  static const time = "Today, 12:30 pm";
+  static const personOne = "Erin Mango";
+  static const reviewOne = "Everything is good. Nice quality";
 }
