@@ -30,4 +30,7 @@ class AppImages {
 
   //new Review Screen
   static const String cameraImageOne = "${basePath}camera_image.png";
+
+  ///icons
+  static const String closeButton = "${iconBasePath}close_icon.png";
 }

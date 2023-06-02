@@ -97,28 +97,32 @@ class _NewReviewScreenState extends State<NewReviewScreen> {
                           AppImages.reviewOne,
                           height: height / 10,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: AppColors.skyWhite,
-                              borderRadius: BorderRadius.circular(width / 60)),
-                          child: IconButton(
+                        IconButton(
+                            splashRadius: height / 30,
                             onPressed: () {},
-                            icon: const Icon(
-                              Icons.close,
-                            ),
-                          ),
-                        )
+                            icon: Image.asset(
+                              AppImages.closeButton,
+                              height: height / 40,
+                            )),
                       ],
                     ),
                     SizedBox(
                       width: width / 20,
                     ),
                     Stack(
+                      alignment: Alignment.topRight,
                       children: [
                         Image.asset(
                           AppImages.reviewTwo,
                           height: height / 10,
                         ),
+                        IconButton(
+                            splashRadius: height / 30,
+                            onPressed: () {},
+                            icon: Image.asset(
+                              AppImages.closeButton,
+                              height: height / 40,
+                            )),
                       ],
                     )
                   ],
