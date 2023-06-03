@@ -20,40 +20,55 @@ class _AdPoPoverScreenState extends State<AdPoPoverScreen> {
     return SafeArea(
       child: Scaffold(
           backgroundColor: AppColors.lightBlack,
-          body: Container(
-            decoration: const BoxDecoration(
-              color: AppColors.skyWhite,
-            ),
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(height / 10),
-                  child: Image.asset(
-                    AppImages.bedRoomImage,
-                  ),
+          body: Center(
+            child: Container(
+              height: height / 1.5,
+              width: width / 1.1,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(height / 60),
+                color: AppColors.skyWhite,
+              ),
+              child: Padding(
+                padding: EdgeInsets.all(height / 50),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      AppImages.bedRoomImage,
+                    ),
+                    SizedBox(
+                      height: height / 40,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: width / 8),
+                      child: AppText(
+                        text: AppString.subscribeTitle,
+                        fontWeight: FontWeight.w600,
+                        fontSize: height / 30,
+                      ),
+                    ),
+                    AppText(
+                      text: AppString.usefulContent,
+                      color: AppColors.gray,
+                      fontSize: height / 50,
+                    ),
+                    SizedBox(
+                      height: height / 40,
+                    ),
+                    const AppElevatedButton(
+                      sizeBox: SizedBox(),
+                      text: AppString.subscribe,
+                    ),
+                    SizedBox(
+                      height: height / 50,
+                    ),
+                    const AppElevatedButton(
+                      color: AppColors.white,
+                      sizeBox: SizedBox(),
+                      text: AppString.word,
+                    ),
+                  ],
                 ),
-                AppText(
-                  text: AppString.subscribeTitle,
-                  fontWeight: FontWeight.w600,
-                  fontSize: height / 30,
-                ),
-                AppText(
-                  text: AppString.usefulContent,
-                  color: AppColors.gray,
-                  fontWeight: FontWeight.w600,
-                  fontSize: height / 50,
-                ),
-                const AppElevatedButton(
-                  sizeBox: SizedBox(),
-                  text: AppString.subscribe,
-                ),
-                const AppElevatedButton(
-                  color: AppColors.,
-                  sizeBox: SizedBox(),
-                  text: AppString.word,
-
-                ),
-              ],
+              ),
             ),
           )),
     );

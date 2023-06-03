@@ -36,4 +36,9 @@ class AppImages {
 
   //ad Popover screen
   static const String bedRoomImage = "${basePath}bedroom_image.png";
+
+  //story Screen
+  static const String storyImage = "${basePath}story_image.png";
+  //product Page Two Screen
+  static const String productImage = "${basePath}product_image.png";
 }
