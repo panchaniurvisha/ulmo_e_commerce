@@ -33,4 +33,7 @@ class AppImages {
 
   ///icons
   static const String closeButton = "${iconBasePath}close_icon.png";
+
+  //ad Popover screen
+  static const String bedRoomImage = "${basePath}bedroom_image.png";
 }
