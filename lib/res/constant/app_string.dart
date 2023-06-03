@@ -84,4 +84,8 @@ class AppString {
   static const jar = 'glass storage jar with\ngolden lid';
   static const aboutJar =
       'Hermetic storage jar. Made of glass with a\nraised slogan detail and a golden\nscrew-on lid. Available in three sizes.';
+
+//product Page Two Screen
+  static const dollar = '\$15.99';
+  static const woodType = "Silicone and acacia wood spoon rest.";
 }
