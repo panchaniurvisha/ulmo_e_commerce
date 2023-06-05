@@ -12,7 +12,7 @@ class FilterOptionsScreen extends StatefulWidget {
 }
 
 class _FilterOptionsScreenState extends State<FilterOptionsScreen> {
-  bool checkBoxValue = false;
+  bool value = false;
   List<String> categories = [
     AppString.furniture,
     AppString.lighting,
@@ -69,22 +69,32 @@ class _FilterOptionsScreenState extends State<FilterOptionsScreen> {
                         children: [
                           AppText(text: categories[index]),
                           index == 2 || index == 4 || index == 5
-                              ? Transform.scale(
-                                  scale: height / 600,
-                                  child: Checkbox(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(height / 5),
+                              ? InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      value = !value;
+                                    });
+                                  },
+                                  splashFactory: NoSplash.splashFactory,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.lightYellowTwo,
                                     ),
-                                    checkColor: AppColors.black,
-                                    activeColor: AppColors.lightYellowTwo,
-                                    value: checkBoxValue,
-                                    onChanged: (value) {
-                                      debugPrint("value--->$value");
-                                      setState(() {
-                                        checkBoxValue = value!;
-                                      });
-                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: value
+                                          ? const Icon(
+                                              Icons.check,
+                                              size: 20.0,
+                                              color: Colors.black,
+                                            )
+                                          : const Icon(
+                                              Icons.check_box_outline_blank,
+                                              size: 20.0,
+                                              color: Colors.black,
+                                            ),
+                                    ),
                                   ),
                                 )
                               : const SizedBox(),
