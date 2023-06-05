@@ -19,6 +19,7 @@ class _FilterScreenState extends State<FilterScreen> {
     {AppString.name: AppString.size, AppString.key: AppString.all},
     {AppString.name: AppString.quality, AppString.key: AppString.all},
   ];
+  double sliderValue = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -26,7 +27,8 @@ class _FilterScreenState extends State<FilterScreen> {
     return SafeArea(
         child: Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
+        padding:
+            EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,8 +42,10 @@ class _FilterScreenState extends State<FilterScreen> {
                     Icons.close,
                   ),
                 ),
-                const AppText(text: AppString.filter, fontWeight: FontWeight.w500),
-                const AppText(text: AppString.removeData, fontWeight: FontWeight.w500),
+                const AppText(
+                    text: AppString.filter, fontWeight: FontWeight.w500),
+                const AppText(
+                    text: AppString.removeData, fontWeight: FontWeight.w500),
               ],
             ),
             Row(
@@ -57,8 +61,17 @@ class _FilterScreenState extends State<FilterScreen> {
                 )
               ],
             ),
+            Slider(
+                value: sliderValue,
+                activeColor: AppColors.lightYellowTwo,
+                inactiveColor: AppColors.whiteTwo,
+                onChanged: (value) {
+                  setState(() {
+                    sliderValue = value;
+                  });
+                }),
             GridView.builder(
-                padding: EdgeInsets.only(top: height / 45),
+                padding: EdgeInsets.only(top: height / 100),
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: categories.length,
@@ -72,11 +85,13 @@ class _FilterScreenState extends State<FilterScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AppText(text: categories[index][AppString.name]),
-                        AppText(text: categories[index][AppString.key], color: AppColors.gray),
+                        AppText(
+                            text: categories[index][AppString.key],
+                            color: AppColors.gray),
                       ],
                     )),
             SizedBox(
-              height: height / 4,
+              height: height / 8,
             ),
             const AppElevatedButton(
               text: AppString.showItem,
