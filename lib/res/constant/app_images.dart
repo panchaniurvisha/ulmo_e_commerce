@@ -41,4 +41,5 @@ class AppImages {
   static const String storyImage = "${basePath}story_image.png";
   //product Page Two Screen
   static const String productImage = "${basePath}product_image.png";
+  static const String pageControlImage = "${basePath}page_controll_two.png";
 }

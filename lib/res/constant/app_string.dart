@@ -31,7 +31,7 @@ class AppString {
   ///key of  categories screen
   static const image = "image";
   static const name = "name";
-
+  static const key = "text";
   //catalog Screen
   static const title = "Furniture";
   static const text = "Hard to decide?";
@@ -46,8 +46,7 @@ class AppString {
   static const five = "5";
   static const headerName = "you might also like";
   static const price = "\$150.00";
-  static const likesTable =
-      "Wooden bedside table featuring a raised design on the door";
+  static const likesTable = "Wooden bedside table featuring a raised design on the door";
   static const brown = "Brown";
   static const black = "Black";
   static const addCart = "Add to bag";
@@ -66,8 +65,7 @@ class AppString {
   static const personThree = "Paityn Saris";
   static const reviewOne = "Everything is good. Nice quality";
   static const reviewTwo = "Could be better :(";
-  static const reviewThree =
-      "Bought this table 2 months ago and I wanted to say, this is the best bedside table I’ve ever used 😍";
+  static const reviewThree = "Bought this table 2 months ago and I wanted to say, this is the best bedside table I’ve ever used 😍";
 
   //new Review Screen
   static const nice = "Nice";
@@ -82,10 +80,23 @@ class AppString {
 
   //story Screen
   static const jar = 'glass storage jar with\ngolden lid';
-  static const aboutJar =
-      'Hermetic storage jar. Made of glass with a\nraised slogan detail and a golden\nscrew-on lid. Available in three sizes.';
+  static const aboutJar = 'Hermetic storage jar. Made of glass with a\nraised slogan detail and a golden\nscrew-on lid. Available in three sizes.';
 
 //product Page Two Screen
   static const dollar = '\$15.99';
   static const woodType = "Silicone and acacia wood spoon rest.";
+
+  //filter Screen
+  static const filter = "Filter";
+  static const removeData = "Clear";
+  static const startingDollar = "\$0";
+  static const endDollar = "\$700";
+  static const category = "Category";
+  static const categoryType = "furniture";
+  static const productType = "Product type";
+  static const all = "All";
+  static const color = "Color";
+  static const size = "Size";
+  static const quality = "Quality";
+  static const showItem = "Show 25 items";
 }

@@ -5,7 +5,8 @@ import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 class RowAppBar extends StatelessWidget {
   final String? text;
   final Icon? icon;
-  const RowAppBar({Key? key, this.text, this.icon}) : super(key: key);
+  final double? width;
+  const RowAppBar({Key? key, this.text, this.icon, this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
