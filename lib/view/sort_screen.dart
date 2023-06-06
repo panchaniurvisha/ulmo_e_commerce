@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 
+import '../res/commen/app_elevated_button.dart';
 import '../res/commen/app_text.dart';
 import '../res/constant/app_string.dart';
 
@@ -12,7 +13,7 @@ class SortScreen extends StatefulWidget {
 }
 
 class _SortScreenState extends State<SortScreen> {
-  bool value = false;
+  bool value = true;
   List<String> sortTitle = [
     AppString.priceHighToLow,
     AppString.priceLowToHigh,
@@ -30,65 +31,83 @@ class _SortScreenState extends State<SortScreen> {
             child: Text(AppString.cancel),
             onPressed: () {
               showModalBottomSheet(
+                backgroundColor: Colors.transparent,
                 isScrollControlled: true,
                 isDismissible: true,
                 context: context,
-                barrierColor: Colors.transparent,
                 builder: (context) => Container(
                   height: 520,
                   width: double.infinity,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: AppColors.white,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        topRight: Radius.circular(25),
+                        topLeft: Radius.circular(width / 20),
+                        topRight: Radius.circular(width / 20),
                       )),
-                  child: GridView.builder(
-                    padding: EdgeInsets.only(top: height / 100),
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: sortTitle.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 1,
-                      childAspectRatio: 2,
-                      mainAxisExtent: height / 12,
-                      crossAxisSpacing: width / 20,
-                    ),
-                    itemBuilder: (context, index) => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: height / 50, horizontal: width / 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppText(text: sortTitle[index]),
-                        index == 0
-                            ? InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    value = !value;
-                                  });
-                                },
-                                splashFactory: NoSplash.splashFactory,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.lightYellowTwo,
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: value
-                                        ? const Icon(
-                                            Icons.check,
-                                            size: 20.0,
-                                            color: Colors.black,
-                                          )
-                                        : const Icon(
-                                            Icons.check_box_outline_blank,
-                                            size: 20.0,
-                                            color: Colors.black,
-                                          ),
-                                  ),
-                                ),
-                              )
-                            : const SizedBox(),
+                        AppText(
+                          text: AppString.sortTitle,
+                          fontSize: height / 25,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        GridView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: sortTitle.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            childAspectRatio: 2,
+                            mainAxisExtent: height / 12,
+                            crossAxisSpacing: width / 20,
+                          ),
+                          itemBuilder: (context, index) => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              AppText(text: sortTitle[index]),
+                              index == 0
+                                  ? InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          value = !value;
+                                        });
+                                      },
+                                      splashFactory: NoSplash.splashFactory,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: AppColors.lightYellowTwo,
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(1.0),
+                                          child: value
+                                              ? const Icon(
+                                                  Icons.check,
+                                                  size: 20.0,
+                                                  color: Colors.black,
+                                                )
+                                              : const Icon(
+                                                  Icons.radio_button_unchecked,
+                                                  size: 20.0,
+                                                  color: Colors.black,
+                                                ),
+                                        ),
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                            ],
+                          ),
+                        ),
+                        const AppElevatedButton(
+                          text: AppString.cancel,
+                          color: AppColors.white,
+                          sizeBox: SizedBox(),
+                        )
                       ],
                     ),
                   ),
