@@ -31,8 +31,7 @@ class _FilterOptionsScreenState extends State<FilterOptionsScreen> {
     return SafeArea(
         child: Scaffold(
       body: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
+        padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,10 +45,8 @@ class _FilterOptionsScreenState extends State<FilterOptionsScreen> {
                     Icons.arrow_back,
                   ),
                 ),
-                const AppText(
-                    text: AppString.category, fontWeight: FontWeight.w500),
-                const AppText(
-                    text: AppString.removeData, fontWeight: FontWeight.w500),
+                const AppText(text: AppString.category, fontWeight: FontWeight.w500),
+                const AppText(text: AppString.removeData, fontWeight: FontWeight.w500),
               ],
             ),
             GridView.builder(
@@ -63,41 +60,43 @@ class _FilterOptionsScreenState extends State<FilterOptionsScreen> {
                   mainAxisExtent: height / 12,
                   crossAxisSpacing: width / 20,
                 ),
-                itemBuilder: (context, index) => Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        AppText(text: categories[index]),
-                        index == 2 || index == 4 || index == 5
-                            ? InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    value = !value;
-                                  });
-                                },
-                                splashFactory: NoSplash.splashFactory,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.lightYellowTwo,
+                itemBuilder: (context, index) => StatefulBuilder(
+                      builder: (context, setState) => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppText(text: categories[index]),
+                          index == 2 || index == 4 || index == 5
+                              ? InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      value = !value;
+                                    });
+                                  },
+                                  splashFactory: NoSplash.splashFactory,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: AppColors.lightYellowTwo,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(1.0),
+                                      child: value
+                                          ? const Icon(
+                                              Icons.check,
+                                              size: 20.0,
+                                              color: Colors.black,
+                                            )
+                                          : const Icon(
+                                              Icons.check_box_outline_blank,
+                                              size: 20.0,
+                                              color: Colors.black,
+                                            ),
+                                    ),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(1.0),
-                                    child: value
-                                        ? const Icon(
-                                            Icons.check,
-                                            size: 20.0,
-                                            color: Colors.black,
-                                          )
-                                        : const Icon(
-                                            Icons.check_box_outline_blank,
-                                            size: 20.0,
-                                            color: Colors.black,
-                                          ),
-                                  ),
-                                ),
-                              )
-                            : const SizedBox(),
-                      ],
+                                )
+                              : const SizedBox(),
+                        ],
+                      ),
                     )),
             SizedBox(
               height: height / 41,

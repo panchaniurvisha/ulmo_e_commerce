@@ -46,8 +46,7 @@ class AppString {
   static const five = "5";
   static const headerName = "you might also like";
   static const price = "\$150.00";
-  static const likesTable =
-      "Wooden bedside table featuring a raised design on the door";
+  static const likesTable = "Wooden bedside table featuring a raised design on the door";
   static const brown = "Brown";
   static const black = "Black";
   static const addCart = "Add to bag";
@@ -66,8 +65,7 @@ class AppString {
   static const personThree = "Paityn Saris";
   static const reviewOne = "Everything is good. Nice quality";
   static const reviewTwo = "Could be better :(";
-  static const reviewThree =
-      "Bought this table 2 months ago and I wanted to say, this is the best bedside table I’ve ever used 😍";
+  static const reviewThree = "Bought this table 2 months ago and I wanted to say, this is the best bedside table I’ve ever used 😍";
 
   //new Review Screen
   static const nice = "Nice";
@@ -82,8 +80,7 @@ class AppString {
 
   //story Screen
   static const jar = 'glass storage jar with\ngolden lid';
-  static const aboutJar =
-      'Hermetic storage jar. Made of glass with a\nraised slogan detail and a golden\nscrew-on lid. Available in three sizes.';
+  static const aboutJar = 'Hermetic storage jar. Made of glass with a\nraised slogan detail and a golden\nscrew-on lid. Available in three sizes.';
 
 //product Page Two Screen
   static const dollar = '\$15.99';
@@ -110,4 +107,14 @@ class AppString {
   static const popularFirst = "Popular first";
   static const sortTitle = "sort by";
   static const cancel = "Cancel";
+
+  //product Information Screen
+  static const productInformation = "Product information";
+  static const measurements = "measurements";
+  static const height = "Height:";
+  static const width = "Width:";
+  static const depth = "Depth:";
+  static const composition = "composition";
+  static const material = "Main material";
+  static const weight = "Weight:";
 }
