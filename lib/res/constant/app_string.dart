@@ -133,4 +133,7 @@ class AppString {
   static const aboutBag =
       "items remain in your bag for 1 hour, and then they’re moved to your Saved items";
   static const shopping = "Start shopping";
+
+  //bag Screen
+  static const aboutTable = "Wooden bedside table featuring \na raised design";
 }
