@@ -10,8 +10,7 @@ class ProductInformationScreen extends StatefulWidget {
   const ProductInformationScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProductInformationScreen> createState() =>
-      _ProductInformationScreenState();
+  State<ProductInformationScreen> createState() => _ProductInformationScreenState();
 }
 
 class _ProductInformationScreenState extends State<ProductInformationScreen> {
@@ -49,8 +48,7 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                         topRight: Radius.circular(width / 20),
                       )),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: height / 30, horizontal: width / 20),
+                    padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -69,7 +67,7 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                             children: [
                               AppText(text: information[index]),
                               AppText(
-                                text: "${userModel.measurement![index].height}",
+                                text: "${userModel.measurement![index]}",
                               )
                             ],
                           ),
@@ -77,34 +75,9 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                             height: height / 20,
                           ),
                           itemCount: information.length,
-                          physics: NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                        ),
-                        /* GridView.builder(
-                          padding: EdgeInsets.only(bottom: height / 30),
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                          itemCount: userModel.measurement!.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            childAspectRatio: 2,
-                            mainAxisExtent: height / 12,
-                            crossAxisSpacing: width / 20,
-                          ),
-                          itemBuilder: (context, index) => Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              AppText(
-                                text: information[index],
-                                fontSize: height / 25,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              AppText(
-                                text: "${userModel.measurement![index].height}",
-                              )
-                            ],
-                          ),
-                        ),*/
+                        ),
                       ],
                     ),
                   ),

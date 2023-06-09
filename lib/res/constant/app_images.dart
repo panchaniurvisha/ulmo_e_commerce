@@ -42,9 +42,11 @@ class AppImages {
   //product Page Two Screen
   static const String productImage = "${basePath}product_image.png";
   static const String pageControlImage = "${basePath}page_controll_two.png";
-
   static const String noInternetEmoji = "${basePath}no_internet_emoji.png";
 
   //empty Beg Screen
   static const String emptyBegEmoji = "${basePath}empty_bag_emoji.png";
+
+  //success Screen
+  static const String successEmoji = "${basePath}placed_order_emoji.png";
 }
