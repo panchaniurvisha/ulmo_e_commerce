@@ -4,16 +4,52 @@ class FirstScreenModel {
   List<PopularItem>? popularItem;
   List<CatalogItem>? catalogItem;
   List<PageContentItem>? pageContentItem;
-  List<Measurement>? measurement;
+  List<Address>? address;
+  String? height;
+  String? width;
+  String? depth;
+  String? weight;
+  String? mainMaterial;
+  String? percentage;
 
-  FirstScreenModel({this.pageContent, this.roomFacility, this.popularItem, this.catalogItem, this.pageContentItem});
+  FirstScreenModel(
+      {this.height,
+      this.width,
+      this.depth,
+      this.weight,
+      this.mainMaterial,
+      this.percentage,
+      this.pageContent,
+      this.roomFacility,
+      this.popularItem,
+      this.catalogItem,
+      this.pageContentItem,
+      this.address});
   FirstScreenModel.fromJson(Map<String, dynamic> data) {
-    pageContent = (data["pageContent"] as List).map((value) => RoomModel.fromJson(value)).toList();
-    roomFacility = (data["roomFacility"] as List).map((value) => RoomFacility.fromJson(value)).toList();
-    popularItem = (data["popularItem"] as List).map((value) => PopularItem.fromJson(value)).toList();
-    catalogItem = (data["catalogItem"] as List).map((value) => CatalogItem.fromJson(value)).toList();
-    pageContentItem = (data["pageContentItem"] as List).map((value) => PageContentItem.fromJson(value)).toList();
-    measurement = (data["measurement"] as List).map((value) => Measurement.fromJson(value)).toList();
+    height = data["height"];
+    width = data["width"];
+    depth = data["depth"];
+    weight = data["weight"];
+    mainMaterial = data["mainMaterial"];
+    percentage = data["percentage"];
+    pageContent = (data["pageContent"] as List)
+        .map((value) => RoomModel.fromJson(value))
+        .toList();
+    roomFacility = (data["roomFacility"] as List)
+        .map((value) => RoomFacility.fromJson(value))
+        .toList();
+    popularItem = (data["popularItem"] as List)
+        .map((value) => PopularItem.fromJson(value))
+        .toList();
+    catalogItem = (data["catalogItem"] as List)
+        .map((value) => CatalogItem.fromJson(value))
+        .toList();
+    pageContentItem = (data["pageContentItem"] as List)
+        .map((value) => PageContentItem.fromJson(value))
+        .toList();
+    address = (data["address"] as List)
+        .map((value) => Address.fromJson(value))
+        .toList();
   }
 }
 
@@ -83,7 +119,12 @@ class PageContentItem {
   String? icon;
   String? recentlyNew;
   String? itemName;
-  PageContentItem({this.popularImage, this.price, this.icon, this.itemName, this.recentlyNew});
+  PageContentItem(
+      {this.popularImage,
+      this.price,
+      this.icon,
+      this.itemName,
+      this.recentlyNew});
   PageContentItem.fromJson(Map<String, dynamic> data) {
     popularImage = data["popularImage"];
     itemName = data["itemName"];
@@ -93,17 +134,12 @@ class PageContentItem {
   }
 }
 
-class Measurement {
-  String? height;
-  String? width;
-  String? depth;
-  String? weight;
-
-  Measurement({this.height, this.width, this.depth, this.weight});
-  Measurement.fromJson(Map<String, dynamic> data) {
-    height = data["height"];
-    width = data["width"];
-    depth = data["depth"];
-    weight = data["weight"];
+class Address {
+  String? street;
+  String? home;
+  Address({this.street, this.home});
+  Address.fromJson(Map<String, dynamic> data) {
+    street = data["street"];
+    home = data["home"];
   }
 }
