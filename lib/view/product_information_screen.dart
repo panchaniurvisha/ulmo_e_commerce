@@ -10,8 +10,7 @@ class ProductInformationScreen extends StatefulWidget {
   const ProductInformationScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProductInformationScreen> createState() =>
-      _ProductInformationScreenState();
+  State<ProductInformationScreen> createState() => _ProductInformationScreenState();
 }
 
 class _ProductInformationScreenState extends State<ProductInformationScreen> {
@@ -53,15 +52,11 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                         topRight: Radius.circular(width / 20),
                       )),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: height / 30, horizontal: width / 20),
+                    padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        IconButton(
-                            onPressed: () {},
-                            padding: EdgeInsets.only(right: width / 10),
-                            icon: const Icon(Icons.close)),
+                        IconButton(onPressed: () {}, padding: EdgeInsets.only(right: width / 10), icon: const Icon(Icons.close)),
                         AppText(
                           text: AppString.productInformation,
                           fontSize: height / 25,
@@ -80,6 +75,15 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppText(text: information[index]),
+                              AppText(
+                                  text: index == 0
+                                      ? userModel.height
+                                      : index == 1
+                                          ? userModel.width
+                                          : index == 2
+                                              ? userModel.depth
+                                              : userModel.weight,
+                                  color: AppColors.gray),
                             ],
                           ),
                           separatorBuilder: (context, index) => SizedBox(
@@ -102,9 +106,7 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppText(text: composition[index]),
-                              AppText(
-                                  text: userModel.mainMaterial,
-                                  color: AppColors.gray),
+                              AppText(text: index == 0 ? userModel.mainMaterial : userModel.percentage, color: AppColors.gray),
                             ],
                           ),
                           separatorBuilder: (context, index) => SizedBox(

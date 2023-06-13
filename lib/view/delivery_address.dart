@@ -25,7 +25,7 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
       backgroundColor: AppColors.lightBlack,
       body: Center(
         child: ElevatedButton(
-            child: Text(AppString.cancel),
+            child: const Text(AppString.cancel),
             onPressed: () {
               showModalBottomSheet(
                 backgroundColor: Colors.transparent,
@@ -43,8 +43,7 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                           topRight: Radius.circular(width / 20),
                         )),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: height / 30, horizontal: width / 20),
+                      padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -61,8 +60,7 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: userModel.address!.length,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 1,
                               childAspectRatio: 2,
                               mainAxisExtent: height / 12,
@@ -71,27 +69,19 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                             itemBuilder: (context, index) => Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: height / 40, right: width / 20),
-                                  child: Icon(Icons.location_on_outlined,
-                                      size: height / 30),
+                                  padding: EdgeInsets.only(bottom: height / 40, right: width / 20),
+                                  child: Icon(Icons.location_on_outlined, size: height / 30),
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    AppText(
-                                        text:
-                                            "${userModel.address![index].street}"),
-                                    AppText(
-                                        text:
-                                            "${userModel.address![index].home}",
-                                        color: AppColors.gray),
+                                    AppText(text: "${userModel.address![index].street}"),
+                                    AppText(text: "${userModel.address![index].home}", color: AppColors.gray),
                                   ],
                                 ),
                                 index == 0
                                     ? Padding(
-                                        padding:
-                                            EdgeInsets.only(left: width / 20),
+                                        padding: EdgeInsets.only(left: width / 20),
                                         child: InkWell(
                                           onTap: () {
                                             setState(() {
@@ -105,8 +95,7 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                                               color: AppColors.lightYellowTwo,
                                             ),
                                             child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(1.0),
+                                              padding: const EdgeInsets.all(1.0),
                                               child: value
                                                   ? const Icon(
                                                       Icons.check,
@@ -114,8 +103,7 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                                                       color: AppColors.black,
                                                     )
                                                   : const Icon(
-                                                      Icons
-                                                          .radio_button_unchecked,
+                                                      Icons.radio_button_unchecked,
                                                       size: 20.0,
                                                       color: AppColors.black,
                                                     ),

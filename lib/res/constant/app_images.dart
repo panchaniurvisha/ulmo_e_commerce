@@ -49,4 +49,9 @@ class AppImages {
 
   //success Screen
   static const String successEmoji = "${basePath}placed_order_emoji.png";
+
+  //payment Method Screen
+  static const String mastercard = "${basePath}master_card.png";
+  static const String visaCard = "${basePath}visa_card.png";
+  static const String apple = "${basePath}apple.png";
 }
