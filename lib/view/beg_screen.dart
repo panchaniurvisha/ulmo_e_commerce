@@ -14,6 +14,8 @@ class BegScreen extends StatefulWidget {
 }
 
 class _BegScreenState extends State<BegScreen> {
+  int itemCount = 0;
+  int countItem = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -86,19 +88,27 @@ class _BegScreenState extends State<BegScreen> {
                           child: Row(
                             children: [
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      itemCount > 1 ? itemCount-- : null;
+                                    });
+                                  },
                                   padding: EdgeInsets.symmetric(
                                       vertical: height / 150),
                                   icon: const Icon(
                                     Icons.remove,
                                   )),
-                              const AppText(
-                                  text: AppString.zero,
+                              AppText(
+                                  text: itemCount.toString(),
                                   fontWeight: FontWeight.w500),
                               IconButton(
                                   padding: EdgeInsets.symmetric(
                                       vertical: height / 150),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      itemCount < 15 ? itemCount++ : null;
+                                    });
+                                  },
                                   icon: const Icon(Icons.add))
                             ],
                           ),
@@ -159,19 +169,27 @@ class _BegScreenState extends State<BegScreen> {
                           child: Row(
                             children: [
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      countItem > 1 ? countItem-- : null;
+                                    });
+                                  },
                                   padding: EdgeInsets.symmetric(
                                       vertical: height / 150),
                                   icon: const Icon(
                                     Icons.remove,
                                   )),
-                              const AppText(
-                                  text: AppString.two,
+                              AppText(
+                                  text: countItem.toString(),
                                   fontWeight: FontWeight.w500),
                               IconButton(
                                   padding: EdgeInsets.symmetric(
                                       vertical: height / 150),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                      countItem < 15 ? countItem++ : null;
+                                    });
+                                  },
                                   icon: const Icon(Icons.add))
                             ],
                           ),

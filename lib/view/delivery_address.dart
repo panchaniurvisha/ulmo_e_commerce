@@ -4,6 +4,7 @@ import '../data/user_data_first_screen.dart';
 import '../model/first_screen_model.dart';
 import '../res/commen/app_elevated_button.dart';
 import '../res/commen/app_text.dart';
+import '../res/commen/check_box_button.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
 
@@ -43,7 +44,8 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                           topRight: Radius.circular(width / 20),
                         )),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
+                      padding: EdgeInsets.symmetric(
+                          vertical: height / 30, horizontal: width / 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -60,7 +62,8 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: userModel.address!.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 1,
                               childAspectRatio: 2,
                               mainAxisExtent: height / 12,
@@ -69,49 +72,36 @@ class _DeliveryAddressState extends State<DeliveryAddress> {
                             itemBuilder: (context, index) => Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(bottom: height / 40, right: width / 20),
-                                  child: Icon(Icons.location_on_outlined, size: height / 30),
+                                  padding: EdgeInsets.only(
+                                      bottom: height / 40, right: width / 20),
+                                  child: Icon(Icons.location_on_outlined,
+                                      size: height / 30),
                                 ),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    AppText(text: "${userModel.address![index].street}"),
-                                    AppText(text: "${userModel.address![index].home}", color: AppColors.gray),
+                                    AppText(
+                                        text:
+                                            "${userModel.address![index].street}"),
+                                    AppText(
+                                        text:
+                                            "${userModel.address![index].home}",
+                                        color: AppColors.gray),
                                   ],
                                 ),
-                                index == 0
-                                    ? Padding(
-                                        padding: EdgeInsets.only(left: width / 20),
-                                        child: InkWell(
+                                Padding(
+                                  padding: EdgeInsets.only(left: width / 20),
+                                  child: index == 0
+                                      ? CheckBoxButton(
+                                          value: value,
                                           onTap: () {
                                             setState(() {
                                               value = !value;
                                             });
                                           },
-                                          splashFactory: NoSplash.splashFactory,
-                                          child: Container(
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              color: AppColors.lightYellowTwo,
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(1.0),
-                                              child: value
-                                                  ? const Icon(
-                                                      Icons.check,
-                                                      size: 20.0,
-                                                      color: AppColors.black,
-                                                    )
-                                                  : const Icon(
-                                                      Icons.radio_button_unchecked,
-                                                      size: 20.0,
-                                                      color: AppColors.black,
-                                                    ),
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : const SizedBox(),
+                                        )
+                                      : const SizedBox(),
+                                ),
                               ],
                             ),
                           ),

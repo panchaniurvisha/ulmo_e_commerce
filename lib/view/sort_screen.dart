@@ -3,6 +3,7 @@ import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 
 import '../res/commen/app_elevated_button.dart';
 import '../res/commen/app_text.dart';
+import '../res/commen/check_box_button.dart';
 import '../res/constant/app_string.dart';
 
 class SortScreen extends StatefulWidget {
@@ -46,7 +47,8 @@ class _SortScreenState extends State<SortScreen> {
                           topRight: Radius.circular(width / 20),
                         )),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
+                      padding: EdgeInsets.symmetric(
+                          vertical: height / 30, horizontal: width / 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -60,7 +62,8 @@ class _SortScreenState extends State<SortScreen> {
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemCount: sortTitle.length,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 1,
                               childAspectRatio: 2,
                               mainAxisExtent: height / 12,
@@ -71,33 +74,13 @@ class _SortScreenState extends State<SortScreen> {
                               children: [
                                 AppText(text: sortTitle[index]),
                                 index == 0
-                                    ? InkWell(
+                                    ? CheckBoxButton(
+                                        value: value,
                                         onTap: () {
                                           setState(() {
                                             value = !value;
                                           });
                                         },
-                                        splashFactory: NoSplash.splashFactory,
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: AppColors.lightYellowTwo,
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(1.0),
-                                            child: value
-                                                ? const Icon(
-                                                    Icons.check,
-                                                    size: 20.0,
-                                                    color: AppColors.black,
-                                                  )
-                                                : const Icon(
-                                                    Icons.radio_button_unchecked,
-                                                    size: 20.0,
-                                                    color: AppColors.black,
-                                                  ),
-                                          ),
-                                        ),
                                       )
                                     : const SizedBox(),
                               ],
