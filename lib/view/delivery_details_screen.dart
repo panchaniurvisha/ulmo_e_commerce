@@ -65,41 +65,43 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   mainAxisExtent: height / 12,
                   crossAxisSpacing: width / 20,
                 ),
-                itemBuilder: (context, index) => Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          bottom: height / 40, right: width / 20),
-                      child: Icon(
-                          index == 0
-                              ? Icons.directions_car_outlined
-                              : Icons.shopping_cart_outlined,
-                          size: height / 30),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppText(text: transactionSource[index][AppString.key]),
-                        AppText(
-                            text: transactionSource[index][AppString.name],
-                            color: AppColors.gray,
-                            fontSize: height / 55),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: width / 20),
-                      child: index == 0
-                          ? CheckBoxButton(
-                              value: value,
-                              onTap: () {
-                                setState(() {
-                                  value = !value;
-                                });
-                              },
-                            )
-                          : const SizedBox(),
-                    ),
-                  ],
+                itemBuilder: (context, index) => StatefulBuilder(
+                  builder: (context, setState) => Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                            bottom: height / 40, right: width / 20),
+                        child: Icon(
+                            index == 0
+                                ? Icons.directions_car_outlined
+                                : Icons.shopping_cart_outlined,
+                            size: height / 30),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                              text: transactionSource[index][AppString.key]),
+                          AppText(
+                              text: transactionSource[index][AppString.name],
+                              color: AppColors.gray,
+                              fontSize: height / 55),
+                        ],
+                      ),
+                      Padding(
+                          padding: EdgeInsets.only(
+                              left: index == 0 ? width / 3.5 : width / 5,
+                              bottom: width / 12),
+                          child: CheckBoxButton(
+                            value: value,
+                            onTap: () {
+                              setState(() {
+                                value = !value;
+                              });
+                            },
+                          )),
+                    ],
+                  ),
                 ),
               ),
               AppText(
