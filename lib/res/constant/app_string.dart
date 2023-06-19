@@ -46,7 +46,8 @@ class AppString {
   static const five = "5";
   static const headerName = "you might also like";
   static const price = "\$150.00";
-  static const likesTable = "Wooden bedside table featuring a raised design on the door";
+  static const likesTable =
+      "Wooden bedside table featuring a raised design on the door";
   static const brown = "Brown";
   static const black = "Black";
   static const addCart = "Add to bag";
@@ -65,7 +66,8 @@ class AppString {
   static const personThree = "Paityn Saris";
   static const reviewOne = "Everything is good. Nice quality";
   static const reviewTwo = "Could be better :(";
-  static const reviewThree = "Bought this table 2 months ago and I wanted to say, this is the best bedside table I’ve ever used 😍";
+  static const reviewThree =
+      "Bought this table 2 months ago and I wanted to say, this is the best bedside table I’ve ever used 😍";
 
   //new Review Screen
   static const nice = "Nice";
@@ -80,7 +82,8 @@ class AppString {
 
   //story Screen
   static const jar = 'glass storage jar with\ngolden lid';
-  static const aboutJar = 'Hermetic storage jar. Made of glass with a\nraised slogan detail and a golden\nscrew-on lid. Available in three sizes.';
+  static const aboutJar =
+      'Hermetic storage jar. Made of glass with a\nraised slogan detail and a golden\nscrew-on lid. Available in three sizes.';
 
 //product Page Two Screen
   static const dollar = '\$15.99';
@@ -120,13 +123,15 @@ class AppString {
 
   //no Internet Screen
   static const internetLabel = "no connection";
-  static const aboutInternet = "so, it’s looks like you don’t have an \n  internet connection right now";
+  static const aboutInternet =
+      "so, it’s looks like you don’t have an \n  internet connection right now";
   static const retry = "Retry";
 
   //Empty Bag Screen
   static const bag = "bag";
   static const bagLabel = "your bag is empty";
-  static const aboutBag = "items remain in your bag for 1 hour, and then they’re moved to your Saved items";
+  static const aboutBag =
+      "items remain in your bag for 1 hour, and then they’re moved to your Saved items";
   static const shopping = "Start shopping";
 
   //bag Screen
@@ -134,7 +139,8 @@ class AppString {
   static const zero = "0";
   static const two = "2";
   static const dollarPrice = "\$280.50";
-  static const aboutBedSideTable = "Square bedside table with legs,\na rattan shelf and a...";
+  static const aboutBedSideTable =
+      "Square bedside table with legs,\na rattan shelf and a...";
   static const promoTitle = "promocode";
   static const checkout = "Checkout";
   static const total = "total";
@@ -144,7 +150,8 @@ class AppString {
   //success Screen
   static const successButton = "To my orders";
   static const orderLabel = "your order is placed";
-  static const aboutOrder = "thanks for your order, we hope you \n   enjoyed shopping with us";
+  static const aboutOrder =
+      "thanks for your order, we hope you \n   enjoyed shopping with us";
 
   //delivery Address Screen
   static const deliveryTitle = "delivery address";
@@ -158,4 +165,17 @@ class AppString {
   static const expiryVisaCard = "321, Exp: 11/29";
   static const apple = "Apple pay";
   static const payAmount = "Pay \$420,50";
+
+  //contact Info Editing Screen
+  static const contactInfo = "contact info";
+  static const continueButton = "Continue";
+  static const nameHintText = "Full Name";
+  static const nameLabelText = "Full Name";
+  static const errorTitle = "Please Enter Correct Name,";
+  static const numberLabelText = "phone";
+  static const hintTextNumber = "00000 00000";
+  static const errorNumberTitle = "Please Enter Correct Number,";
+  static const email = "Email";
+  static const hintEmailName = "Eg. jamesburnes14@gmail.com";
+  static const errorEmailTitle = "Please Enter Correct Email,";
 }

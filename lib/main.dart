@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/view/payment_method_screen.dart';
+import 'package:ulmo_e_commerce_app/view/contact_info_editing_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const PaymentMethodScreen());
+        home: const ContactInfoEditingScreen());
   }
 }
