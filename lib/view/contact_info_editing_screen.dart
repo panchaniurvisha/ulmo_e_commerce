@@ -4,6 +4,7 @@ import 'package:ulmo_e_commerce_app/res/commen/app_text_form_field.dart';
 import '../res/commen/app_elevated_button.dart';
 import '../res/commen/app_text.dart';
 import '../res/commen/row_app_bar.dart';
+import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
 import '../utils/utils.dart';
 
@@ -36,6 +37,15 @@ class _ContactInfoEditingScreenState extends State<ContactInfoEditingScreen> {
               children: [
                 const RowAppBar(
                   text: AppString.paymentTitle,
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: AppText(
+                    text: AppString.pageNumber,
+                    fontWeight: FontWeight.w500,
+                    fontSize: height / 60,
+                    color: AppColors.gray,
+                  ),
                 ),
                 AppText(
                   text: AppString.contactInfo,

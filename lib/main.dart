@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/view/contact_info_editing_screen.dart';
+import 'package:ulmo_e_commerce_app/view/delivery_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +17,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const ContactInfoEditingScreen());
+        home: const DeliveryDetailsScreen());
   }
 }

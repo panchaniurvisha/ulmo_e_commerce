@@ -49,6 +49,15 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               const RowAppBar(
                 text: AppString.paymentTitle,
               ),
+              Align(
+                alignment: Alignment.center,
+                child: AppText(
+                  text: AppString.page,
+                  fontWeight: FontWeight.w500,
+                  fontSize: height / 60,
+                  color: AppColors.gray,
+                ),
+              ),
               AppText(
                 text: AppString.paymentMethod,
                 fontWeight: FontWeight.w600,

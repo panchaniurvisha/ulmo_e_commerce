@@ -32,6 +32,7 @@ class AppString {
   static const image = "image";
   static const name = "name";
   static const key = "text";
+
   //catalog Screen
   static const title = "Furniture";
   static const text = "Hard to decide?";
@@ -165,6 +166,7 @@ class AppString {
   static const expiryVisaCard = "321, Exp: 11/29";
   static const apple = "Apple pay";
   static const payAmount = "Pay \$420,50";
+  static const page = "3 of 3";
 
   //contact Info Editing Screen
   static const contactInfo = "contact info";
@@ -178,4 +180,15 @@ class AppString {
   static const email = "Email";
   static const hintEmailName = "Eg. jamesburnes14@gmail.com";
   static const errorEmailTitle = "Please Enter Correct Email,";
+  static const pageNumber = "1 of 3";
+
+  //delivery Details Screen
+  static const numberOutOf3 = "2 of 3";
+  static const deliveryMethod = "delivery method";
+  static const deliveryAddress = "delivery address";
+  static const deliveryTime = "delivery time";
+  static const byCourier = "By courier";
+  static const timeOfData = "Tomorrow, any time";
+  static const myselfCourier = "I'll take it myself";
+  static const timeOfTransaction = "Any day from tomorrow";
 }
