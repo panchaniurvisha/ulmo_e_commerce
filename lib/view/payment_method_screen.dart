@@ -57,43 +57,54 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => Row(
-                        children: [
-                          Image.asset(
-                            paymentSource[index]["image"],
-                            height: height / 60,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: width / 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                AppText(
-                                  text: paymentSource[index]["sourceName"],
-                                ),
-                                AppText(
-                                  text: paymentSource[index]["expiryDate"],
-                                  color: AppColors.gray,
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
+                  itemBuilder: (context, index) => StatefulBuilder(
+                        builder: (context, setState) => Row(
+                          children: [
+                            Padding(
                               padding: EdgeInsets.only(
-                                  left: index == 0
-                                      ? width / 2.6
-                                      : index == 1
-                                          ? width / 2.4
-                                          : width / 1.84),
-                              child: CheckBoxButton(
-                                value: value,
-                                onTap: () {
-                                  setState(() {
-                                    value = !value;
-                                  });
-                                },
-                              ))
-                        ],
+                                  bottom: index == 2 ? height / 35 : 2.5),
+                              child: Image.asset(
+                                paymentSource[index]["image"],
+                                height: index == 0
+                                    ? height / 60
+                                    : index == 1
+                                        ? height / 90
+                                        : height / 30,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: width / 20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppText(
+                                    text: paymentSource[index]["sourceName"],
+                                  ),
+                                  AppText(
+                                    text: paymentSource[index]["expiryDate"],
+                                    color: AppColors.gray,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: height / 40,
+                                    left: index == 0
+                                        ? width / 2.8
+                                        : index == 1
+                                            ? width / 2.3
+                                            : width / 2),
+                                child: CheckBoxButton(
+                                  value: value,
+                                  onTap: () {
+                                    setState(() {
+                                      value = !value;
+                                    });
+                                  },
+                                ))
+                          ],
+                        ),
                       ),
                   separatorBuilder: (context, index) => SizedBox(
                         height: height / 30,
