@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/view/delivery_details_screen.dart';
+
+import 'view/country_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const DeliveryDetailsScreen());
+        home: const CountryListScreen());
   }
 }
