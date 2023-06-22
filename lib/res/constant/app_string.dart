@@ -194,10 +194,13 @@ class AppString {
   static const twoOClock = "2:00 pm";
   static const four = "4:00 pm";
   static const six = "6:00 pm";
+<<<<<<< HEAD
 
   //Country List Screen
   static const buttonOfContinue = "Continue";
   static const enterNumber = "enter your phone number";
   static const labelTextOfPhone = 'Phone Number';
   static const actionOfHelp = "Help";
+=======
+>>>>>>> 8e6487b9e9c71d99149fe971b900614dccf32b44
 }
