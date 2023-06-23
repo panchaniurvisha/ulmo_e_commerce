@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'view/country_listove_items_screen.dart';
+import 'view/country_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
