@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       color: AppColors.black,
                       fontFamily: AppString.appFontFamily),
                 ),
-                SearchBar(controller: searchEditingController),
+                AppSearchBar(controller: searchEditingController),
                 SizedBox(
                   height: height / 7,
                   child: ListView.separated(

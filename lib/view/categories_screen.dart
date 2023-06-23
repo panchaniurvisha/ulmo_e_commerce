@@ -39,7 +39,7 @@ class _CategoriesState extends State<Categories> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const RowAppBar(),
-                const SearchBar(),
+                const AppSearchBar(),
                 Text(
                   AppString.categories,
                   style: TextStyle(

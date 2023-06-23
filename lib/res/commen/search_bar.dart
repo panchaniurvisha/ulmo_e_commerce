@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
-class SearchBar extends StatelessWidget {
+class AppSearchBar extends StatelessWidget {
   final TextEditingController? controller;
-  const SearchBar({Key? key, this.controller}) : super(key: key);
+  const AppSearchBar({Key? key, this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class SearchBar extends StatelessWidget {
         cursorColor: AppColors.black,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: height / 60),
-            prefixIcon: Icon(Icons.search_rounded, color: AppColors.gray),
+            prefixIcon: const Icon(Icons.search_rounded, color: AppColors.gray),
             counter: Container(),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(width: width / 40, color: AppColors.white),

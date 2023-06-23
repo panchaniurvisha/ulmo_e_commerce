@@ -42,7 +42,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       text: AppString.newReview, fontWeight: FontWeight.w500),
                 ],
               ),
-              const SearchBar(),
+              const AppSearchBar(),
               Padding(
                 padding: EdgeInsets.only(bottom: height / 50),
                 child: const AppRow(

@@ -36,7 +36,7 @@ class _CatalogScreenState extends State<CatalogScreen> {
                 const RowAppBar(
                   text: AppString.title,
                 ),
-                const SearchBar(),
+                const AppSearchBar(),
                 GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
