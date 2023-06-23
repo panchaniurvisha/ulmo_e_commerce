@@ -6,7 +6,12 @@ class RowAppBar extends StatelessWidget {
   final String? text;
   final Icon? icon;
   final double? width;
-  const RowAppBar({Key? key, this.text, this.icon, this.width}) : super(key: key);
+  const RowAppBar({
+    Key? key,
+    this.text,
+    this.icon,
+    this.width,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
