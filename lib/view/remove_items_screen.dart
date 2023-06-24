@@ -15,19 +15,29 @@ class RemoveItemScreen extends StatefulWidget {
 
 class _RemoveItemScreenState extends State<RemoveItemScreen> {
   int itemCount = 0;
-  int countItem = 0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(vertical: height / 20, horizontal: width / 40),
-          child: SingleChildScrollView(
+      child: SingleChildScrollView(
+        physics: NeverScrollableScrollPhysics(),
+        child: Scaffold(
+          body: Padding(
+            padding: EdgeInsets.symmetric(vertical: height / 20, horizontal: width / 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SnackBar(
+                    backgroundColor: AppColors.black,
+                    content: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircularProgressIndicator(),
+                        AppText(text: AppString.removeItem, fontWeight: FontWeight.w600, fontSize: height / 25),
+                        AppText(text: AppString.delete, fontWeight: FontWeight.w600, fontSize: height / 25, color: AppColors.lightYellow),
+                      ],
+                    )),
                 AppText(text: AppString.bag, fontWeight: FontWeight.w600, fontSize: height / 25),
                 SizedBox(
                   height: height / 40,
@@ -85,7 +95,7 @@ class _RemoveItemScreenState extends State<RemoveItemScreen> {
                               IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      itemCount > 1 ? itemCount-- : null;
+                                      itemCount > 0 ? itemCount-- : null;
                                     });
                                   },
                                   padding: EdgeInsets.symmetric(vertical: height / 150),

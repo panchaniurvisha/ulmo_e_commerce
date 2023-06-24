@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'view/country_list_screen.dart';
+import 'package:ulmo_e_commerce_app/view/remove_items_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +17,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const CountryListScreen());
+        home: const RemoveItemScreen());
   }
 }
