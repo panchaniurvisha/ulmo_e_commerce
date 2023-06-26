@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
+
 class Utils {
   bool isValidName(String name) {
     RegExp regExp = RegExp(r"^[a-zA-Z]{3,}");
@@ -18,5 +21,28 @@ class Utils {
     RegExp regExp = RegExp(
         r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
     return regExp.hasMatch(email);
+  }
+
+  void showSnackBar(
+    BuildContext context, {
+    String? message,
+    String? label,
+    void Function()? onPressed, //optional parameter
+  }) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const CircularProgressIndicator(),
+          Text(message ?? ""),
+        ],
+      ),
+      backgroundColor: Colors.black,
+      behavior: SnackBarBehavior.floating,
+      action: SnackBarAction(
+          label: label ?? "",
+          onPressed: onPressed ?? () {},
+          textColor: AppColors.lightYellowTwo),
+    ));
   }
 }
