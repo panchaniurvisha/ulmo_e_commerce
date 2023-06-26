@@ -18,8 +18,7 @@ class Utils {
   }
 
   bool isValidEmail(String email) {
-    RegExp regExp = RegExp(
-        r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+    RegExp regExp = RegExp(r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
     return regExp.hasMatch(email);
   }
 
@@ -27,22 +26,23 @@ class Utils {
     BuildContext context, {
     String? message,
     String? label,
+    SizedBox? sizeBox,
+    EdgeInsetsGeometry? margin,
     void Function()? onPressed, //optional parameter
   }) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      margin: margin!,
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const CircularProgressIndicator(),
+          sizeBox!,
           Text(message ?? ""),
         ],
       ),
       backgroundColor: Colors.black,
+      duration: const Duration(seconds: 2),
       behavior: SnackBarBehavior.floating,
-      action: SnackBarAction(
-          label: label ?? "",
-          onPressed: onPressed ?? () {},
-          textColor: AppColors.lightYellowTwo),
+      action: SnackBarAction(label: label ?? "", onPressed: onPressed ?? () {}, textColor: AppColors.lightYellowTwo),
     ));
   }
 }

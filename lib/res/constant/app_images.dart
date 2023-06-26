@@ -54,4 +54,10 @@ class AppImages {
   static const String mastercard = "${basePath}master_card.png";
   static const String visaCard = "${basePath}visa_card.png";
   static const String apple = "${basePath}apple.png";
+
+  //Empty Account Screen
+  static const String emptyAccountEmoji = "${basePath}empty_account_emoji.png";
+
+  //Saved Items Empty Screen
+  static const String nothingSavedEmoji = "${basePath}nothing_saved_emoji.png";
 }

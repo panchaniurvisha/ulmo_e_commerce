@@ -21,8 +21,7 @@ class _EmptyAccountScreenState extends State<EmptyAccountScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: width / 20, vertical: height / 30),
+          padding: EdgeInsets.symmetric(horizontal: width / 20, vertical: height / 30),
           child: Column(
             children: [
               Align(
@@ -36,20 +35,13 @@ class _EmptyAccountScreenState extends State<EmptyAccountScreen> {
               ),
               Align(
                 alignment: Alignment.topLeft,
-                child: AppText(
-                    text: AppString.myAccount,
-                    fontWeight: FontWeight.w600,
-                    fontSize: height / 25),
+                child: AppText(text: AppString.myAccount, fontWeight: FontWeight.w600, fontSize: height / 25),
               ),
               Padding(
                 padding: EdgeInsets.only(top: height / 8, bottom: height / 25),
-                child:
-                    Image.asset(AppImages., height: height / 10),
+                child: Image.asset(AppImages.emptyAccountEmoji, height: height / 10),
               ),
-              AppText(
-                  text: AppString.centreText,
-                  fontWeight: FontWeight.w600,
-                  fontSize: height / 40),
+              AppText(text: AppString.centreText, fontWeight: FontWeight.w600, fontSize: height / 40),
               const AppText(text: AppString.viewOrders, color: AppColors.gray),
               SizedBox(
                 height: height / 3.5,
