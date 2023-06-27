@@ -6,11 +6,13 @@ class AppElevatedButton extends StatelessWidget {
   final String? text;
   final SizedBox? sizeBox;
   final Color? color;
+  final void Function()? onPressed;
   const AppElevatedButton({
     Key? key,
     this.text,
     this.sizeBox,
     this.color,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -22,7 +24,7 @@ class AppElevatedButton extends StatelessWidget {
         fixedSize: const Size(400, 60),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
