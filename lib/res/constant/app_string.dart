@@ -204,7 +204,7 @@ class AppString {
 
   //Phone Login Screen
   static const buttonOfContinue = "Continue";
-  static const enterNumber = "enter your phone\n number";
+  static const enterNumber = "enter your phone number";
   static const hintTextOfPhone = 'Phone Number';
   static const actionOfHelp = "Help";
 

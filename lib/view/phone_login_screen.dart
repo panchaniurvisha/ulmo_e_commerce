@@ -43,7 +43,7 @@ class _PhoneLoginScreenState extends State<PhoneLoginScreen> {
                 height: height / 30,
               ),
               IntlPhoneField(
-                  keyboardType: TextInputType.number,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                       hintText: AppString.hintTextOfPhone,
                       focusedBorder: OutlineInputBorder(
