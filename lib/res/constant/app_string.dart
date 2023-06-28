@@ -202,11 +202,12 @@ class AppString {
   static const four = "4:00 pm";
   static const six = "6:00 pm";
 
-  //Phone Login Screen
+  //Login With Phone Screen
   static const buttonOfContinue = "Continue";
   static const enterNumber = "enter your phone number";
   static const hintTextOfPhone = 'Phone Number';
   static const actionOfHelp = "Help";
+  static const slash = "|";
 
   //Remove Screen
   static const removeItem = "Item removed";
@@ -228,9 +229,11 @@ class AppString {
   //Otp Screen
   static const helpText = "Help";
   static const otpTitle = "welcome!\nenter code from sms";
-  static const phoneVerification = "Phone Verification";
-  static const nameText =
-      "We need to register your phone before getting started !";
   static const verify = "Verify phone number";
   static const editPhoneNumber = "Edit Phone number ?";
+
+  //Profile Setup Screen
+  static const titleProfile = "Set up your profile";
+  static const skip = "Skip";
+  static const photoUpload = "Upload photo";
 }

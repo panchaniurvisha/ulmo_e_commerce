@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
+import 'package:ulmo_e_commerce_app/res/commen/row_app_bar.dart';
 
+import '../res/commen/app_text.dart';
 import '../res/constant/app_string.dart';
-import 'phone_login_screen.dart';
+import 'login_with_phone_number.dart';
 import 'profile_setup_screen.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -22,6 +25,8 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     final defaultPinTheme = PinTheme(
         width: 56,
         height: 56,
@@ -44,41 +49,22 @@ class _OtpScreenState extends State<OtpScreen> {
           ?.copyWith(color: const Color.fromRGBO(234, 239, 243, 1)),
     );
 
-    return Scaffold(
-      appBar: AppBar(
-        actions: const [
-          Text(AppString.helpText),
-        ],
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        elevation: 0,
-      ),
-      body: Container(
-        alignment: Alignment.center,
-        margin: const EdgeInsets.symmetric(horizontal: 25),
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(
+              vertical: height / 40, horizontal: width / 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 25,
+              RowAppBar(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                text: AppString.helpText,
               ),
-              const Text(
-                AppString.phoneVerification,
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const Text(AppString.name,
-                  style: TextStyle(fontSize: 16), textAlign: TextAlign.center),
-              const SizedBox(
-                height: 30,
-              ),
+              AppText(
+                  text: AppString.otpTitle,
+                  fontSize: height / 30,
+                  fontWeight: FontWeight.w600),
               Pinput(
                 length: 6,
                 showCursor: true,
@@ -90,40 +76,29 @@ class _OtpScreenState extends State<OtpScreen> {
                 },
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
-              SizedBox(
-                height: 45,
-                width: double.infinity,
-                child: ElevatedButton(
+              AppElevatedButton(
+                onPressed: () {
+                  verifyOtp();
+                  debugPrint("Otp Screen-------->");
+                },
+                text: AppString.verify,
+                sizeBox: const SizedBox(),
+              ),
+              TextButton(
                   onPressed: () {
-                    verifyOtp();
-                    debugPrint("Home Screen-------->");
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginWithPhoneNumber(),
+                        ),
+                        (route) => false);
                   },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                  child: const Text(AppString.verify),
-                ),
-              ),
-              Row(
-                children: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PhoneLoginScreen(),
-                            ),
-                            (route) => false);
-                      },
-                      child: const Text(
-                        AppString.editPhoneNumber,
-                        style: TextStyle(color: Colors.black),
-                      ))
-                ],
-              )
+                  child: const Text(
+                    AppString.editPhoneNumber,
+                    style: TextStyle(color: Colors.black),
+                  )),
             ],
           ),
         ),
@@ -134,7 +109,7 @@ class _OtpScreenState extends State<OtpScreen> {
   verifyOtp() {
     try {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: PhoneLoginScreen.verify, smsCode: code);
+          verificationId: LoginWithPhoneNumber.verify, smsCode: code);
       firebaseAuth.signInWithCredential(credential);
       Navigator.pushAndRemoveUntil(
           context,

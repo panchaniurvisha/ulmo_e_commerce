@@ -21,8 +21,9 @@ class AppElevatedButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: color ?? AppColors.lightYellowTwo,
-        fixedSize: const Size(400, 60),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+        fixedSize: const Size(400, 55),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(width / 40)),
       ),
       onPressed: onPressed,
       child: Row(
