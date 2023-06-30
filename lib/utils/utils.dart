@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 
 class Utils {
@@ -17,8 +18,15 @@ class Utils {
     return regExp.hasMatch(number);
   }
 
+  bool isValidDateOfBirth(String number) {
+    RegExp regExp = RegExp(
+        r'^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$');
+    return regExp.hasMatch(number);
+  }
+
   bool isValidEmail(String email) {
-    RegExp regExp = RegExp(r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+    RegExp regExp = RegExp(
+        r'^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
     return regExp.hasMatch(email);
   }
 
@@ -42,7 +50,20 @@ class Utils {
       backgroundColor: Colors.black,
       duration: const Duration(seconds: 2),
       behavior: SnackBarBehavior.floating,
-      action: SnackBarAction(label: label ?? "", onPressed: onPressed ?? () {}, textColor: AppColors.lightYellowTwo),
+      action: SnackBarAction(
+          label: label ?? "",
+          onPressed: onPressed ?? () {},
+          textColor: AppColors.lightYellowTwo),
     ));
+  }
+
+  void showToastMessage({
+    String? message,
+  }) {
+    Fluttertoast.showToast(
+        msg: message ?? "",
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.black26,
+        textColor: Colors.white);
   }
 }

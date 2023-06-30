@@ -60,4 +60,7 @@ class AppImages {
 
   //Saved Items Empty Screen
   static const String nothingSavedEmoji = "${basePath}nothing_saved_emoji.png";
+
+  //ProfileSetUp Screen
+  static const String galleryIcon = "${basePath}gallery_icon.png";
 }

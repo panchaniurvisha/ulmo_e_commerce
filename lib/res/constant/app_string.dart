@@ -236,4 +236,12 @@ class AppString {
   static const titleProfile = "Set up your profile";
   static const skip = "Skip";
   static const photoUpload = "Upload photo";
+  static const profilePhoto = "Profile photo";
+  static const labelTextOfName = "Full name";
+  static const hintTextOfName = "Tanya Moreni";
+  static const labelTextOfNumber = "phone";
+  static const hintTextOfNumber = "9345678976";
+  static const labelTextOfDateOfBirth = "Date of birth";
+  static const hintTextOfDateOfBirth = "11/9/92";
+  static const signup = "Sign up";
 }
