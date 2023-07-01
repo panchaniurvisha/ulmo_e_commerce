@@ -2,6 +2,11 @@ class AppString {
   //globally string
   static const appFontFamily = "Poppins";
 
+  ///key of  categories screen
+  static const image = "image";
+  static const name = "name";
+  static const key = "text";
+
   //splash screen
   static const appName = 'ulmo';
 
@@ -27,11 +32,6 @@ class AppString {
   static const baskets = "Baskets";
   static const vases = "Vases";
   static const boxes = "Boxes";
-
-  ///key of  categories screen
-  static const image = "image";
-  static const name = "name";
-  static const key = "text";
 
   //catalog Screen
   static const title = "Furniture";
@@ -244,4 +244,11 @@ class AppString {
   static const labelTextOfDateOfBirth = "Date of birth";
   static const hintTextOfDateOfBirth = "11/9/92";
   static const signup = "Sign up";
+
+  //account Screen
+  static const myOrder = "My orders";
+  static const myDetails = "My Details";
+  static const addressBook = "Address Book";
+  static const paymentMethods = "Payment Methods";
+  static const signOut = "Sign Out";
 }

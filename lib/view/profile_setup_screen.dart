@@ -180,7 +180,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     ],
                   ),
                 ),
-                AppText(
+                const AppText(
                   text: AppString.photoUpload,
                   fontWeight: FontWeight.w500,
                 ),
