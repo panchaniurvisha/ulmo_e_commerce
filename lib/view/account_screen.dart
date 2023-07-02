@@ -1,5 +1,11 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/view/my_details_screen.dart';
+
+import '../model/first_screen_model.dart';
 import '../res/commen/app_text.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
@@ -12,13 +18,18 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  List<String> data = [
-    AppString.myOrder,
-    AppString.myDetails,
-    AppString.addressBook,
-    AppString.paymentMethods,
-    AppString.signOut
-  ];
+  List<String> data = [AppString.myOrder, AppString.myDetails, AppString.addressBook, AppString.paymentMethods, AppString.signOut];
+  FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  ProfileModel? userModel;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -42,10 +53,17 @@ class _AccountScreenState extends State<AccountScreen> {
         children: [
           Padding(
             padding: EdgeInsets.only(left: width / 20),
-            child: AppText(
-                text: AppString.myAccount,
-                fontWeight: FontWeight.w600,
-                fontSize: height / 30),
+            child: AppText(text: AppString.myAccount, fontWeight: FontWeight.w600, fontSize: height / 30),
+          ),
+          ListTile(
+            leading: ClipRRect(
+              borderRadius: BorderRadius.circular(height / 10),
+              child: Image.asset("${userModel!.image}"),
+            ),
+            title: AppText(
+              text: "${userModel!.name}",
+            ),
+            subtitle: AppText(text: "${userModel!.number}"),
           ),
           ListView.builder(
             itemBuilder: (context, index) => ListTile(
@@ -55,10 +73,12 @@ class _AccountScreenState extends State<AccountScreen> {
                       color: AppColors.black,
                     )
                   : index == 1
-                      ? const Icon(
-                          Icons.person_sharp,
-                          color: AppColors.black,
-                        )
+                      ? IconButton(
+                          icon: const Icon(
+                            Icons.person_sharp,
+                            color: AppColors.black,
+                          ),
+                          onPressed: () => MaterialPageRoute(builder: (context) => MyDetailsScreen()))
                       : index == 2
                           ? const Icon(
                               Icons.location_on_outlined,
@@ -69,10 +89,11 @@ class _AccountScreenState extends State<AccountScreen> {
                                   Icons.payment_outlined,
                                   color: AppColors.black,
                                 )
-                              : const Icon(
-                                  Icons.logout,
-                                  color: AppColors.black,
-                                ),
+                              : IconButton(
+                                  onPressed: () {
+                                    firebaseAuth.signOut();
+                                  },
+                                  icon: const Icon(Icons.logout)),
               title: AppText(
                 text: data[index],
                 fontWeight: FontWeight.w500,
@@ -85,5 +106,16 @@ class _AccountScreenState extends State<AccountScreen> {
         ],
       ),
     );
+  }
+
+  getUser() {
+    CollectionReference users = firebaseFireStore.collection('user');
+    users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
+      debugPrint("User Added---->${jsonEncode(value.data())}");
+      userModel = userModelFromJson(jsonEncode(value.data()));
+      setState(() {});
+    }).catchError((error) {
+      debugPrint("Failed to get user: $error");
+    });
   }
 }

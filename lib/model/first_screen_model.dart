@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class FirstScreenModel {
   List<RoomModel>? pageContent;
   List<RoomFacility>? roomFacility;
@@ -12,19 +14,7 @@ class FirstScreenModel {
   String? mainMaterial;
   String? percentage;
 
-  FirstScreenModel(
-      {this.height,
-      this.width,
-      this.depth,
-      this.weight,
-      this.mainMaterial,
-      this.percentage,
-      this.pageContent,
-      this.roomFacility,
-      this.popularItem,
-      this.catalogItem,
-      this.pageContentItem,
-      this.address});
+  FirstScreenModel({this.height, this.width, this.depth, this.weight, this.mainMaterial, this.percentage, this.pageContent, this.roomFacility, this.popularItem, this.catalogItem, this.pageContentItem, this.address});
   FirstScreenModel.fromJson(Map<String, dynamic> data) {
     height = data["height"];
     width = data["width"];
@@ -32,24 +22,12 @@ class FirstScreenModel {
     weight = data["weight"];
     mainMaterial = data["mainMaterial"];
     percentage = data["percentage"];
-    pageContent = (data["pageContent"] as List)
-        .map((value) => RoomModel.fromJson(value))
-        .toList();
-    roomFacility = (data["roomFacility"] as List)
-        .map((value) => RoomFacility.fromJson(value))
-        .toList();
-    popularItem = (data["popularItem"] as List)
-        .map((value) => PopularItem.fromJson(value))
-        .toList();
-    catalogItem = (data["catalogItem"] as List)
-        .map((value) => CatalogItem.fromJson(value))
-        .toList();
-    pageContentItem = (data["pageContentItem"] as List)
-        .map((value) => PageContentItem.fromJson(value))
-        .toList();
-    address = (data["address"] as List)
-        .map((value) => Address.fromJson(value))
-        .toList();
+    pageContent = (data["pageContent"] as List).map((value) => RoomModel.fromJson(value)).toList();
+    roomFacility = (data["roomFacility"] as List).map((value) => RoomFacility.fromJson(value)).toList();
+    popularItem = (data["popularItem"] as List).map((value) => PopularItem.fromJson(value)).toList();
+    catalogItem = (data["catalogItem"] as List).map((value) => CatalogItem.fromJson(value)).toList();
+    pageContentItem = (data["pageContentItem"] as List).map((value) => PageContentItem.fromJson(value)).toList();
+    address = (data["address"] as List).map((value) => Address.fromJson(value)).toList();
   }
 }
 
@@ -119,12 +97,7 @@ class PageContentItem {
   String? icon;
   String? recentlyNew;
   String? itemName;
-  PageContentItem(
-      {this.popularImage,
-      this.price,
-      this.icon,
-      this.itemName,
-      this.recentlyNew});
+  PageContentItem({this.popularImage, this.price, this.icon, this.itemName, this.recentlyNew});
   PageContentItem.fromJson(Map<String, dynamic> data) {
     popularImage = data["popularImage"];
     itemName = data["itemName"];
@@ -141,5 +114,21 @@ class Address {
   Address.fromJson(Map<String, dynamic> data) {
     street = data["street"];
     home = data["home"];
+  }
+}
+
+ProfileModel userModelFromJson(String str) => ProfileModel.fromJson(json.decode(str));
+
+String userModelToJson(ProfileModel data) => json.encode(data.toJson());
+
+class ProfileModel {
+  String? name;
+  String? number;
+  String? image;
+  ProfileModel({this.name, this.number, this.image});
+  ProfileModel.fromJson(Map<String, dynamic> data) {
+    name = data["name"];
+    number = data["number"];
+    image = data["image"];
   }
 }
