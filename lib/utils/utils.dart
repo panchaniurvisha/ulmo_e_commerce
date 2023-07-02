@@ -20,7 +20,7 @@ class Utils {
 
   bool isValidDateOfBirth(String number) {
     RegExp regExp = RegExp(
-        r'^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\\d\\d$');
+        r'^\d{2}-(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)-\d{4}$');
     return regExp.hasMatch(number);
   }
 
