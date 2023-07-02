@@ -156,8 +156,10 @@ class ProfileSetModel {
   String? email;
   String? fullName;
   String? dateOFBirth;
+  String? image;
 
-  ProfileSetModel({this.number, this.email, this.dateOFBirth, this.fullName});
+  ProfileSetModel(
+      {this.number, this.email, this.dateOFBirth, this.fullName, this.image});
 
   factory ProfileSetModel.fromJson(Map<String, dynamic> json) =>
       ProfileSetModel(
@@ -165,6 +167,7 @@ class ProfileSetModel {
         email: json["email"],
         fullName: json["full_name"],
         dateOFBirth: json["date_of_birth"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -172,5 +175,6 @@ class ProfileSetModel {
         "email": email,
         "fullName": fullName,
         "dateOFBirth": dateOFBirth,
+        "image": image,
       };
 }

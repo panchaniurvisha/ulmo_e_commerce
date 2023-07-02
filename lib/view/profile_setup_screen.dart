@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
+import 'package:ulmo_e_commerce_app/view/account_screen.dart';
 
 import '../res/commen/app_text_form_field.dart';
 import '../res/constant/app_colors.dart';
@@ -28,6 +29,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   Utils utils = Utils();
   final ImagePicker picker = ImagePicker();
 
+  String? imageURL = ""; //fireStore database
+
   FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
 
@@ -40,6 +43,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   final formKey = GlobalKey<FormState>();
   User? user;
   bool isSecurePassword = true;
+  String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +286,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       final UploadTask uploadTask = firebaseStorage
           .ref()
           .child("images")
-          .child("profile.png")
+          .child("uniqueFileName")
           .putFile(cameraImage!);
 // Listen for state changes, errors, and completion of the upload.
       uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
@@ -309,6 +313,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             break;
         }
       });
+      getDownloadUrl();
     } on FirebaseException catch (e) {
       utils.showSnackBar(context, message: e.message);
     }
@@ -316,22 +321,33 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
   createUserData() {
     CollectionReference users = firebaseFireStore.collection('user');
-    users.add({
+    users.doc(users.toString()).set({
       'full_name': fullNameController.text, // Stokes and Sons
       "date_of_birth": dateOfBirthController.text,
       "number": phoneNumberController.text,
-      "email": emailController.text // 42
+      "email": emailController.text,
+      "image": imageURL.toString(),
     }).then((value) {
-      debugPrint("Value==>$value");
       utils.showToastMessage(message: "User is added");
-
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) => const AccountScreen(),
-      //     ));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const AccountScreen(),
+          ));
     }).catchError((error) {
       debugPrint("Failed to add user: $error");
     });
+  }
+
+  getDownloadUrl() async {
+    final imageUrl = await firebaseStorage
+        .ref()
+        .child("images")
+        .child("uniqueFileName")
+        .getDownloadURL();
+    setState(() {
+      imageURL = imageUrl.toString();
+    });
+    debugPrint("image url=======>$imageUrl");
   }
 }
