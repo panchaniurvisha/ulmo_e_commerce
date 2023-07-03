@@ -97,7 +97,7 @@ class _AccountScreenState extends State<AccountScreen> {
                                   data["image"],
                                 ),
                               )
-                            : SizedBox(),
+                            : const SizedBox(),
                         title: Text(data["full_name"]),
                         subtitle: Text(data["number"],
                             style: const TextStyle(color: AppColors.gray)),
@@ -125,8 +125,12 @@ class _AccountScreenState extends State<AccountScreen> {
                             Icons.person_sharp,
                             color: AppColors.black,
                           ),
-                          onPressed: () => MaterialPageRoute(
-                              builder: (context) => const MyDetailsScreen()))
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const MyDetailsScreen())),
+                        )
                       : index == 2
                           ? IconButton(
                               icon: const Icon(

@@ -282,8 +282,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   }
 
   storeImageInCloudStorage() async {
-    Reference referenceRoot = FirebaseStorage.instance.ref();
-    Reference referenceDirImages = referenceRoot.child("images");
+    Reference referenceDirImages = firebaseStorage.ref().child("images");
     Reference referenceImageToUpload =
         referenceDirImages.child("uniqueFileName");
     try {
