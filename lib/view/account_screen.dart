@@ -90,7 +90,14 @@ class _AccountScreenState extends State<AccountScreen> {
                       Map<String, dynamic> data = snapshot.data!.docs[index]
                           .data() as Map<String, dynamic>;
                       return ListTile(
-                        leading: Image.asset(data["image"]),
+                        leading: data.containsKey("image")
+                            ? CircleAvatar(
+                                radius: 30,
+                                backgroundImage: NetworkImage(
+                                  data["image"],
+                                ),
+                              )
+                            : SizedBox(),
                         title: Text(data["full_name"]),
                         subtitle: Text(data["number"],
                             style: const TextStyle(color: AppColors.gray)),

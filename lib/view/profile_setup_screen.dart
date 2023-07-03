@@ -29,9 +29,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   Utils utils = Utils();
   final ImagePicker picker = ImagePicker();
 
-  String? imageURL = ""; //fireStore database
+  String? imageUrl = ""; //fireStore database
 
   FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
 
   TextEditingController fullNameController = TextEditingController();
@@ -43,7 +44,6 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   final formKey = GlobalKey<FormState>();
   User? user;
   bool isSecurePassword = true;
-  String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
 
   @override
   Widget build(BuildContext context) {
@@ -282,38 +282,13 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   }
 
   storeImageInCloudStorage() async {
+    Reference referenceRoot = FirebaseStorage.instance.ref();
+    Reference referenceDirImages = referenceRoot.child("images");
+    Reference referenceImageToUpload =
+        referenceDirImages.child("uniqueFileName");
     try {
-      final UploadTask uploadTask = firebaseStorage
-          .ref()
-          .child("images")
-          .child("uniqueFileName")
-          .putFile(cameraImage!);
-// Listen for state changes, errors, and completion of the upload.
-      uploadTask.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
-        switch (taskSnapshot.state) {
-          case TaskState.running:
-            final progress = 100.0 *
-                (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
-            debugPrint("Upload is $progress% complete.");
-            break;
-          case TaskState.paused:
-            debugPrint("Upload is paused.");
-            break;
-          case TaskState.canceled:
-            debugPrint("Upload was canceled");
-            break;
-          case TaskState.error:
-            debugPrint("Upload was error");
-            // Handle unsuccessful uploads
-            break;
-          case TaskState.success:
-            debugPrint("Upload was success");
-            // Handle successful uploads on complete
-            // ...
-            break;
-        }
-      });
-      getDownloadUrl();
+      await referenceImageToUpload.putFile(cameraImage!);
+      imageUrl = await referenceImageToUpload.getDownloadURL();
     } on FirebaseException catch (e) {
       utils.showSnackBar(context, message: e.message);
     }
@@ -326,7 +301,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       "date_of_birth": dateOfBirthController.text,
       "number": phoneNumberController.text,
       "email": emailController.text,
-      "image": imageURL.toString(),
+      "image": imageUrl.toString(),
     }).then((value) {
       utils.showToastMessage(message: "User is added");
       Navigator.push(
@@ -337,17 +312,5 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     }).catchError((error) {
       debugPrint("Failed to add user: $error");
     });
-  }
-
-  getDownloadUrl() async {
-    final imageUrl = await firebaseStorage
-        .ref()
-        .child("images")
-        .child("uniqueFileName")
-        .getDownloadURL();
-    setState(() {
-      imageURL = imageUrl.toString();
-    });
-    debugPrint("image url=======>$imageUrl");
   }
 }
