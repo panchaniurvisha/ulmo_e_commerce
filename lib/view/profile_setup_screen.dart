@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
@@ -293,23 +294,33 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     }
   }
 
-  createUserData() {
+  createUserData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
     CollectionReference users = firebaseFireStore.collection('user');
-    users.doc(users.toString()).set({
-      'full_name': fullNameController.text, // Stokes and Sons
-      "date_of_birth": dateOfBirthController.text,
-      "number": phoneNumberController.text,
-      "email": emailController.text,
-      "image": imageUrl.toString(),
+
+    await users.doc().set({
+      'full_name': fullNameController.text,
+      'date_of_birth': dateOfBirthController.text,
+      'number': phoneNumberController.text,
+      'email': emailController.text,
+      'image': imageUrl.toString(),
     }).then((value) {
-      utils.showToastMessage(message: "User is added");
+      utils.showToastMessage(message: 'User is added');
+
+      preferences.setString('fullName', fullNameController.text);
+      preferences.setString('dateOfBirth', dateOfBirthController.text);
+      preferences.setString('phoneNumber', phoneNumberController.text);
+      preferences.setString('email', emailController.text);
+      preferences.setString('imageUrl', imageUrl.toString());
+
       Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const AccountScreen(),
-          ));
+        context,
+        MaterialPageRoute(
+          builder: (context) => const AccountScreen(),
+        ),
+      );
     }).catchError((error) {
-      debugPrint("Failed to add user: $error");
+      debugPrint('Failed to add user: $error');
     });
   }
 }

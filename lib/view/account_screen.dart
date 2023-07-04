@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/first_screen_model.dart';
 import '../res/commen/app_text.dart';
@@ -35,6 +36,24 @@ class _AccountScreenState extends State<AccountScreen> {
     super.initState();
   }
 
+  Future<Map<String, dynamic>> retrieveStoredUserData() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? fullName = preferences.getString('fullName');
+    String? dateOfBirth = preferences.getString('dateOfBirth');
+    String? phoneNumber = preferences.getString('phoneNumber');
+    String? email = preferences.getString('email');
+    String? imageUrl = preferences.getString('imageUrl');
+
+    Map<String, dynamic> userData = {
+      'full_name': fullName,
+      'date_of_birth': dateOfBirth,
+      'number': phoneNumber,
+      'email': email,
+      'image': imageUrl,
+    };
+    return userData;
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -63,50 +82,45 @@ class _AccountScreenState extends State<AccountScreen> {
                 fontWeight: FontWeight.w600,
                 fontSize: height / 30),
           ),
-          FutureBuilder<QuerySnapshot>(
-            future: users.get(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting ||
-                  snapshot.connectionState == ConnectionState.active) {
+          FutureBuilder<Map<String, dynamic>>(
+            future: retrieveStoredUserData(),
+            builder: (BuildContext context,
+                AsyncSnapshot<Map<String, dynamic>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               }
+
               if (snapshot.hasError) {
-                return const Center(child: Text("Something went wrong"));
+                return const Center(child: Text('Something went wrong'));
               }
 
-              if (snapshot.hasData && snapshot.data!.docs.isEmpty) {
-                return const Center(child: Text("Document does not exist"));
+              Map<String, dynamic>? userData = snapshot.data;
+
+              if (userData == null || userData.isEmpty) {
+                return const Center(child: Text('User data not found'));
               }
 
-              if (snapshot.connectionState == ConnectionState.done) {
-                debugPrint("snapshot.data!.docs====>${snapshot.data!.docs}");
-
-                return SizedBox(
-                  height: height / 10,
-                  child: ListView.builder(
-                    itemCount: snapshot.data!.docs.length,
-                    itemBuilder: (context, index) {
-                      Map<String, dynamic> data = snapshot.data!.docs[index]
-                          .data() as Map<String, dynamic>;
-                      return ListTile(
-                        leading: data.containsKey("image")
-                            ? CircleAvatar(
-                                radius: 30,
-                                backgroundImage: NetworkImage(
-                                  data["image"],
-                                ),
-                              )
-                            : const SizedBox(),
-                        title: Text(data["full_name"]),
-                        subtitle: Text(data["number"],
-                            style: const TextStyle(color: AppColors.gray)),
-                      );
-                    },
-                  ),
-                );
-              }
-              return const Text("loading");
+              return SizedBox(
+                height: height / 10,
+                child: ListView(
+                  children: [
+                    ListTile(
+                      leading: userData.containsKey('image')
+                          ? CircleAvatar(
+                              radius: 30,
+                              backgroundImage:
+                                  NetworkImage(userData['image'] as String),
+                            )
+                          : const SizedBox(),
+                      title: Text(userData['full_name'] as String),
+                      subtitle: Text(
+                        userData['number'] as String,
+                        style: const TextStyle(color: AppColors.gray),
+                      ),
+                    ),
+                  ],
+                ),
+              );
             },
           ),
           ListView.builder(

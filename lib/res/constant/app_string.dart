@@ -255,4 +255,5 @@ class AppString {
   //MyDetails Screen
   static const titleOFDetails = "My Details";
   static const save = "Save";
+  static const changePhoto = "Change photo";
 }
