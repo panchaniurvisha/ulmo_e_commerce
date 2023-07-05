@@ -21,20 +21,29 @@ class _SavedItemsEmptyScreenState extends State<SavedItemsEmptyScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width / 20, vertical: height / 20),
+          padding: EdgeInsets.symmetric(
+              horizontal: width / 20, vertical: height / 20),
           child: Column(
             children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: AppText(text: AppString.savedItems, fontWeight: FontWeight.w600, fontSize: height / 25),
+                child: AppText(
+                    text: AppString.savedItems,
+                    fontWeight: FontWeight.w600,
+                    fontSize: height / 25),
               ),
               Padding(
                 padding: EdgeInsets.only(top: height / 8, bottom: height / 25),
-                child: Image.asset(AppImages.nothingSavedEmoji, height: height / 10),
+                child: Image.asset(AppImages.nothingSavedEmoji,
+                    height: height / 10),
               ),
-              AppText(text: AppString.nothingSave, fontWeight: FontWeight.w600, fontSize: height / 40),
+              AppText(
+                  text: AppString.nothingSave,
+                  fontWeight: FontWeight.w600,
+                  fontSize: height / 40),
               const AppText(text: AppString.startSaving, color: AppColors.gray),
-              const AppText(text: AppString.clickLittleText, color: AppColors.gray),
+              const AppText(
+                  text: AppString.clickLittleText, color: AppColors.gray),
               SizedBox(
                 height: height / 3.5,
               ),

@@ -24,11 +24,15 @@ class _RemoveItemScreenState extends State<RemoveItemScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(vertical: height / 20, horizontal: width / 40),
+          padding: EdgeInsets.symmetric(
+              vertical: height / 20, horizontal: width / 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppText(text: AppString.bag, fontWeight: FontWeight.w600, fontSize: height / 25),
+              AppText(
+                  text: AppString.bag,
+                  fontWeight: FontWeight.w600,
+                  fontSize: height / 25),
               SizedBox(
                 height: height / 40,
               ),
@@ -39,7 +43,8 @@ class _RemoveItemScreenState extends State<RemoveItemScreen> {
                         bottomLeft: Radius.circular(width / 40),
                         topLeft: Radius.circular(width / 40),
                       ),
-                      child: Image.asset(AppImages.bedSideTable, height: height / 7)),
+                      child: Image.asset(AppImages.bedSideTable,
+                          height: height / 7)),
                   SizedBox(
                     width: width / 30,
                   ),
@@ -59,7 +64,10 @@ class _RemoveItemScreenState extends State<RemoveItemScreen> {
                           IconButton(
                             onPressed: () {
                               utils.showSnackBar(
-                                margin: EdgeInsets.only(bottom: height / 1.2, left: width / 25, right: width / 25),
+                                margin: EdgeInsets.only(
+                                    bottom: height / 1.2,
+                                    left: width / 25,
+                                    right: width / 25),
                                 context,
                                 sizeBox: SizedBox(
                                   width: width / 10,
@@ -98,13 +106,17 @@ class _RemoveItemScreenState extends State<RemoveItemScreen> {
                                     itemCount > 0 ? itemCount-- : null;
                                   });
                                 },
-                                padding: EdgeInsets.symmetric(vertical: height / 150),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: height / 150),
                                 icon: const Icon(
                                   Icons.remove,
                                 )),
-                            AppText(text: itemCount.toString(), fontWeight: FontWeight.w500),
+                            AppText(
+                                text: itemCount.toString(),
+                                fontWeight: FontWeight.w500),
                             IconButton(
-                                padding: EdgeInsets.symmetric(vertical: height / 150),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: height / 150),
                                 onPressed: () {
                                   setState(() {
                                     itemCount < 15 ? itemCount++ : null;
@@ -130,7 +142,9 @@ class _RemoveItemScreenState extends State<RemoveItemScreen> {
                 height: height / 15,
                 margin: EdgeInsets.only(bottom: height / 28),
                 padding: EdgeInsets.symmetric(horizontal: width / 20),
-                decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(width / 40)),
+                decoration: BoxDecoration(
+                    color: AppColors.white,
+                    borderRadius: BorderRadius.circular(width / 40)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
