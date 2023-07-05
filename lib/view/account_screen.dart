@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ulmo_e_commerce_app/view/address_book_screen.dart';
 
 import '../model/first_screen_model.dart';
 import '../res/common/app_text.dart';
@@ -151,7 +152,11 @@ class _AccountScreenState extends State<AccountScreen> {
                                 Icons.location_on_outlined,
                                 color: AppColors.black,
                               ),
-                              onPressed: () {},
+                              onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const AddressBookScreen())),
                             )
                           : index == 3
                               ? IconButton(

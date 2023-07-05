@@ -256,4 +256,12 @@ class AppString {
   static const titleOFDetails = "My Details";
   static const save = "Save";
   static const changePhoto = "Change photo";
+
+  //Address Book Screen
+  static const titleOfScreen = "Address book";
+  static const buttonOfAddressBook = "Add new address";
+
+  //Address Screen
+  static const titleOfAddress = "Address";
+  static const addressInfo = "address info";
 }
