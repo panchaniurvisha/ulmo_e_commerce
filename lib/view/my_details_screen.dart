@@ -5,8 +5,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_list_tile.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_list_tile.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 import '../res/constant/app_colors.dart';

@@ -3,14 +3,15 @@ import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 import '../data/user_data_first_screen.dart';
 import '../model/first_screen_model.dart';
-import '../res/commen/app_text.dart';
+import '../res/common/app_text.dart';
 import '../res/constant/app_colors.dart';
 
 class ProductInformationScreen extends StatefulWidget {
   const ProductInformationScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProductInformationScreen> createState() => _ProductInformationScreenState();
+  State<ProductInformationScreen> createState() =>
+      _ProductInformationScreenState();
 }
 
 class _ProductInformationScreenState extends State<ProductInformationScreen> {
@@ -52,11 +53,15 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                         topRight: Radius.circular(width / 20),
                       )),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
+                    padding: EdgeInsets.symmetric(
+                        vertical: height / 30, horizontal: width / 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        IconButton(onPressed: () {}, padding: EdgeInsets.only(right: width / 10), icon: const Icon(Icons.close)),
+                        IconButton(
+                            onPressed: () {},
+                            padding: EdgeInsets.only(right: width / 10),
+                            icon: const Icon(Icons.close)),
                         AppText(
                           text: AppString.productInformation,
                           fontSize: height / 25,
@@ -106,7 +111,11 @@ class _ProductInformationScreenState extends State<ProductInformationScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               AppText(text: composition[index]),
-                              AppText(text: index == 0 ? userModel.mainMaterial : userModel.percentage, color: AppColors.gray),
+                              AppText(
+                                  text: index == 0
+                                      ? userModel.mainMaterial
+                                      : userModel.percentage,
+                                  color: AppColors.gray),
                             ],
                           ),
                           separatorBuilder: (context, index) => SizedBox(

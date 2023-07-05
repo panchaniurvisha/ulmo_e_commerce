@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_outline_button.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_outline_button.dart';
 
-import '../res/commen/app_elevated_button.dart';
-import '../res/commen/app_text.dart';
-import '../res/commen/check_box_button.dart';
-import '../res/commen/row_app_bar.dart';
+import '../res/common/app_elevated_button.dart';
+import '../res/common/app_text.dart';
+import '../res/common/check_box_button.dart';
+import '../res/common/row_app_bar.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
 
@@ -18,7 +18,10 @@ class DeliveryDetailsScreen extends StatefulWidget {
 class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
   List<Map> transactionSource = [
     {AppString.key: AppString.byCourier, AppString.name: AppString.timeOfData},
-    {AppString.key: AppString.myselfCourier, AppString.name: AppString.timeOfTransaction}
+    {
+      AppString.key: AppString.myselfCourier,
+      AppString.name: AppString.timeOfTransaction
+    }
   ];
   bool value = true;
   @override
@@ -67,18 +70,29 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   builder: (context, setState) => Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: height / 40, right: width / 20),
-                        child: Icon(index == 0 ? Icons.directions_car_outlined : Icons.shopping_cart_outlined, size: height / 30),
+                        padding: EdgeInsets.only(
+                            bottom: height / 40, right: width / 20),
+                        child: Icon(
+                            index == 0
+                                ? Icons.directions_car_outlined
+                                : Icons.shopping_cart_outlined,
+                            size: height / 30),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AppText(text: transactionSource[index][AppString.key]),
-                          AppText(text: transactionSource[index][AppString.name], color: AppColors.gray, fontSize: height / 55),
+                          AppText(
+                              text: transactionSource[index][AppString.key]),
+                          AppText(
+                              text: transactionSource[index][AppString.name],
+                              color: AppColors.gray,
+                              fontSize: height / 55),
                         ],
                       ),
                       Padding(
-                          padding: EdgeInsets.only(left: index == 0 ? width / 2.8 : width / 3.5, bottom: width / 12),
+                          padding: EdgeInsets.only(
+                              left: index == 0 ? width / 2.8 : width / 3.5,
+                              bottom: width / 12),
                           child: CheckBoxButton(
                             value: value,
                             onTap: () {
@@ -103,13 +117,16 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(right: width / 20),
-                        child: Icon(Icons.location_on_outlined, size: height / 30),
+                        child:
+                            Icon(Icons.location_on_outlined, size: height / 30),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: const [
                           AppText(text: AppString.address),
-                          AppText(text: AppString.houseNumber, color: AppColors.gray),
+                          AppText(
+                              text: AppString.houseNumber,
+                              color: AppColors.gray),
                         ],
                       ),
                       Padding(
@@ -133,11 +150,21 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [AppOutlineButton(text: AppString.tomorrow), AppOutlineButton(text: AppString.date25), AppOutlineButton(text: AppString.date26), AppOutlineButton(text: AppString.date27)],
+                children: [
+                  AppOutlineButton(text: AppString.tomorrow),
+                  AppOutlineButton(text: AppString.date25),
+                  AppOutlineButton(text: AppString.date26),
+                  AppOutlineButton(text: AppString.date27)
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [AppOutlineButton(text: AppString.twelve), AppOutlineButton(text: AppString.twoOClock), AppOutlineButton(text: AppString.four), AppOutlineButton(text: AppString.six)],
+                children: [
+                  AppOutlineButton(text: AppString.twelve),
+                  AppOutlineButton(text: AppString.twoOClock),
+                  AppOutlineButton(text: AppString.four),
+                  AppOutlineButton(text: AppString.six)
+                ],
               ),
               const Spacer(),
               const AppElevatedButton(

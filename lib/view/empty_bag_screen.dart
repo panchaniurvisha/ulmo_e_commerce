@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 import '../res/constant/app_colors.dart';

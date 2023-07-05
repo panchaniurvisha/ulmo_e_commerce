@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/data/user_data_first_screen.dart';
 import 'package:ulmo_e_commerce_app/model/first_screen_model.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_column.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_column.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
@@ -30,22 +30,29 @@ class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
               children: [
                 Image.asset(AppImages.productImage),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 16),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width / 30, vertical: height / 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        decoration: const BoxDecoration(color: AppColors.skyWhite70, shape: BoxShape.circle),
+                        decoration: const BoxDecoration(
+                            color: AppColors.skyWhite70,
+                            shape: BoxShape.circle),
                         child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.arrow_back_rounded, size: height / 30),
+                          icon:
+                              Icon(Icons.arrow_back_rounded, size: height / 30),
                         ),
                       ),
                       Container(
-                        decoration: const BoxDecoration(color: AppColors.skyWhite70, shape: BoxShape.circle),
+                        decoration: const BoxDecoration(
+                            color: AppColors.skyWhite70,
+                            shape: BoxShape.circle),
                         child: IconButton(
                           onPressed: () {},
-                          icon: Icon(Icons.favorite_border_rounded, size: height / 30),
+                          icon: Icon(Icons.favorite_border_rounded,
+                              size: height / 30),
                         ),
                       ),
                     ],
@@ -54,12 +61,14 @@ class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
                 Positioned(
                   top: height / 1.850,
                   left: width / 2.5,
-                  child: Image.asset(AppImages.pageControlImage, height: height / 50),
+                  child: Image.asset(AppImages.pageControlImage,
+                      height: height / 50),
                 )
               ],
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 40),
+              padding: EdgeInsets.symmetric(
+                  horizontal: width / 30, vertical: height / 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -140,11 +149,14 @@ class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
                         crossAxisSpacing: width / 20,
                       ),
                       itemBuilder: (context, index) => AppColumn(
-                            image: "${userModel.pageContentItem![index].popularImage}",
+                            image:
+                                "${userModel.pageContentItem![index].popularImage}",
                             icon: "${userModel.pageContentItem![index].icon}",
-                            text: "${userModel.pageContentItem![index].recentlyNew}",
+                            text:
+                                "${userModel.pageContentItem![index].recentlyNew}",
                             data: "${userModel.pageContentItem![index].price}",
-                            information: "${userModel.pageContentItem![index].itemName}",
+                            information:
+                                "${userModel.pageContentItem![index].itemName}",
                             index: index,
                           )),
                 ],

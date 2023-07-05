@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../res/commen/app_elevated_button.dart';
-import '../res/commen/app_text.dart';
+import '../res/common/app_elevated_button.dart';
+import '../res/common/app_text.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_images.dart';
 import '../res/constant/app_string.dart';
@@ -21,7 +21,8 @@ class _EmptyAccountScreenState extends State<EmptyAccountScreen> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width / 20, vertical: height / 30),
+          padding: EdgeInsets.symmetric(
+              horizontal: width / 20, vertical: height / 30),
           child: Column(
             children: [
               Align(
@@ -35,13 +36,20 @@ class _EmptyAccountScreenState extends State<EmptyAccountScreen> {
               ),
               Align(
                 alignment: Alignment.topLeft,
-                child: AppText(text: AppString.myAccount, fontWeight: FontWeight.w600, fontSize: height / 25),
+                child: AppText(
+                    text: AppString.myAccount,
+                    fontWeight: FontWeight.w600,
+                    fontSize: height / 25),
               ),
               Padding(
                 padding: EdgeInsets.only(top: height / 8, bottom: height / 25),
-                child: Image.asset(AppImages.emptyAccountEmoji, height: height / 10),
+                child: Image.asset(AppImages.emptyAccountEmoji,
+                    height: height / 10),
               ),
-              AppText(text: AppString.centreText, fontWeight: FontWeight.w600, fontSize: height / 40),
+              AppText(
+                  text: AppString.centreText,
+                  fontWeight: FontWeight.w600,
+                  fontSize: height / 40),
               const AppText(text: AppString.viewOrders, color: AppColors.gray),
               SizedBox(
                 height: height / 3.5,

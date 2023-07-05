@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../res/commen/app_elevated_button.dart';
-import '../res/commen/app_text.dart';
+import '../res/common/app_elevated_button.dart';
+import '../res/common/app_text.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_images.dart';
 import '../res/constant/app_string.dart';

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
-import 'package:ulmo_e_commerce_app/res/commen/row_app_bar.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/row_app_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
-import '../res/commen/check_box_button.dart';
+import '../res/common/check_box_button.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   const PaymentMethodScreen({Key? key}) : super(key: key);

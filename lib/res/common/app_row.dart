@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 
 class AppRow extends StatelessWidget {
@@ -16,7 +16,6 @@ class AppRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Row(
       children: [
         Icon(
@@ -46,7 +45,7 @@ class AppRow extends StatelessWidget {
               color: AppColors.grayWhite,
               size: height / 50,
             ),
-        Spacer(),
+        const Spacer(),
         AppText(
           text: text!,
           color: AppColors.gray,

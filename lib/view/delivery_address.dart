@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../data/user_data_first_screen.dart';
 import '../model/first_screen_model.dart';
-import '../res/commen/app_elevated_button.dart';
-import '../res/commen/app_text.dart';
-import '../res/commen/check_box_button.dart';
+import '../res/common/app_elevated_button.dart';
+import '../res/common/app_text.dart';
+import '../res/common/check_box_button.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
 

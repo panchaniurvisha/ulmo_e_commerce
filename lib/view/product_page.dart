@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/data/user_data_first_screen.dart';
 import 'package:ulmo_e_commerce_app/model/first_screen_model.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_column.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_container.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_column.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_container.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';

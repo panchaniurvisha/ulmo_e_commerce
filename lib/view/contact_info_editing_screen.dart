@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text_form_field.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text_form_field.dart';
 
-import '../res/commen/app_elevated_button.dart';
-import '../res/commen/app_text.dart';
-import '../res/commen/row_app_bar.dart';
+import '../res/common/app_elevated_button.dart';
+import '../res/common/app_text.dart';
+import '../res/common/row_app_bar.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
 import '../utils/utils.dart';

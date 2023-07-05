@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/first_screen_model.dart';
-import '../res/commen/app_text.dart';
+import '../res/common/app_text.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
 import 'my_details_screen.dart';

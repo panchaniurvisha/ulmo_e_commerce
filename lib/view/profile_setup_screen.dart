@@ -6,12 +6,11 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_elevated_button.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/view/account_screen.dart';
-
-import '../res/commen/app_text_form_field.dart';
+import '../res/common/app_text_form_field.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_string.dart';
 import '../utils/utils.dart';

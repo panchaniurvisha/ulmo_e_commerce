@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_row.dart';
-import 'package:ulmo_e_commerce_app/res/commen/app_text.dart';
-import 'package:ulmo_e_commerce_app/res/commen/search_bar.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_row.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
+import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
