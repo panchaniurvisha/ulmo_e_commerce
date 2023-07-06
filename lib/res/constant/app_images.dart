@@ -63,4 +63,7 @@ class AppImages {
 
   //ProfileSetUp Screen
   static const String galleryIcon = "${basePath}gallery_icon.png";
+
+  //login Screen
+  static const String googleLogo = "${basePath}google_logo.png";
 }

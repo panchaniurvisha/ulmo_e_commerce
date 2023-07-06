@@ -62,7 +62,7 @@ class _ContactInfoEditingScreenState extends State<ContactInfoEditingScreen> {
                   labelText: AppString.nameLabelText,
                   validator: (value) => utils.isValidName(nameController.text)
                       ? null
-                      : AppString.errorTitle,
+                      : AppString.errorTitleOfName,
                 ),
                 SizedBox(
                   height: height / 25,
@@ -70,23 +70,23 @@ class _ContactInfoEditingScreenState extends State<ContactInfoEditingScreen> {
                 AppTextFormField(
                     controller: phoneNumberController,
                     labelText: AppString.numberLabelText,
-                    hintText: AppString.hintTextNumber,
+                    hintText: AppString.hintTextOfNumber,
                     validator: (value) =>
                         utils.isValidMobile(phoneNumberController.text)
                             ? null
-                            : AppString.errorNumberTitle,
+                            : AppString.errorTitleNumber,
                     keyboardType: TextInputType.phone),
                 SizedBox(
                   height: height / 25,
                 ),
                 AppTextFormField(
                   controller: emailController,
-                  labelText: AppString.email,
+                  labelText: AppString.emailOfScreen,
                   textInputAction: TextInputAction.done,
-                  hintText: AppString.hintEmailName,
+                  hintText: AppString.hintEmailText,
                   validator: (value) => utils.isValidEmail(emailController.text)
                       ? null
-                      : AppString.errorEmailTitle,
+                      : AppString.errorTitleEmail,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const Spacer(),

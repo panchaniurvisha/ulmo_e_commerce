@@ -19,7 +19,41 @@ class AppString {
   static const bathroom = "bathroom";
   static const popularItem = "popular";
 
-  //categories screen
+  ///Sign Up Screen
+  static const signupTitle = "Sign_up_page";
+  static const firstName = "First Name";
+  static const email = "Email";
+  static const password = "password";
+  static const mobileNo = "Phone no";
+  static const hintTextName = "Enter First name";
+  static const number = "Number";
+  static const hintTextLastName = "Enter Last name";
+  static const hintEmailName = "Eg. jamesburnes14@gmail.com";
+  static const hintTextPassword = "Enter Password";
+  static const hintTextNumber = "00000 00000";
+  static const errorTitle = "Please Enter Correct Name,";
+  static const lastname = "Last Name";
+  static const errorEmailTitle = "Please Enter Correct Email,";
+  static const errorPasswordTitle = "Please valid Password ,";
+  static const errorNumberTitle = "Please Enter Correct Number,";
+  static const forgetPassword = "Forgot Password";
+  static const signup = "Sign up";
+  static const createAccount = 'Already have an Account?';
+  static const login = 'Login';
+
+  ///Login Screen
+  static const loginTitle = "Login_page";
+  static const signWithGoogle = "Sign in with Google";
+  static const loginWithMobile = "Login with Mobile";
+  static const loginWithSocialMedia = "Or Login With Social Media Account";
+  static const or = "OR SIGN IN USING";
+
+  ///Forgot password Screen
+  static const forgotPasswordTitle = "Reset Password";
+  static const text = "Receive an email to\nreset your password";
+  static const resetPassword = "Reset Password";
+
+  ///categories screen
   static const room = "Living room";
   static const categories = "categories";
   static const furniture = "Furniture";
@@ -33,17 +67,17 @@ class AppString {
   static const vases = "Vases";
   static const boxes = "Boxes";
 
-  //catalog Screen
+  ///catalog Screen
   static const title = "Furniture";
-  static const text = "Hard to decide?";
+  static const textCatalog = "Hard to decide?";
   static const help = "We are ready for help";
   static const data = "Need help";
 
-  //product page Screen
+  ///product page Screen
   static const information = "Product information";
   static const review = "Reviews";
   static const question = "Questions and answer";
-  static const number = "32";
+  static const number32 = "32";
   static const five = "5";
   static const headerName = "you might also like";
   static const price = "\$150.00";
@@ -173,13 +207,13 @@ class AppString {
   static const continueButton = "Continue";
   static const nameHintText = "Full Name";
   static const nameLabelText = "Full Name";
-  static const errorTitle = "Please Enter Correct Name,";
+  static const errorTitleOfName = "Please Enter Correct Name,";
   static const numberLabelText = "phone";
-  static const hintTextNumber = "00000 00000";
-  static const errorNumberTitle = "Please Enter Correct Number,";
-  static const email = "Email";
-  static const hintEmailName = "Eg. jamesburnes14@gmail.com";
-  static const errorEmailTitle = "Please Enter Correct Email,";
+  static const hintTextOfNumber = "00000 00000";
+  static const errorTitleNumber = "Please Enter Correct Number,";
+  static const emailOfScreen = "Email";
+  static const hintEmailText = "Eg. jamesburnes14@gmail.com";
+  static const errorTitleEmail = "Please Enter Correct Email,";
   static const pageNumber = "1 of 3";
 
   //delivery Details Screen
@@ -240,10 +274,10 @@ class AppString {
   static const labelTextOfName = "Full name";
   static const hintTextOfName = "Tanya Moreni";
   static const labelTextOfNumber = "phone";
-  static const hintTextOfNumber = "9345678976";
+  static const hintTextOfPhoneNumber = "9345678976";
   static const labelTextOfDateOfBirth = "Date of birth";
   static const hintTextOfDateOfBirth = "11-JUN-1993";
-  static const signup = "Save";
+  static const save = "Save";
 
   //account Screen
   static const myOrder = "My orders";
@@ -254,7 +288,7 @@ class AppString {
 
   //MyDetails Screen
   static const titleOFDetails = "My Details";
-  static const save = "Save";
+  static const saveOfScreen = "Save";
   static const changePhoto = "Change photo";
 
   //Address Book Screen

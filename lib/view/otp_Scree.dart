@@ -6,7 +6,7 @@ import 'package:ulmo_e_commerce_app/res/common/row_app_bar.dart';
 
 import '../res/common/app_text.dart';
 import '../res/constant/app_string.dart';
-import 'login_with_phone_number.dart';
+import 'login_page/login_with_phone_number.dart';
 import 'profile_setup_screen.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -57,7 +57,7 @@ class _OtpScreenState extends State<OtpScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RowAppBar(
+              const RowAppBar(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 text: AppString.helpText,
               ),

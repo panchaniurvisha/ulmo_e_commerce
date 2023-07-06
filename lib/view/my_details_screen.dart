@@ -78,7 +78,7 @@ class _MyDetailsScreenState extends State<MyDetailsScreen> {
                   InkWell(
                     onTap: () => createUserData(),
                     child: const AppText(
-                      text: AppString.save,
+                      text: AppString.saveOfScreen,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

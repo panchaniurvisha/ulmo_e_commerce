@@ -210,7 +210,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
               AppTextFormField(
                   controller: phoneNumberController,
                   labelText: AppString.labelTextOfNumber,
-                  hintText: AppString.hintTextNumber,
+                  hintText: AppString.hintTextOfPhoneNumber,
                   validator: (value) =>
                       utils.isValidMobile(phoneNumberController.text)
                           ? null
@@ -247,7 +247,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     debugPrint("Next Account Screen====>");
                   }
                 },
-                text: AppString.signup,
+                text: AppString.save,
                 sizeBox: const SizedBox(),
               ),
             ],

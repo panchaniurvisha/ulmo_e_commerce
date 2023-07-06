@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../res/common/app_elevated_button.dart';
-import '../res/common/app_text.dart';
-import '../res/common/row_app_bar.dart';
-import '../res/constant/app_string.dart';
-import 'otp_Scree.dart';
+import '../../res/common/app_elevated_button.dart';
+import '../../res/common/app_text.dart';
+import '../../res/common/row_app_bar.dart';
+import '../../res/constant/app_string.dart';
+import '../otp_Scree.dart';
 
 class LoginWithPhoneNumber extends StatefulWidget {
   const LoginWithPhoneNumber({
