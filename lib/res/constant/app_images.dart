@@ -66,4 +66,5 @@ class AppImages {
 
   //login Screen
   static const String googleLogo = "${basePath}google_logo.png";
+  static const String phoneLogo = "${basePath}phone_logo.png";
 }

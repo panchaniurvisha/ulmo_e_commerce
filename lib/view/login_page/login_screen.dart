@@ -72,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                AppText(text: AppString.email),
+                const AppText(text: AppString.email),
                 AppTextFormField(
                     labelText: AppString.email,
                     hintText: AppString.hintEmailName,
@@ -82,13 +82,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             ? null
                             : AppString.errorEmailTitle,
                     keyboardType: TextInputType.emailAddress),
-                AppText(text: AppString.password),
+                const AppText(text: AppString.password),
                 AppTextFormField(
                     suffixIcon: IconButton(
                       icon: Icon(isSecurePassword
                           ? Icons.visibility_off
                           : Icons.visibility),
-                      iconSize: 20,
+                      iconSize: height / 40,
                       color: const Color(0xff200E32),
                       onPressed: () {
                         setState(() {
@@ -129,32 +129,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                   },
                   text: AppString.login,
-                  sizeBox: SizedBox(),
+                  sizeBox: const SizedBox(),
                 ),
-                Align(
-                    child: const AppText(text: AppString.or),
-                    alignment: Alignment.center),
-                Align(
-                  alignment: Alignment.center,
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const LoginWithPhoneNumber(),
-                            ));
-                      },
-                      child: AppText(
-                          text: AppString.loginWithMobile,
-                          color: AppColors.redColor,
-                          fontSize: height / 60,
-                          fontWeight: FontWeight.bold)),
-                ),
-                const AppText(
-                  text: AppString.loginWithSocialMedia,
-                  fontSize: 18,
-                ),
+                const Align(
+                    alignment: Alignment.center,
+                    child: AppText(text: AppString.or)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -164,7 +143,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       icon: Image.asset(
                         AppImages.googleLogo,
-                        height: 30,
+                        height: height / 20,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const LoginWithPhoneNumber(),
+                            ));
+                      },
+                      icon: Image.asset(
+                        AppImages.phoneLogo,
                       ),
                     ),
                   ],
@@ -172,11 +164,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Do not have an Account?'),
+                    AppText(
+                        text: AppString.doNotHaveAccount,
+                        fontSize: height / 60),
                     TextButton(
-                      child: const Text(
-                        'Signup',
-                        style: TextStyle(fontSize: 20),
+                      child: const AppText(
+                        text: AppString.signup,
+                        color: AppColors.redColor,
+                        fontWeight: FontWeight.bold,
                       ),
                       onPressed: () {
                         Navigator.push(

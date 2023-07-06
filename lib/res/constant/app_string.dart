@@ -44,9 +44,8 @@ class AppString {
   ///Login Screen
   static const loginTitle = "Login_page";
   static const signWithGoogle = "Sign in with Google";
-  static const loginWithMobile = "Login with Mobile";
-  static const loginWithSocialMedia = "Or Login With Social Media Account";
   static const or = "OR SIGN IN USING";
+  static const doNotHaveAccount = "Do not have an Account?";
 
   ///Forgot password Screen
   static const forgotPasswordTitle = "Reset Password";
