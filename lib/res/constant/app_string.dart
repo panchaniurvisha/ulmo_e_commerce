@@ -21,18 +21,16 @@ class AppString {
 
   ///Sign Up Screen
   static const signupTitle = "Sign_up_page";
-  static const firstName = "First Name";
+  static const fullName = "Full Name";
   static const email = "Email";
   static const password = "password";
   static const mobileNo = "Phone no";
-  static const hintTextName = "Enter First name";
+  static const hintTextName = "Enter Full name";
   static const number = "Number";
-  static const hintTextLastName = "Enter Last name";
   static const hintEmailName = "Eg. jamesburnes14@gmail.com";
   static const hintTextPassword = "Enter Password";
   static const hintTextNumber = "00000 00000";
   static const errorTitle = "Please Enter Correct Name,";
-  static const lastname = "Last Name";
   static const errorEmailTitle = "Please Enter Correct Email,";
   static const errorPasswordTitle = "Please valid Password ,";
   static const errorNumberTitle = "Please Enter Correct Number,";
@@ -40,6 +38,9 @@ class AppString {
   static const signup = "Sign up";
   static const createAccount = 'Already have an Account?';
   static const login = 'Login';
+  static const labelTextOfDateOfBirth = "Date of birth";
+  static const hintTextOfDateOfBirth = "11-JUN-1993";
+  static const dateOfBirth = " Date OfBirth";
 
   ///Login Screen
   static const loginTitle = "Login_page";
@@ -265,30 +266,16 @@ class AppString {
   static const verify = "Verify phone number";
   static const editPhoneNumber = "Edit Phone number ?";
 
-  //Profile Setup Screen
-  static const titleProfile = "Set up your profile";
-  static const skip = "Skip";
-  static const photoUpload = "Upload photo";
-  static const profilePhoto = "Profile photo";
-  static const labelTextOfName = "Full name";
-  static const hintTextOfName = "Tanya Moreni";
-  static const labelTextOfNumber = "phone";
-  static const hintTextOfPhoneNumber = "9345678976";
-  static const labelTextOfDateOfBirth = "Date of birth";
-  static const hintTextOfDateOfBirth = "11-JUN-1993";
-  static const save = "Save";
-
   //account Screen
   static const myOrder = "My orders";
   static const myDetails = "My Details";
   static const addressBook = "Address Book";
   static const paymentMethods = "Payment Methods";
   static const signOut = "Sign Out";
+  static const profilePhoto = "Profile photo";
 
   //MyDetails Screen
   static const titleOFDetails = "My Details";
-  static const saveOfScreen = "Save";
-  static const changePhoto = "Change photo";
 
   //Address Book Screen
   static const titleOfScreen = "Address book";
@@ -297,4 +284,12 @@ class AppString {
   //Address Screen
   static const titleOfAddress = "Address";
   static const addressInfo = "address info";
+
+  ///Setting Screen
+  static const settings = "Settings";
+  static const deliverTo = "Deliver to";
+  static const currency = "Currency";
+  static const notifications = "Notifications";
+  static const termsAndConditions = "Terms and Conditions";
+  static const $usd = "\$ USD";
 }

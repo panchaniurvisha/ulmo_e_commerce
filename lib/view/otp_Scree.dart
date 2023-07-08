@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/common/row_app_bar.dart';
+import 'package:ulmo_e_commerce_app/view/account_screen.dart';
 
 import '../res/common/app_text.dart';
 import '../res/constant/app_string.dart';
 import 'login_page/login_with_phone_number.dart';
-import 'profile_setup_screen.dart';
 
 class OtpScreen extends StatefulWidget {
   final String? phone;
@@ -114,7 +114,7 @@ class _OtpScreenState extends State<OtpScreen> {
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => const ProfileSetupScreen(),
+            builder: (context) => const AccountScreen(),
           ),
           (route) => false);
     } catch (e) {

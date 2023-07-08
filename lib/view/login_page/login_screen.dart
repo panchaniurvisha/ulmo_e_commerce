@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool value = false;
   bool isSecurePassword = true;
   final formKey = GlobalKey<FormState>();
-  ProfileSetModel? userModel;
+  AccountModel? userModel;
 
   @override
   void initState() {
@@ -52,7 +52,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -226,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
     CollectionReference users = firebaseFireStore.collection('user');
     users.doc(userData!.uid).get().then((value) {
       debugPrint("User Added---->${jsonEncode(value.data())}");
-      userModel = userModelFromJson(jsonEncode(value.data()));
+      userModel = accountModelFromJson(jsonEncode(value.data()));
       utils.showToastMessage(message: "Login is successfully");
       Navigator.pushAndRemoveUntil(
           context,

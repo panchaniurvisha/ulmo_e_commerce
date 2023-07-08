@@ -27,8 +27,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController dateOfBirthController = TextEditingController();
 
   bool value = false;
   bool isSecurePassword = true;
@@ -38,7 +38,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -58,25 +57,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const AppText(text: AppString.firstName),
+              const AppText(text: AppString.fullName),
               AppTextFormField(
                 controller: firstNameController,
                 validator: (value) =>
                     utils.isValidName(firstNameController.text)
                         ? null
                         : AppString.errorTitle,
-                labelText: AppString.firstName,
+                labelText: AppString.fullName,
                 hintText: AppString.hintTextName,
-                keyboardType: TextInputType.name,
-              ),
-              const AppText(text: AppString.lastname),
-              AppTextFormField(
-                controller: lastNameController,
-                validator: (value) => utils.isValidName(lastNameController.text)
-                    ? null
-                    : AppString.errorTitle,
-                labelText: AppString.lastname,
-                hintText: AppString.hintTextLastName,
                 keyboardType: TextInputType.name,
               ),
               const AppText(text: AppString.email),
@@ -123,8 +112,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ? null
                           : AppString.errorNumberTitle,
                   keyboardType: TextInputType.phone),
-              const SizedBox(
-                height: 20,
+              const AppText(text: AppString.dateOfBirth),
+              AppTextFormField(
+                  controller: dateOfBirthController,
+                  labelText: AppString.labelTextOfDateOfBirth,
+                  hintText: AppString.hintTextOfDateOfBirth,
+                  validator: (value) =>
+                      utils.isValidDateOfBirth(dateOfBirthController.text)
+                          ? null
+                          : AppString.errorNumberTitle,
+                  keyboardType: TextInputType.name),
+              SizedBox(
+                height: height / 10,
               ),
               AppElevatedButton(
                 onPressed: () {
@@ -201,10 +200,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     CollectionReference users = firebaseFireStore.collection('user');
     users.doc(user!.uid).set({
       'id': user!.uid, // John Doe
-      'first_name': firstNameController.text, // Stokes and Sons
-      'last_name': lastNameController.text,
+      'fullName': firstNameController.text, // Stokes and Sons
       "number": phoneNumberController.text,
-      "email": user!.email, // 42
+      "email": user!.email,
+      'date_of_birth': dateOfBirthController.text, // 42
     }).then((value) {
       utils.showToastMessage(
           message: " SignUp is complete,Please verify your email");

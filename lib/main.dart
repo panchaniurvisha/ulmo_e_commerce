@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/view/sign_up_page/sign_up_screen.dart';
+import 'package:ulmo_e_commerce_app/view/account_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +20,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const SignUpScreen());
+        home: const AccountScreen());
   }
 }

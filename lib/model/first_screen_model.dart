@@ -146,35 +146,51 @@ class Address {
   }
 }
 
-ProfileSetModel userModelFromJson(String str) =>
-    ProfileSetModel.fromJson(json.decode(str));
+// To parse this JSON data, do
+//
+//     final accountModel = accountModelFromMap(jsonString);
 
-String userModelToJson(ProfileSetModel data) => json.encode(data.toJson());
+// To parse this JSON data, do
+//
+//     final accountModel = accountModelFromJson(jsonString);
 
-class ProfileSetModel {
+AccountModel accountModelFromJson(String str) =>
+    AccountModel.fromJson(json.decode(str));
+
+String accountModelToJson(AccountModel data) => json.encode(data.toJson());
+
+class AccountModel {
   String? number;
-  String? email;
+  String? dateOfBirth;
   String? fullName;
-  String? dateOFBirth;
+  String? id;
+  String? email;
   String? image;
 
-  ProfileSetModel(
-      {this.number, this.email, this.dateOFBirth, this.fullName, this.image});
+  AccountModel({
+    this.number,
+    this.dateOfBirth,
+    this.fullName,
+    this.id,
+    this.email,
+    this.image,
+  });
 
-  factory ProfileSetModel.fromJson(Map<String, dynamic> json) =>
-      ProfileSetModel(
+  factory AccountModel.fromJson(Map<String, dynamic> json) => AccountModel(
         number: json["number"],
+        dateOfBirth: json["date_of_birth"],
+        fullName: json["fullName"],
+        id: json["id"],
         email: json["email"],
-        fullName: json["full_name"],
-        dateOFBirth: json["date_of_birth"],
         image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
         "number": number,
-        "email": email,
+        "date_of_birth": dateOfBirth,
         "fullName": fullName,
-        "dateOFBirth": dateOFBirth,
+        "id": id,
+        "email": email,
         "image": image,
       };
 }

@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_list_tile.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 
+import '../model/first_screen_model.dart';
 import '../res/common/row_app_bar.dart';
 import '../res/constant/app_string.dart';
 
@@ -14,19 +16,8 @@ class AddressScreen extends StatefulWidget {
 }
 
 class _AddressScreenState extends State<AddressScreen> {
-  Future<Map<String, dynamic>> retrieveStoredUserData() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    String? fullName = preferences.getString('fullName');
-    String? phoneNumber = preferences.getString('phoneNumber');
-    String? email = preferences.getString('email');
-
-    Map<String, dynamic> userData = {
-      'full_name': fullName,
-      'number': phoneNumber,
-      'email': email,
-    };
-    return userData;
-  }
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -51,38 +42,32 @@ class _AddressScreenState extends State<AddressScreen> {
                   fontSize: height / 35,
                 ),
                 FutureBuilder<Map<String, dynamic>>(
-                  future: retrieveStoredUserData(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<Map<String, dynamic>> snapshot) {
+                  future: getUser(),
+                  builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const CircularProgressIndicator();
                     }
-
                     if (snapshot.hasError) {
-                      return const Center(child: Text('Something went wrong'));
+                      return const Text('Failed to fetch user data');
                     }
-
                     Map<String, dynamic>? userData = snapshot.data;
-
-                    if (userData == null || userData.isEmpty) {
-                      return const Center(child: Text('User data not found'));
-                    }
+                    // Access the user data here and display it in your widget
+                    // For example:
+                    String fullName = userData?['fullName'] ?? '';
+                    String phoneNumber = userData?['number'] ?? '';
+                    String email = userData?["email"] ?? "";
 
                     return Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AppListTile(
-                          titleText: AppString.labelTextOfName,
-                          subTitleText: userData['full_name'] as String,
-                        ),
+                            titleText: AppString.nameLabelText,
+                            subTitleText: fullName),
                         AppListTile(
-                          titleText: AppString.numberLabelText,
-                          subTitleText: userData['number'] as String,
-                        ),
+                            titleText: AppString.numberLabelText,
+                            subTitleText: phoneNumber),
                         AppListTile(
-                          titleText: AppString.email,
-                          subTitleText: userData['email'] as String,
-                        ),
+                            titleText: AppString.email, subTitleText: email),
                       ],
                     );
                   },
@@ -98,5 +83,15 @@ class _AddressScreenState extends State<AddressScreen> {
         ),
       ),
     );
+  }
+
+  Future<Map<String, dynamic>> getUser() async {
+    CollectionReference users = firebaseFireStore.collection('user');
+    DocumentSnapshot documentSnapshot =
+        await users.doc(firebaseAuth.currentUser!.uid).get();
+    Map<String, dynamic> userData =
+        documentSnapshot.data() as Map<String, dynamic>;
+    AccountModel userModel = AccountModel.fromJson(userData);
+    return userData;
   }
 }
