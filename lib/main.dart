@@ -1,6 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:ulmo_e_commerce_app/view/account_screen.dart';
+=======
+import 'package:ulmo_e_commerce_app/view/setting_screen.dart';
+>>>>>>> 6ca621fe51303359affd7d9a8f571bc608f7f9e0
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +24,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
+<<<<<<< HEAD
         home: const AccountScreen());
+=======
+        home: const SettingScreen());
+>>>>>>> 6ca621fe51303359affd7d9a8f571bc608f7f9e0
   }
 }
