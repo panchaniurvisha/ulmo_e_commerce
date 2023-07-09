@@ -58,8 +58,7 @@ class _OtpScreenState extends State<OtpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const RowAppBar(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                text: AppString.helpText,
+                actionText: AppString.helpText,
               ),
               AppText(
                   text: AppString.otpTitle,

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/view/account_screen.dart';
 
 void main() async {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.white,
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,

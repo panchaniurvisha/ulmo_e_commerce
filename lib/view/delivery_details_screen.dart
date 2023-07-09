@@ -89,18 +89,20 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                               fontSize: height / 55),
                         ],
                       ),
-                      Padding(
-                          padding: EdgeInsets.only(
-                              left: index == 0 ? width / 2.8 : width / 3.5,
-                              bottom: width / 12),
-                          child: CheckBoxButton(
-                            value: value,
-                            onTap: () {
-                              setState(() {
-                                value = !value;
-                              });
-                            },
-                          )),
+                      Expanded(
+                        child: Padding(
+                            padding: EdgeInsets.only(
+                                left: index == 0 ? width / 2.8 : width / 3.5,
+                                bottom: width / 12),
+                            child: CheckBoxButton(
+                              value: value,
+                              onTap: () {
+                                setState(() {
+                                  value = !value;
+                                });
+                              },
+                            )),
+                      ),
                     ],
                   ),
                 ),
@@ -120,9 +122,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                         child:
                             Icon(Icons.location_on_outlined, size: height / 30),
                       ),
-                      Column(
+                      const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           AppText(text: AppString.address),
                           AppText(
                               text: AppString.houseNumber,
@@ -148,7 +150,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                 fontWeight: FontWeight.w600,
                 fontSize: height / 35,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   AppOutlineButton(text: AppString.tomorrow),
@@ -157,7 +159,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   AppOutlineButton(text: AppString.date27)
                 ],
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   AppOutlineButton(text: AppString.twelve),
@@ -167,7 +169,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                 ],
               ),
               const Spacer(),
-              const AppElevatedButton(
+              AppElevatedButton(
                 sizeBox: SizedBox(),
                 text: AppString.continueButton,
               )

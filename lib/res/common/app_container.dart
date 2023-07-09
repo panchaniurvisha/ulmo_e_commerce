@@ -5,7 +5,6 @@ import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 class AppContainer extends StatelessWidget {
   final String? text;
   final String? data;
-
   final String? name;
   final Widget? appText;
   final Widget? appTextOne;
@@ -28,7 +27,9 @@ class AppContainer extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(width / 60)),
+      decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(width / 60)),
       child: Row(
         children: [
           padding ?? SizedBox(),
@@ -63,9 +64,12 @@ class AppContainer extends StatelessWidget {
           sizedBox ??
               Container(
                 margin: EdgeInsets.only(left: width / 5),
-                decoration: BoxDecoration(color: AppColors.lightYellowTwo, borderRadius: BorderRadius.circular(width / 80)),
+                decoration: BoxDecoration(
+                    color: AppColors.lightYellowTwo,
+                    borderRadius: BorderRadius.circular(width / 80)),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width / 20, vertical: height / 150),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width / 20, vertical: height / 150),
                   child: Text(name!, //AppString.data,
                       style: TextStyle(
                         color: AppColors.black,

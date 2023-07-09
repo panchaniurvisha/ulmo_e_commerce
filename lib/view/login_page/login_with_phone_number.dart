@@ -41,9 +41,7 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
         child: Column(
           children: [
             RowAppBar(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              text: AppString.actionOfHelp,
-              width: width / 10,
+              actionText: AppString.actionOfHelp,
             ),
             AppText(
                 text: AppString.enterNumber,

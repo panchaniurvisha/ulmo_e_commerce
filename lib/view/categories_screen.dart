@@ -5,14 +5,14 @@ import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
-class Categories extends StatefulWidget {
-  const Categories({Key? key}) : super(key: key);
+class CategoriesScreen extends StatefulWidget {
+  const CategoriesScreen({Key? key}) : super(key: key);
 
   @override
-  State<Categories> createState() => _CategoriesState();
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
 }
 
-class _CategoriesState extends State<Categories> {
+class _CategoriesScreenState extends State<CategoriesScreen> {
   List<Map> categories = [
     {AppString.image: AppImages.furniture, AppString.name: AppString.furniture},
     {AppString.image: AppImages.lighting, AppString.name: AppString.lighting},
