@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:ulmo_e_commerce_app/view/address_book_screen.dart';
 
 import '../model/first_screen_model.dart';
+import '../res/common/app_elevated_button.dart';
 import '../res/common/app_text.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_images.dart';
@@ -266,7 +267,76 @@ class _AccountScreenState extends State<AccountScreen> {
                                 )
                               : IconButton(
                                   onPressed: () {
-                                    firebaseAuth.signOut();
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Dialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                width / 10,
+                                              ),
+                                            ),
+                                            child: Container(
+                                              height: height / 2.5,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        height / 60),
+                                                color: AppColors.skyWhite,
+                                              ),
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.all(height / 50),
+                                                child: Column(
+                                                  children: [
+                                                    SizedBox(
+                                                      height: height / 40,
+                                                    ),
+                                                    AppText(
+                                                      text:
+                                                          AppString.sureSignOut,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: height / 40,
+                                                    ),
+                                                    AppText(
+                                                      text:
+                                                          AppString.notSignOut,
+                                                      color: AppColors.gray,
+                                                      fontSize: height / 50,
+                                                    ),
+                                                    SizedBox(
+                                                      height: height / 40,
+                                                    ),
+                                                    AppElevatedButton(
+                                                        sizeBox:
+                                                            const SizedBox(),
+                                                        text: AppString
+                                                            .titleOfButton,
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                context)),
+                                                    SizedBox(
+                                                      height: height / 50,
+                                                    ),
+                                                    AppElevatedButton(
+                                                      color: AppColors.white,
+                                                      sizeBox: const SizedBox(),
+                                                      text: AppString
+                                                          .signOutButton,
+                                                      onPressed: () {
+                                                        firebaseAuth.signOut();
+                                                        Navigator.pop(context);
+                                                      },
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        });
+                                    // firebaseAuth.signOut();
                                   },
                                   icon: const Icon(
                                     Icons.logout,

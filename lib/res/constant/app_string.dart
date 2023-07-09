@@ -271,7 +271,10 @@ class AppString {
   static const paymentMethods = "Payment Methods";
   static const signOut = "Sign Out";
   static const profilePhoto = "Profile photo";
-
+  static const titleOfButton = "No, I want to stay";
+  static const signOutButton = "Yes, sign out";
+  static const sureSignOut = "are you sure you want to sign out?";
+  static const notSignOut = "We definitely don't want that";
   //MyDetails Screen
   static const titleOFDetails = "My Details";
 
