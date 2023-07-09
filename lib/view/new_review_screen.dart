@@ -128,8 +128,70 @@ class _NewReviewScreenState extends State<NewReviewScreen> {
                   ],
                 ),
               ),
-              const AppElevatedButton(
-                  text: AppString.sendButton, sizeBox: SizedBox())
+              AppElevatedButton(
+                text: AppString.sendButton,
+                sizeBox: const SizedBox(),
+                onPressed: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          width / 10,
+                        ),
+                      ),
+                      child: Container(
+                        height: height / 1.5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(height / 60),
+                          color: AppColors.skyWhite,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(height / 50),
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                AppImages.bedRoomImage,
+                              ),
+                              SizedBox(
+                                height: height / 40,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: width / 8),
+                                child: AppText(
+                                  text: AppString.subscribeTitle,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: height / 30,
+                                ),
+                              ),
+                              AppText(
+                                text: AppString.usefulContent,
+                                color: AppColors.gray,
+                                fontSize: height / 50,
+                              ),
+                              SizedBox(
+                                height: height / 40,
+                              ),
+                              AppElevatedButton(
+                                  sizeBox: const SizedBox(),
+                                  text: AppString.subscribe,
+                                  onPressed: () => Navigator.pop(context)),
+                              SizedBox(
+                                height: height / 50,
+                              ),
+                              AppElevatedButton(
+                                  color: AppColors.white,
+                                  sizeBox: const SizedBox(),
+                                  text: AppString.word,
+                                  onPressed: () => Navigator.pop(context))
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),

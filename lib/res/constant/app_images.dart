@@ -30,12 +30,10 @@ class AppImages {
 
   //new Review Screen
   static const String cameraImageOne = "${basePath}camera_image.png";
+  static const String bedRoomImage = "${basePath}bedroom_image.png";
 
   ///icons
   static const String closeButton = "${iconBasePath}close_icon.png";
-
-  //ad Popover screen
-  static const String bedRoomImage = "${basePath}bedroom_image.png";
 
   //story Screen
   static const String storyImage = "${basePath}story_image.png";
