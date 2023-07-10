@@ -20,7 +20,7 @@ class RowAppBar extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return AppBar(
       elevation: 0,
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.skyWhite,
       leading: IconButton(
         padding: EdgeInsets.only(right: width / 2),
         onPressed: () => Navigator.pop(context),

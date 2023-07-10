@@ -13,15 +13,21 @@ class AppListTile extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.only(top: height / 30),
-      decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(width / 30)),
-      child: ListTile(
-        title: AppText(
-            text: titleText!, fontSize: height / 60, color: AppColors.gray),
-        subtitle: AppText(text: subTitleText!),
-      ),
-    );
+        height: height / 13,
+        width: width,
+        margin: EdgeInsets.only(top: height / 30),
+        padding: EdgeInsets.all(width / 50),
+        decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(width / 30)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppText(
+                text: titleText!, fontSize: height / 60, color: AppColors.gray),
+            AppText(text: subTitleText!)
+          ],
+        )
+        );
   }
 }

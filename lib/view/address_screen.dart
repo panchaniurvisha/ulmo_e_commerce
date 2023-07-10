@@ -1,12 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_list_tile.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
+import 'package:ulmo_e_commerce_app/view/address_book_screen.dart';
 
 import '../model/first_screen_model.dart';
+import '../res/common/app_text_field.dart';
 import '../res/common/row_app_bar.dart';
 import '../res/constant/app_string.dart';
+import '../utils/utils.dart';
 
 class AddressScreen extends StatefulWidget {
   const AddressScreen({super.key});
@@ -18,6 +22,23 @@ class AddressScreen extends StatefulWidget {
 class _AddressScreenState extends State<AddressScreen> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
+  Utils utils = Utils();
+  final TextEditingController countryController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final TextEditingController streetController = TextEditingController();
+  final TextEditingController houseNumberController = TextEditingController();
+  final TextEditingController postCodeController = TextEditingController();
+  User? user;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    user = firebaseAuth.currentUser;
+    if (user != null) {
+      saveLocationToFireStore();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +49,6 @@ class _AddressScreenState extends State<AddressScreen> {
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: width / 28),
           child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.manual,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,8 +71,6 @@ class _AddressScreenState extends State<AddressScreen> {
                       return const Text('Failed to fetch user data');
                     }
                     Map<String, dynamic>? userData = snapshot.data;
-                    // Access the user data here and display it in your widget
-                    // For example:
                     String fullName = userData?['fullName'] ?? '';
                     String phoneNumber = userData?['number'] ?? '';
                     String email = userData?["email"] ?? "";
@@ -72,17 +90,64 @@ class _AddressScreenState extends State<AddressScreen> {
                     );
                   },
                 ),
-                AppText(
-                  text: AppString.addressInfo,
-                  fontWeight: FontWeight.w600,
-                  fontSize: height / 35,
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: height / 40),
+                  child: AppText(
+                    text: AppString.addressInfo,
+                    fontWeight: FontWeight.w600,
+                    fontSize: height / 35,
+                  ),
                 ),
+                AppTextField(
+                    controller: countryController,
+                    labelText: AppString.labelOfCountry),
+                AppTextField(
+                  controller: cityController,
+                  labelText: AppString.labelOfCity,
+                ),
+                AppTextField(
+                  controller: streetController,
+                  labelText: AppString.labelOfStreet,
+                ),
+                AppTextField(
+                  controller: houseNumberController,
+                  labelText: AppString.labelOfHouseNumber,
+                ),
+                AppTextField(
+                  controller: postCodeController,
+                  labelText: AppString.labelOfPostCode,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: height / 10),
+                  child: AppElevatedButton(
+                    onPressed: () => saveLocationToFireStore(),
+                    sizeBox: const SizedBox(),
+                    text: AppString.saveAddress,
+                  ),
+                )
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  saveLocationToFireStore() async {
+    CollectionReference users = firebaseFireStore.collection('user');
+    users.doc(user!.uid).set({
+      'city': cityController.text,
+      'country': countryController.text,
+      'street': streetController.text,
+      'houseNumber': houseNumberController.text,
+      "postCode": postCodeController.text
+    }, SetOptions(merge: true)).then((value) {
+      utils.showToastMessage(message: "user is added");
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const AddressBookScreen()));
+    }).catchError((error) {
+      debugPrint("Failed to add user$error");
+    });
   }
 
   Future<Map<String, dynamic>> getUser() async {

@@ -166,6 +166,11 @@ class AccountModel {
   String? id;
   String? email;
   String? image;
+  String? country;
+  String? city;
+  String? street;
+  String? houseNumber;
+  String? postCode;
 
   AccountModel({
     this.number,
@@ -174,6 +179,11 @@ class AccountModel {
     this.id,
     this.email,
     this.image,
+    this.country,
+    this.city,
+    this.street,
+    this.houseNumber,
+    this.postCode,
   });
 
   factory AccountModel.fromJson(Map<String, dynamic> json) => AccountModel(
@@ -183,6 +193,11 @@ class AccountModel {
         id: json["id"],
         email: json["email"],
         image: json["image"],
+        country: json["country"],
+        city: json["city"],
+        street: json["street"],
+        houseNumber: json["houseNumber"],
+        postCode: json["postCode"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -192,5 +207,10 @@ class AccountModel {
         "id": id,
         "email": email,
         "image": image,
+        "country": country,
+        "city": city,
+        "street": street,
+        "houseNumber": houseNumber,
+        "postCode": postCode,
       };
 }

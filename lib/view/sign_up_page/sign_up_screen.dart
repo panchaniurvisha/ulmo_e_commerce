@@ -5,7 +5,7 @@ import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 
 import '../../res/common/app_text.dart';
-import '../../res/common/app_text_form_field.dart';
+import '../../res/common/app_textform_field.dart';
 import '../../res/constant/app_string.dart';
 import '../../utils/utils.dart';
 import '../login_page/login_screen.dart';

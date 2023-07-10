@@ -285,6 +285,12 @@ class AppString {
   //Address Screen
   static const titleOfAddress = "Address";
   static const addressInfo = "address info";
+  static const labelOfCountry = "Delivery country";
+  static const labelOfCity = "Delivery city";
+  static const labelOfStreet = "Street";
+  static const labelOfHouseNumber = "House number";
+  static const labelOfPostCode = "Postcode";
+  static const saveAddress = "Save address";
 
   ///Setting Screen
   static const settings = "Settings";

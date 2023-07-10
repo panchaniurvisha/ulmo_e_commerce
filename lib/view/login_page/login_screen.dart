@@ -9,7 +9,7 @@ import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 
 import '../../model/first_screen_model.dart';
 import '../../res/common/app_text.dart';
-import '../../res/common/app_text_form_field.dart';
+import '../../res/common/app_textform_field.dart';
 import '../../res/constant/app_colors.dart';
 import '../../res/constant/app_string.dart';
 import '../../utils/utils.dart';
