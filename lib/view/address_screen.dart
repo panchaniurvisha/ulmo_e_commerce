@@ -35,9 +35,6 @@ class _AddressScreenState extends State<AddressScreen> {
     // TODO: implement initState
     super.initState();
     user = firebaseAuth.currentUser;
-    if (user != null) {
-      saveLocationToFireStore();
-    }
   }
 
   @override

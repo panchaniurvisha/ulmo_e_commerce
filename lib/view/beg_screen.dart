@@ -124,7 +124,7 @@ class _BegScreenState extends State<BegScreen> {
                           bottomLeft: Radius.circular(width / 40),
                           topLeft: Radius.circular(width / 40),
                         ),
-                        child: Image.asset(AppImages.bedSideTable,
+                        child: Image.asset(AppImages.squareTable,
                             height: height / 7)),
                     SizedBox(
                       width: width / 30,

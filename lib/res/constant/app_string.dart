@@ -1,6 +1,7 @@
 class AppString {
   //globally string
   static const appFontFamily = "Poppins";
+  static const savedItems = "saved items";
 
   ///key of  categories screen
   static const image = "image";
@@ -168,7 +169,7 @@ class AppString {
   static const shopping = "Start shopping";
 
   //bag Screen
-  static const aboutTable = "Wooden bedside table featuring \na raised design";
+  static const aboutTable = "Wooden bedside table \nfeaturing a raised design";
   static const zero = "0";
   static const two = "2";
   static const dollarPrice = "\$280.50";
@@ -252,7 +253,7 @@ class AppString {
   static const phoneButton = "Continue with phone";
 
   //Saved Items Empty Screen
-  static const savedItems = "saved items";
+
   static const nothingSave = "nothing saved...";
   static const startSaving = "... no worries. Start saving as you shop";
   static const clickLittleText = " by clicking the little heart";
@@ -299,4 +300,9 @@ class AppString {
   static const notifications = "Notifications";
   static const termsAndConditions = "Terms and Conditions";
   static const $usd = "\$ USD";
+
+  ///Saved Items screen--------------->
+  static const moveToBag = "Move to bag";
+  static const sort = "Sort";
+  static const filterButton = "Filter";
 }

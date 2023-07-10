@@ -70,7 +70,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                                     color: AppColors.gray,
                                     fontSize: height / 60),
                                 AppText(
-                                    text: "PostCode :$postCode,",
+                                    text: ",PostCode :$postCode,",
                                     color: AppColors.gray,
                                     fontSize: height / 60),
                               ],

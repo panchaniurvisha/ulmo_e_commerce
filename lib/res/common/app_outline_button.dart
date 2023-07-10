@@ -4,14 +4,18 @@ import '../constant/app_colors.dart';
 
 class AppOutlineButton extends StatelessWidget {
   final String? text;
-  const AppOutlineButton({Key? key, required this.text}) : super(key: key);
+  final Color? color;
+  const AppOutlineButton({Key? key, required this.text, this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
+      style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(AppColors.lightYellowTwo)),
       child: Text(
         text!,
-        style: const TextStyle(color: AppColors.black),
+        style: TextStyle(color: AppColors.black),
       ),
       onPressed: () {},
     );

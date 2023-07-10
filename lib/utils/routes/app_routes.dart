@@ -26,6 +26,7 @@ import '../../view/product_page.dart';
 import '../../view/remove_items_screen.dart';
 import '../../view/review_screen.dart';
 import '../../view/saved_items_empty_screen.dart';
+import '../../view/saved_items_screen.dart';
 import '../../view/setting_screen.dart';
 import '../../view/sign_up_page/sign_up_screen.dart';
 import '../../view/sort_screen.dart';
@@ -69,4 +70,5 @@ Map<String, WidgetBuilder> appRoutes = {
   RoutesName.addressScreen: (context) => const AddressScreen(),
   RoutesName.savedItemsEmptyScreen: (context) => const SavedItemsEmptyScreen(),
   RoutesName.settingScreen: (context) => const SettingScreen(),
+  RoutesName.savedItemsScreen: (context) => const SavedItemsScreen(),
 };
