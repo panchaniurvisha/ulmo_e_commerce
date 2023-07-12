@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_rating_bar.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_row.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
@@ -20,6 +21,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: EdgeInsets.symmetric(
               horizontal: width / 30, vertical: height / 80),
@@ -43,12 +45,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 ],
               ),
               const AppSearchBar(),
-              Padding(
-                padding: EdgeInsets.only(bottom: height / 50),
-                child: const AppRow(
-                  text: AppString.time,
-                ),
-              ),
+              const AppRatingBar(),
               Row(
                 children: [
                   Image.asset(

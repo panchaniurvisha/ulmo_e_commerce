@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_list_tile.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_rating_bar.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/common/row_app_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
-import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
-import '../res/common/app_container.dart';
+import '../res/common/app_elevated_button.dart';
+import '../res/constant/app_images.dart';
 
 class NewReviewScreen extends StatefulWidget {
   const NewReviewScreen({Key? key}) : super(key: key);
@@ -31,53 +32,14 @@ class _NewReviewScreenState extends State<NewReviewScreen> {
                 text: AppString.newReview,
                 icon: Icon(Icons.close),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.star,
-                    color: AppColors.lightYellowTwo,
-                    size: height / 20,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: AppColors.lightYellowTwo,
-                    size: height / 20,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: AppColors.lightYellowTwo,
-                    size: height / 20,
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: AppColors.lightYellowTwo,
-                    size: height / 20,
-                  ),
-                  Icon(
-                    Icons.star_border,
-                    color: AppColors.grayWhite,
-                    size: height / 20,
-                  ),
-                ],
-              ),
-              Align(
-                alignment: Alignment.center,
-                heightFactor: height / 280,
-                child: const AppText(
-                  text: AppString.nice,
-                  color: AppColors.gray,
+              Center(
+                child: AppRatingBar(
+                  size: height / 10,
                 ),
               ),
-              const AppContainer(
-                appText: AppText(
-                  text: AppString.reviewTitle,
-                  color: AppColors.gray,
-                ),
-                appTextOne: AppText(
-                  text: AppString.reviewOne,
-                ),
-                sizedBox: SizedBox(),
+              const AppListTile(
+                titleText: AppString.reviewTitle,
+                subTitleText: AppString.reviewOne,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: height / 30),
