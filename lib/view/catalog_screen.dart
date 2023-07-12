@@ -20,6 +20,13 @@ class CatalogScreen extends StatefulWidget {
 }
 
 class _CatalogScreenState extends State<CatalogScreen> {
+  bool liked = false;
+  pressed() {
+    setState(() {
+      liked = !liked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
@@ -67,7 +74,15 @@ class _CatalogScreenState extends State<CatalogScreen> {
                           image:
                               "${userModel.popularItem![index].popularImage}",
                           text: "${userModel.popularItem![index].recentlyNew}",
-                          icon: "${userModel.popularItem![index].icon}",
+                          iconButton: IconButton(
+                            icon: Image.asset(
+                              liked
+                                  ? AppImages.disLikeIcon
+                                  : AppImages.likeIcon,
+                              height: height / 40,
+                            ),
+                            onPressed: () => pressed(),
+                          ),
                           data: "${userModel.popularItem![index].price}",
                           information:
                               "${userModel.popularItem![index].itemName}",
@@ -94,7 +109,15 @@ class _CatalogScreenState extends State<CatalogScreen> {
                               "${userModel.catalogItem![index].popularImage}",
                           text: "${userModel.catalogItem![index].recentlyNew}",
                           data: "${userModel.catalogItem![index].price}",
-                          icon: "${userModel.catalogItem![index].icon}",
+                          iconButton: IconButton(
+                            icon: Image.asset(
+                              liked
+                                  ? AppImages.disLikeIcon
+                                  : AppImages.likeIcon,
+                              height: height / 40,
+                            ),
+                            onPressed: () => pressed(),
+                          ),
                           information:
                               "${userModel.catalogItem![index].itemName}",
                           index: index,

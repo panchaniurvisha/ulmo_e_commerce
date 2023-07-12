@@ -72,4 +72,6 @@ class AppImages {
   ///Catalog Screen
   static const String sortIcon = "${iconBasePath}sort_icon.png";
   static const String filterIcon = "${iconBasePath}filter_icon.png";
+  static const String likeIcon = "${iconBasePath}heart_filled_icon.png";
+  static const String disLikeIcon = "${iconBasePath}heart_shape_icon.png";
 }

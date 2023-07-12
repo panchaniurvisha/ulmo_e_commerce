@@ -17,6 +17,13 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  bool liked = false;
+  pressed() {
+    setState(() {
+      liked = !liked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -193,7 +200,15 @@ class _ProductPageState extends State<ProductPage> {
                         itemBuilder: (context, index) => AppColumn(
                               image:
                                   "${userModel.pageContentItem![index].popularImage}",
-                              icon: "${userModel.pageContentItem![index].icon}",
+                              iconButton: IconButton(
+                                icon: Image.asset(
+                                  liked
+                                      ? AppImages.disLikeIcon
+                                      : AppImages.likeIcon,
+                                  height: height / 40,
+                                ),
+                                onPressed: () => pressed(),
+                              ),
                               text:
                                   "${userModel.pageContentItem![index].recentlyNew}",
                               data:

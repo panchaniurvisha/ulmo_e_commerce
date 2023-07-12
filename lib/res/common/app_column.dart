@@ -8,7 +8,7 @@ class AppColumn extends StatelessWidget {
   final String? data;
   final String? information;
   final String? image;
-  final String? icon;
+  final Widget? iconButton;
 
   const AppColumn({
     Key? key,
@@ -17,7 +17,7 @@ class AppColumn extends StatelessWidget {
     this.data,
     this.information,
     this.image,
-    this.icon,
+    this.iconButton,
   }) : super(key: key);
 
   @override
@@ -65,19 +65,11 @@ class AppColumn extends StatelessWidget {
                   fontFamily: AppString.appFontFamily,
                   color: AppColors.black,
                 )),
-            Image.asset(
-              icon!, //"${userModel.popularItem![index].icon}",
-              height: height / 45,
-            )
+            iconButton!
+
+            //"${userModel.popularItem![index].icon}",
           ],
-        ),
-        Text(information!, //"${userModel.popularItem![index].itemName}",
-            style: TextStyle(
-              fontSize: height / 70,
-              fontWeight: FontWeight.w400,
-              fontFamily: AppString.appFontFamily,
-              color: AppColors.gray,
-            )),
+        )
       ],
     );
   }

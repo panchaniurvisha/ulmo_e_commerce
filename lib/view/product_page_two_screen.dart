@@ -16,6 +16,13 @@ class ProductPageTwoScreen extends StatefulWidget {
 }
 
 class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
+  bool liked = false;
+  pressed() {
+    setState(() {
+      liked = !liked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -151,7 +158,15 @@ class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
                       itemBuilder: (context, index) => AppColumn(
                             image:
                                 "${userModel.pageContentItem![index].popularImage}",
-                            icon: "${userModel.pageContentItem![index].icon}",
+                            iconButton: IconButton(
+                              icon: Image.asset(
+                                liked
+                                    ? AppImages.disLikeIcon
+                                    : AppImages.likeIcon,
+                                height: height / 40,
+                              ),
+                              onPressed: () => pressed(),
+                            ),
                             text:
                                 "${userModel.pageContentItem![index].recentlyNew}",
                             data: "${userModel.pageContentItem![index].price}",

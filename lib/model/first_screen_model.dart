@@ -80,20 +80,17 @@ class RoomFacility {
 class PopularItem {
   String? popularImage;
   String? price;
-  String? icon;
   String? recentlyNew;
   String? itemName;
   PopularItem({
     this.popularImage,
     this.price,
-    this.icon,
     this.itemName,
   });
   PopularItem.fromJson(Map<String, dynamic> data) {
     popularImage = data["popularImage"];
     itemName = data["itemName"];
     price = data["price"];
-    icon = data["icon"];
     recentlyNew = data["recentlyNew"];
   }
 }
@@ -101,20 +98,17 @@ class PopularItem {
 class CatalogItem {
   String? popularImage;
   String? price;
-  String? icon;
   String? recentlyNew;
   String? itemName;
   CatalogItem({
     this.popularImage,
     this.price,
-    this.icon,
     this.itemName,
   });
   CatalogItem.fromJson(Map<String, dynamic> data) {
     popularImage = data["popularImage"];
     itemName = data["itemName"];
     price = data["price"];
-    icon = data["icon"];
     recentlyNew = data["recentlyNew"];
   }
 }
@@ -122,20 +116,15 @@ class CatalogItem {
 class PageContentItem {
   String? popularImage;
   String? price;
-  String? icon;
+
   String? recentlyNew;
   String? itemName;
   PageContentItem(
-      {this.popularImage,
-      this.price,
-      this.icon,
-      this.itemName,
-      this.recentlyNew});
+      {this.popularImage, this.price, this.itemName, this.recentlyNew});
   PageContentItem.fromJson(Map<String, dynamic> data) {
     popularImage = data["popularImage"];
     itemName = data["itemName"];
     price = data["price"];
-    icon = data["icon"];
     recentlyNew = data["recentlyNew"];
   }
 }
