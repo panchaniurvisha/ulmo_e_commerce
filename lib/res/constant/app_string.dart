@@ -305,4 +305,7 @@ class AppString {
   static const moveToBag = "Move to bag";
   static const sortButton = "Sort";
   static const filterButton = "Filter";
+
+  ///My Orders Screen---------------->
+  static const myOrders = "My orders";
 }

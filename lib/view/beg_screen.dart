@@ -199,7 +199,7 @@ class _BegScreenState extends State<BegScreen> {
                               IconButton(
                                   onPressed: () {
                                     setState(() {
-                                      countItem > 1 ? countItem-- : null;
+                                      countItem > 0 ? countItem-- : null;
                                     });
                                   },
                                   padding: EdgeInsets.symmetric(

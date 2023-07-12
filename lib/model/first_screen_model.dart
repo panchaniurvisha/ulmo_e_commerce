@@ -13,6 +13,7 @@ class FirstScreenModel {
   String? weight;
   String? mainMaterial;
   String? percentage;
+  List<Order>? order;
 
   FirstScreenModel(
       {this.height,
@@ -26,6 +27,7 @@ class FirstScreenModel {
       this.popularItem,
       this.catalogItem,
       this.pageContentItem,
+      this.order,
       this.address});
   FirstScreenModel.fromJson(Map<String, dynamic> data) {
     height = data["height"];
@@ -52,6 +54,8 @@ class FirstScreenModel {
     address = (data["address"] as List)
         .map((value) => Address.fromJson(value))
         .toList();
+    order =
+        (data["order"] as List).map((value) => Order.fromJson(value)).toList();
   }
 }
 
@@ -146,13 +150,19 @@ class Address {
   }
 }
 
-// To parse this JSON data, do
-//
-//     final accountModel = accountModelFromMap(jsonString);
-
-// To parse this JSON data, do
-//
-//     final accountModel = accountModelFromJson(jsonString);
+class Order {
+  String? time;
+  String? price;
+  String? aboutTime;
+  String? number;
+  Order({this.number, this.price, this.aboutTime, this.time});
+  Order.fromJson(Map<String, dynamic> data) {
+    time = data["time"];
+    price = data["price"];
+    aboutTime = data["aboutTime"];
+    number = data["number"];
+  }
+}
 
 AccountModel accountModelFromJson(String str) =>
     AccountModel.fromJson(json.decode(str));
