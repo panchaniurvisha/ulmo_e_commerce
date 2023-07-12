@@ -6,6 +6,8 @@ import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
+import '../../res/constant/app_images.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -22,9 +24,24 @@ class _HomeScreenState extends State<HomeScreen> {
     AppString.bathroom,
   ];
   TextEditingController searchEditingController = TextEditingController();
+  List<bool> likedList = [];
+  FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    likedList = List.generate(userModel!.popularItem!.length, (index) => false);
+  }
+
+  pressed(int index) {
+    setState(() {
+      likedList[index] = !likedList[index];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -61,19 +78,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(width / 50),
                                 child: Image.asset(
-                                  "${userModel.pageContent![index].image}",
+                                  "${userModel!.pageContent![index].image}",
                                 ),
                               ),
                               Positioned(
                                 top: height / 20,
                                 left: width / 40,
                                 child: Text(
-                                  "${userModel.pageContent![index].label}",
+                                  "${userModel!.pageContent![index].label}",
                                   style: TextStyle(
                                     color: AppColors.skyWhite,
                                     fontFamily: AppString.appFontFamily,
                                     fontWeight: FontWeight.w500,
-                                    fontSize: height / 50,
+                                    fontSize: height / 60,
                                   ),
                                 ),
                               )
@@ -82,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       separatorBuilder: (context, index) => SizedBox(
                             width: width / 40,
                           ),
-                      itemCount: userModel.pageContent!.length),
+                      itemCount: userModel!.pageContent!.length),
                 ),
                 ListView.separated(
                     shrinkWrap: true,
@@ -114,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     topRight: Radius.circular(width / 50)),
                                 child: Image.asset(
-                                    "${userModel.roomFacility![index].facilityImage}"),
+                                    "${userModel!.roomFacility![index].facilityImage}"),
                               )
                             ],
                           ),
@@ -122,7 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     separatorBuilder: (context, index) => SizedBox(
                           height: height / 50,
                         ),
-                    itemCount: userModel.roomFacility!.length),
+                    itemCount: userModel!.roomFacility!.length),
                 SizedBox(
                   height: height / 10,
                   child: Padding(
@@ -146,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: userModel.popularItem!.length,
+                    itemCount: userModel!.popularItem!.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       childAspectRatio: 0.50,
@@ -155,12 +172,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     itemBuilder: (context, index) => AppColumn(
                           image:
-                              "${userModel.popularItem![index].popularImage}",
-                          icon: "${userModel.popularItem![index].icon}",
-                          text: "${userModel.popularItem![index].recentlyNew}",
-                          data: "${userModel.popularItem![index].price}",
+                              "${userModel!.popularItem![index].popularImage}",
+                          iconButton: IconButton(
+                            icon: Image.asset(
+                              likedList[index]
+                                  ? AppImages.disLikeIcon
+                                  : AppImages.likeIcon,
+                              height: height / 40,
+                            ),
+                            onPressed: () => pressed(index),
+                          ),
+                          text: "${userModel!.popularItem![index].recentlyNew}",
+                          data: "${userModel!.popularItem![index].price}",
                           information:
-                              "${userModel.popularItem![index].itemName}",
+                              "${userModel!.popularItem![index].itemName}",
                           index: index,
                         )),
               ],

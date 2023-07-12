@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_outline_button.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
@@ -6,6 +7,7 @@ class AppColumn extends StatelessWidget {
   final int? index;
   final String? text;
   final String? data;
+  final Widget? appOutlineButton;
   final String? information;
   final String? image;
   final Widget? iconButton;
@@ -18,6 +20,7 @@ class AppColumn extends StatelessWidget {
     this.information,
     this.image,
     this.iconButton,
+    this.appOutlineButton,
   }) : super(key: key);
 
   @override
@@ -30,26 +33,12 @@ class AppColumn extends StatelessWidget {
           Image.asset(image! //"${userModel.popularItem![index].popularImage}",
               ),
           index == 0
-              ? Container(
-                  margin: EdgeInsets.only(
-                    top: height / 70,
-                    left: width / 40,
-                  ),
-                  decoration: BoxDecoration(
-                      color: AppColors.lightYellowTwo,
-                      borderRadius: BorderRadius.circular(width / 100)),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                        vertical: height / 300, horizontal: width / 50),
-                    child: Text(
-                      text!, //"${userModel.popularItem![index].recentlyNew}",
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontFamily: AppString.appFontFamily,
-                        fontWeight: FontWeight.w500,
-                        fontSize: height / 70,
-                      ),
-                    ),
+              ? Positioned(
+                  left: width / 50,
+                  top: height / 100,
+                  child: SizedBox(
+                    height: height / 28,
+                    child: AppOutlineButton(text: text!),
                   ),
                 )
               : const SizedBox()

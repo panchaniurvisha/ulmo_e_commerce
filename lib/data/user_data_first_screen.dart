@@ -56,7 +56,7 @@ Map<String, dynamic> userData = {
     {
       "popularImage": "assets/images/square_table.png",
       "price": "\$140.25",
-      "recentlyNew": "",
+      "recentlyNew": "new",
       "itemName": "Square bedside table with legs, a rattan shelf and a..."
     },
     {

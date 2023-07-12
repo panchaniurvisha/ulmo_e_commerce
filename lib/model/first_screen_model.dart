@@ -116,11 +116,14 @@ class CatalogItem {
 class PageContentItem {
   String? popularImage;
   String? price;
-
   String? recentlyNew;
   String? itemName;
-  PageContentItem(
-      {this.popularImage, this.price, this.itemName, this.recentlyNew});
+  PageContentItem({
+    this.popularImage,
+    this.recentlyNew,
+    this.price,
+    this.itemName,
+  });
   PageContentItem.fromJson(Map<String, dynamic> data) {
     popularImage = data["popularImage"];
     itemName = data["itemName"];

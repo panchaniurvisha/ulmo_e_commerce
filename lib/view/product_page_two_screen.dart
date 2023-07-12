@@ -16,10 +16,20 @@ class ProductPageTwoScreen extends StatefulWidget {
 }
 
 class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
-  bool liked = false;
-  pressed() {
+  List<bool> likedList = [];
+  FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    likedList =
+        List.generate(userModel!.pageContentItem!.length, (index) => false);
+  }
+
+  pressed(int index) {
     setState(() {
-      liked = !liked;
+      likedList[index] = !likedList[index];
     });
   }
 
@@ -27,8 +37,6 @@ class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
-    FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -148,7 +156,7 @@ class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
                       padding: EdgeInsets.only(top: height / 50),
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: userModel.pageContentItem!.length,
+                      itemCount: userModel!.pageContentItem!.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 0.50,
@@ -157,21 +165,21 @@ class _ProductPageTwoScreenState extends State<ProductPageTwoScreen> {
                       ),
                       itemBuilder: (context, index) => AppColumn(
                             image:
-                                "${userModel.pageContentItem![index].popularImage}",
+                                "${userModel!.pageContentItem![index].popularImage}",
                             iconButton: IconButton(
                               icon: Image.asset(
-                                liked
+                                likedList[index]
                                     ? AppImages.disLikeIcon
                                     : AppImages.likeIcon,
                                 height: height / 40,
                               ),
-                              onPressed: () => pressed(),
+                              onPressed: () => pressed(index),
                             ),
                             text:
-                                "${userModel.pageContentItem![index].recentlyNew}",
-                            data: "${userModel.pageContentItem![index].price}",
+                                "${userModel!.pageContentItem![index].recentlyNew}",
+                            data: "${userModel!.pageContentItem![index].price}",
                             information:
-                                "${userModel.pageContentItem![index].itemName}",
+                                "${userModel!.pageContentItem![index].itemName}",
                             index: index,
                           )),
                 ],
