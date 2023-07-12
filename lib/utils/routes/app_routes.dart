@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:ulmo_e_commerce_app/view/my_order_screen.dart';
 
 import '../../view/account_screen.dart';
 import '../../view/address_book_screen.dart';
@@ -19,6 +20,7 @@ import '../../view/login_page/login_with_phone_number.dart';
 import '../../view/my_details_screen.dart';
 import '../../view/new_review_screen.dart';
 import '../../view/no_internet_screen.dart';
+import '../../view/order_screen.dart';
 import '../../view/otp_Scree.dart';
 import '../../view/payment_method_screen.dart';
 import '../../view/product_information_screen.dart';
@@ -69,4 +71,6 @@ Map<String, WidgetBuilder> appRoutes = {
   RoutesName.savedItemsEmptyScreen: (context) => const SavedItemsEmptyScreen(),
   RoutesName.settingScreen: (context) => const SettingScreen(),
   RoutesName.savedItemsScreen: (context) => const SavedItemsScreen(),
+  RoutesName.myOrderScreen: (context) => const MyOrderScreen(),
+  RoutesName.orderScreen: (context) => const OrderScreen(),
 };

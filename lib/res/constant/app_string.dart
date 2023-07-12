@@ -308,4 +308,11 @@ class AppString {
 
   ///My Orders Screen---------------->
   static const myOrders = "My orders";
+
+  ///Order Screen------------------>
+  static const order = "Order #23124";
+  static const orderAgain = "Order again";
+  static const timeOfOrder = "yesterday, 10:00 am";
+  static const aboutTime = "Waiting for payment";
+  static const deliveryInfo = "delivery info";
 }

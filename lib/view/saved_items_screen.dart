@@ -151,7 +151,7 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
                           color: AppColors.gray,
                           fontSize: height / 55,
                         ),
-                        AppOutlineButton(
+                        const AppOutlineButton(
                           text: AppString.moveToBag,
                         )
                       ],

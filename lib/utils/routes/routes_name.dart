@@ -31,4 +31,6 @@ class RoutesName {
   static String savedItemsEmptyScreen = "/SavedItemsEmptyScreen";
   static String settingScreen = "/SettingScreen";
   static String savedItemsScreen = "/SavedItemsScreen";
+  static String myOrderScreen = "/MyOrderScreen";
+  static String orderScreen = "/OrderScreen";
 }

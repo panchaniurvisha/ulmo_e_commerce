@@ -25,6 +25,7 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
     double width = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: width / 28),
           child: Column(
@@ -32,8 +33,8 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
               const RowAppBar(
                 text: AppString.myOrders,
               ),
-              AppSearchBar(),
-              Row(
+              const AppSearchBar(),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppImageOutLineButton(
@@ -43,10 +44,10 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                       image: AppImages.filterIcon),
                 ],
               ),
-              ListView.separated(
+              ListView.builder(
                 itemCount: userModel!.order!.length,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) => Column(
                   children: [
                     Row(
@@ -76,15 +77,31 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                             fontSize: height / 55)
                       ],
                     ),
-                    Row(
-                      children: [Image.asset("${userModel}")],
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: height / 30),
+                      child: Row(
+                        children: [
+                          Image.asset("${userModel!.order![index].imageOne}",
+                              height: height / 10),
+                          SizedBox(
+                            width: width / 20,
+                          ),
+                          Image.asset("${userModel!.order![index].imageTwo}",
+                              height: height / 10),
+                          SizedBox(
+                            width: width / 20,
+                          ),
+                          index == 0
+                              ? const SizedBox()
+                              : Image.asset(
+                                  "${userModel!.order![index].imageThree}",
+                                  height: height / 10)
+                        ],
+                      ),
                     )
                   ],
                 ),
-                separatorBuilder: (context, index) => SizedBox(
-                  height: height / 10,
-                ),
-              )
+              ),
             ],
           ),
         ),

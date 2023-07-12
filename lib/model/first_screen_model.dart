@@ -155,12 +155,25 @@ class Order {
   String? price;
   String? aboutTime;
   String? number;
-  Order({this.number, this.price, this.aboutTime, this.time});
+  String? imageOne;
+  String? imageTwo;
+  String? imageThree;
+  Order(
+      {this.number,
+      this.price,
+      this.aboutTime,
+      this.time,
+      this.imageOne,
+      this.imageTwo,
+      this.imageThree});
   Order.fromJson(Map<String, dynamic> data) {
     time = data["time"];
     price = data["price"];
     aboutTime = data["aboutTime"];
     number = data["number"];
+    imageOne = data["imageOne"];
+    imageTwo = data["imageTwo"];
+    imageThree = data["imageThree"];
   }
 }
 
