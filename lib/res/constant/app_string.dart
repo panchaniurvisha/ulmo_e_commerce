@@ -303,6 +303,6 @@ class AppString {
 
   ///Saved Items screen--------------->
   static const moveToBag = "Move to bag";
-  static const sort = "Sort";
+  static const sortButton = "Sort";
   static const filterButton = "Filter";
 }

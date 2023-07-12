@@ -153,7 +153,9 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  AppOutlineButton(text: AppString.tomorrow),
+                  AppOutlineButton(
+                    text: AppString.tomorrow,
+                  ),
                   AppOutlineButton(text: AppString.date25),
                   AppOutlineButton(text: AppString.date26),
                   AppOutlineButton(text: AppString.date27)
@@ -169,7 +171,7 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                 ],
               ),
               const Spacer(),
-              AppElevatedButton(
+              const AppElevatedButton(
                 sizeBox: SizedBox(),
                 text: AppString.continueButton,
               )

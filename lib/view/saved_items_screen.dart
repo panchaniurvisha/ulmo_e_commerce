@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_image_outline_button.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_outline_button.dart';
-import 'package:ulmo_e_commerce_app/res/common/app_sort_filter_button.dart';
 import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
 
 import '../res/common/app_text.dart';
@@ -21,6 +21,7 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding:
             EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 10),
@@ -32,14 +33,19 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
                 fontWeight: FontWeight.w600,
                 fontSize: height / 30),
             const AppSearchBar(),
-            AppSortFilterButton(),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppImageOutLineButton(
+                    text: AppString.sortButton, image: AppImages.sortIcon),
+                AppImageOutLineButton(
+                    text: AppString.filterButton, image: AppImages.filterIcon)
+              ],
+            ),
             Row(
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(width / 40),
-                      topLeft: Radius.circular(width / 40),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(width / 40)),
                     child: Image.asset(AppImages.bedSideTable,
                         height: height / 7)),
                 SizedBox(
@@ -84,10 +90,7 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
             Row(
               children: [
                 ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(width / 40),
-                      topLeft: Radius.circular(width / 40),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(width / 40)),
                     child:
                         Image.asset(AppImages.squareTable, height: height / 7)),
                 SizedBox(
@@ -95,7 +98,7 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: height / 60),
+                    padding: EdgeInsets.only(bottom: height / 70),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

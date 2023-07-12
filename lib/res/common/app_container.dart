@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
@@ -32,7 +33,7 @@ class AppContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(width / 60)),
       child: Row(
         children: [
-          padding ?? SizedBox(),
+          padding ?? const SizedBox(),
           Padding(
             padding: EdgeInsets.all(height / 70),
             child: Column(
@@ -61,24 +62,18 @@ class AppContainer extends StatelessWidget {
               ],
             ),
           ),
-          sizedBox ??
-              Container(
-                margin: EdgeInsets.only(left: width / 5),
-                decoration: BoxDecoration(
-                    color: AppColors.lightYellowTwo,
-                    borderRadius: BorderRadius.circular(width / 80)),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: width / 20, vertical: height / 150),
-                  child: Text(name!, //AppString.data,
-                      style: TextStyle(
-                        color: AppColors.black,
-                        fontFamily: AppString.appFontFamily,
-                        fontSize: height / 60,
-                        fontWeight: FontWeight.w500,
-                      )),
-                ),
-              )
+          sizedBox ?? const Spacer(),
+          OutlinedButton(
+              style: const ButtonStyle(
+                backgroundColor:
+                    MaterialStatePropertyAll(AppColors.lightYellowTwo),
+              ),
+              onPressed: () {},
+              child: AppText(
+                text: name!,
+                fontWeight: FontWeight.w500,
+              )),
+          const Spacer(),
         ],
       ),
     );

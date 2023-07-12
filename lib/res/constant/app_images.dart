@@ -68,4 +68,8 @@ class AppImages {
 
   ///Bag Screen
   static const String squareTable = "${basePath}square_table.png";
+
+  ///Catalog Screen
+  static const String sortIcon = "${iconBasePath}sort_icon.png";
+  static const String filterIcon = "${iconBasePath}filter_icon.png";
 }

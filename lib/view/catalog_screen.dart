@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/data/user_data_first_screen.dart';
 import 'package:ulmo_e_commerce_app/model/first_screen_model.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_column.dart';
-import 'package:ulmo_e_commerce_app/res/common/app_container.dart';
 import 'package:ulmo_e_commerce_app/res/common/row_app_bar.dart';
 import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
+import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
+
+import '../res/common/app_container.dart';
+import '../res/common/app_image_outline_button.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({
@@ -37,6 +40,19 @@ class _CatalogScreenState extends State<CatalogScreen> {
                   text: AppString.title,
                 ),
                 const AppSearchBar(),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppImageOutLineButton(
+                        text: AppString.sortButton, image: AppImages.sortIcon),
+                    AppImageOutLineButton(
+                        text: AppString.filterButton,
+                        image: AppImages.filterIcon)
+                  ],
+                ),
+                SizedBox(
+                  height: height / 40,
+                ),
                 GridView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
