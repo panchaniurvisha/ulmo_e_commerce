@@ -23,7 +23,6 @@ import '../../view/otp_Scree.dart';
 import '../../view/payment_method_screen.dart';
 import '../../view/product_information_screen.dart';
 import '../../view/product_page.dart';
-import '../../view/remove_items_screen.dart';
 import '../../view/review_screen.dart';
 import '../../view/saved_items_empty_screen.dart';
 import '../../view/saved_items_screen.dart';
@@ -61,7 +60,6 @@ Map<String, WidgetBuilder> appRoutes = {
   RoutesName.deliveryDetailsScreen: (context) => const DeliveryDetailsScreen(),
   RoutesName.paymentMethodScreen: (context) => const PaymentMethodScreen(),
   RoutesName.successScreen: (context) => const SuccessScreen(),
-  RoutesName.removeItemScreen: (context) => const RemoveItemScreen(),
   RoutesName.emptyAccountScreen: (context) => const EmptyAccountScreen(),
   RoutesName.otpScreen: (context) => const OtpScreen(),
   RoutesName.accountScreen: (context) => const AccountScreen(),

@@ -7,6 +7,7 @@ import '../res/common/app_text.dart';
 import '../res/constant/app_colors.dart';
 import '../res/constant/app_images.dart';
 import '../res/constant/app_string.dart';
+import '../utils/utils.dart';
 
 class SavedItemsScreen extends StatefulWidget {
   const SavedItemsScreen({super.key});
@@ -16,6 +17,7 @@ class SavedItemsScreen extends StatefulWidget {
 }
 
 class _SavedItemsScreenState extends State<SavedItemsScreen> {
+  Utils utils = Utils();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -65,7 +67,20 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
                               fontWeight: FontWeight.w500,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                utils.showSnackBar(
+                                  margin: EdgeInsets.only(
+                                      bottom: height / 1.2,
+                                      left: width / 25,
+                                      right: width / 25),
+                                  context,
+                                  sizeBox: SizedBox(
+                                    width: width / 10,
+                                  ),
+                                  message: AppString.removeItem,
+                                  label: AppString.delete,
+                                );
+                              },
                               icon: const Icon(
                                 Icons.highlight_off,
                                 color: AppColors.gray,
@@ -110,7 +125,20 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
                               fontWeight: FontWeight.w500,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                utils.showSnackBar(
+                                  margin: EdgeInsets.only(
+                                      bottom: height / 1.2,
+                                      left: width / 25,
+                                      right: width / 25),
+                                  context,
+                                  sizeBox: SizedBox(
+                                    width: width / 10,
+                                  ),
+                                  message: AppString.removeItem,
+                                  label: AppString.delete,
+                                );
+                              },
                               icon: const Icon(
                                 Icons.highlight_off,
                                 color: AppColors.gray,

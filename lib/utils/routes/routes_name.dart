@@ -22,7 +22,6 @@ class RoutesName {
   static String deliveryDetailsScreen = "/DeliveryDetailsScreen";
   static String paymentMethodScreen = "/PaymentMethodScreen";
   static String successScreen = "/SuccessScreen";
-  static String removeItemScreen = "/RemoveItemScreen";
   static String emptyAccountScreen = "/EmptyAccountScreen";
   static String otpScreen = "/OtpScreen";
   static String accountScreen = "/AccountScreen";

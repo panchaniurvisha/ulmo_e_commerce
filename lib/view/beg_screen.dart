@@ -5,6 +5,7 @@ import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 
 import '../res/common/app_text.dart';
 import '../res/constant/app_string.dart';
+import '../utils/utils.dart';
 
 class BegScreen extends StatefulWidget {
   const BegScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class BegScreen extends StatefulWidget {
 class _BegScreenState extends State<BegScreen> {
   int itemCount = 0;
   int countItem = 0;
+  Utils utils = Utils();
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -62,7 +64,20 @@ class _BegScreenState extends State<BegScreen> {
                               width: width / 2.9,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                utils.showSnackBar(
+                                  margin: EdgeInsets.only(
+                                      bottom: height / 1.2,
+                                      left: width / 25,
+                                      right: width / 25),
+                                  context,
+                                  sizeBox: SizedBox(
+                                    width: width / 10,
+                                  ),
+                                  message: AppString.removeItem,
+                                  label: AppString.delete,
+                                );
+                              },
                               icon: const Icon(
                                 Icons.highlight_off,
                                 color: AppColors.gray,
@@ -143,7 +158,20 @@ class _BegScreenState extends State<BegScreen> {
                               width: width / 3,
                             ),
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                utils.showSnackBar(
+                                  margin: EdgeInsets.only(
+                                      bottom: height / 1.2,
+                                      left: width / 25,
+                                      right: width / 25),
+                                  context,
+                                  sizeBox: SizedBox(
+                                    width: width / 10,
+                                  ),
+                                  message: AppString.removeItem,
+                                  label: AppString.delete,
+                                );
+                              },
                               icon: const Icon(
                                 Icons.highlight_off,
                                 color: AppColors.gray,
