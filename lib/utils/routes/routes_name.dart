@@ -6,6 +6,7 @@ class RoutesName {
   static String forgotPasswordPage = "/ForgotPasswordPage";
   static String loginWithPhoneNumber = "/LoginWithPhoneNumber";
   static String categoriesScreen = "/CategoriesScreen";
+  static String catalogScreen = "/CatalogScreen";
   static String sortScreen = "/SortScreen";
   static String filterScreen = "/FilterScreen";
   static String filterOptionsScreen = "/FilterOptionsScreen";
@@ -33,4 +34,5 @@ class RoutesName {
   static String savedItemsScreen = "/SavedItemsScreen";
   static String myOrderScreen = "/MyOrderScreen";
   static String orderScreen = "/OrderScreen";
+  static String bottomScreen = "/BottomScreen";
 }

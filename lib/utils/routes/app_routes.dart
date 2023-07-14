@@ -5,6 +5,8 @@ import '../../view/account_screen.dart';
 import '../../view/address_book_screen.dart';
 import '../../view/address_screen.dart';
 import '../../view/beg_screen.dart';
+import '../../view/bottom_bar/bottom_screen.dart';
+import '../../view/catalog_screen.dart';
 import '../../view/categories_screen.dart';
 import '../../view/contact_info_editing_screen.dart';
 import '../../view/delivery_address.dart';
@@ -73,4 +75,6 @@ Map<String, WidgetBuilder> appRoutes = {
   RoutesName.savedItemsScreen: (context) => const SavedItemsScreen(),
   RoutesName.myOrderScreen: (context) => const MyOrderScreen(),
   RoutesName.orderScreen: (context) => const OrderScreen(),
+  RoutesName.bottomScreen: (context) => const BottomScreen(),
+  RoutesName.catalogScreen: (context) => const CatalogScreen(),
 };

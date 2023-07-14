@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
-import 'package:ulmo_e_commerce_app/view/bottom_bar/bottom_screen.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/app_routes.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,12 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.skyWhite,
-          primarySwatch: Colors.blue,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: const BottomScreen());
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.skyWhite,
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      // home: const BottomScreen()
+      routes: appRoutes,
+      initialRoute: RoutesName.splashScreen,
+    );
   }
 }

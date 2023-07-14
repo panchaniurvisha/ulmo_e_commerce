@@ -11,7 +11,7 @@ class AppColumn extends StatelessWidget {
   final String? information;
   final String? image;
   final Widget? iconButton;
-
+  final void Function()? onTap;
   const AppColumn({
     Key? key,
     this.index,
@@ -21,6 +21,7 @@ class AppColumn extends StatelessWidget {
     this.image,
     this.iconButton,
     this.appOutlineButton,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -30,8 +31,11 @@ class AppColumn extends StatelessWidget {
     return Column(
       children: [
         Stack(children: [
-          Image.asset(image! //"${userModel.popularItem![index].popularImage}",
+          InkWell(
+              child: Image.asset(
+                image!,
               ),
+              onTap: onTap!),
           index == 0
               ? Positioned(
                   left: width / 50,

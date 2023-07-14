@@ -5,6 +5,8 @@ import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
+import '../utils/routes/routes_name.dart';
+
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
 
@@ -38,7 +40,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const RowAppBar(),
+                const RowAppBar(
+                  text: AppString.titleOfLivingRoom,
+                ),
                 const AppSearchBar(),
                 Text(
                   AppString.categories,
@@ -50,25 +54,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: height / 1.7,
+                  height: height / 1.4,
                   child: ListView.separated(
                     padding: EdgeInsets.only(top: height / 30),
                     scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) => Row(
-                      children: [
-                        Image.asset(
-                          categories[index][AppString.image],
-                          height: height / 15,
-                        ),
-                        SizedBox(width: width / 20),
-                        Text(categories[index][AppString.name],
-                            style: TextStyle(
-                              color: AppColors.black,
-                              fontSize: height / 50,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: AppString.appFontFamily,
-                            )),
-                      ],
+                    itemBuilder: (context, index) => InkWell(
+                      onTap: () => index == 0
+                          ? Navigator.pushNamed(
+                              context, RoutesName.catalogScreen)
+                          : Navigator.pushNamed(
+                              context, RoutesName.categoriesScreen),
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            categories[index][AppString.image],
+                            height: height / 15,
+                          ),
+                          SizedBox(width: width / 20),
+                          Text(categories[index][AppString.name],
+                              style: TextStyle(
+                                color: AppColors.black,
+                                fontSize: height / 50,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: AppString.appFontFamily,
+                              )),
+                        ],
+                      ),
                     ),
                     separatorBuilder: (context, index) => SizedBox(
                       height: height / 40,

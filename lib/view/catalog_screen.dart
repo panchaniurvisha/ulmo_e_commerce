@@ -9,6 +9,7 @@ import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 import '../res/common/app_container.dart';
 import '../res/common/app_image_outline_button.dart';
+import '../utils/routes/routes_name.dart';
 
 class CatalogScreen extends StatefulWidget {
   const CatalogScreen({
@@ -64,14 +65,20 @@ class _CatalogScreenState extends State<CatalogScreen> {
                   text: AppString.title,
                 ),
                 const AppSearchBar(),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppImageOutLineButton(
-                        text: AppString.sortButton, image: AppImages.sortIcon),
+                      text: AppString.sortButton,
+                      image: AppImages.sortIcon,
+                      onPressed: () =>
+                          Navigator.pushNamed(context, RoutesName.sortScreen),
+                    ),
                     AppImageOutLineButton(
                         text: AppString.filterButton,
-                        image: AppImages.filterIcon)
+                        image: AppImages.filterIcon,
+                        onPressed: () => Navigator.pushNamed(
+                            context, RoutesName.filterScreen))
                   ],
                 ),
                 SizedBox(
@@ -90,6 +97,11 @@ class _CatalogScreenState extends State<CatalogScreen> {
                     itemBuilder: (context, index) => AppColumn(
                           image:
                               "${userModel!.popularItem![index].popularImage}",
+                          onTap: () => index == 0
+                              ? Navigator.pushNamed(
+                                  context, RoutesName.productPage)
+                              : Navigator.pushNamed(
+                                  context, RoutesName.catalogScreen),
                           text: "${userModel!.popularItem![index].recentlyNew}",
                           iconButton: IconButton(
                               icon: Image.asset(

@@ -30,7 +30,7 @@ class _StoryScreenState extends State<StoryScreen> {
                 decoration: const BoxDecoration(
                     color: AppColors.skyWhite, shape: BoxShape.circle),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                   icon: Icon(Icons.close, size: height / 30),
                 ),
               ),

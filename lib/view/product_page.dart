@@ -60,7 +60,7 @@ class _ProductPageState extends State<ProductPage> {
                               color: AppColors.skyWhite,
                               shape: BoxShape.circle),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () => Navigator.pop(context),
                             icon: Icon(Icons.arrow_back_rounded,
                                 size: height / 30),
                           ),
@@ -111,9 +111,9 @@ class _ProductPageState extends State<ProductPage> {
                                   borderRadius:
                                       BorderRadius.circular(width / 50)),
                             ),
-                            icon: Icon(Icons.circle_rounded,
+                            icon: const Icon(Icons.circle_rounded,
                                 color: AppColors.orangeColor),
-                            label: Text(AppString.brown),
+                            label: const Text(AppString.brown),
                           ),
                           SizedBox(
                             width: width / 20,
@@ -126,9 +126,9 @@ class _ProductPageState extends State<ProductPage> {
                                   borderRadius:
                                       BorderRadius.circular(width / 50)),
                             ),
-                            icon: Icon(Icons.circle_rounded,
+                            icon: const Icon(Icons.circle_rounded,
                                 color: AppColors.black),
-                            label: Text(AppString.black,
+                            label: const Text(AppString.black,
                                 style: TextStyle(color: AppColors.black)),
                           ),
                         ],
@@ -164,9 +164,9 @@ class _ProductPageState extends State<ProductPage> {
                         ],
                       ),
                     ),
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
+                      children: [
                         AppText(
                           text: AppString.review,
                         ),
@@ -178,9 +178,9 @@ class _ProductPageState extends State<ProductPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: height / 50),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           AppText(
                             text: AppString.question,
                           ),

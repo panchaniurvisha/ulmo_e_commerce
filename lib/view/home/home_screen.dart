@@ -5,6 +5,7 @@ import 'package:ulmo_e_commerce_app/res/common/app_column.dart';
 import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../../res/constant/app_images.dart';
 
@@ -73,28 +74,38 @@ class _HomeScreenState extends State<HomeScreen> {
                       shrinkWrap: true,
                       physics: const AlwaysScrollableScrollPhysics(),
                       scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) => Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(width / 50),
-                                child: Image.asset(
-                                  "${userModel!.pageContent![index].image}",
-                                ),
-                              ),
-                              Positioned(
-                                top: height / 20,
-                                left: width / 40,
-                                child: Text(
-                                  "${userModel!.pageContent![index].label}",
-                                  style: TextStyle(
-                                    color: AppColors.skyWhite,
-                                    fontFamily: AppString.appFontFamily,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: height / 60,
+                      itemBuilder: (context, index) => InkWell(
+                            onTap: () => index == 0
+                                ? Navigator.pushNamed(
+                                    context, RoutesName.storyScreen)
+                                : Navigator.pushNamed(
+                                    context,
+                                    RoutesName.homeScreen,
+                                  ),
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.circular(width / 50),
+                                  child: Image.asset(
+                                    "${userModel!.pageContent![index].image}",
                                   ),
                                 ),
-                              )
-                            ],
+                                Positioned(
+                                  top: height / 20,
+                                  left: width / 40,
+                                  child: Text(
+                                    "${userModel!.pageContent![index].label}",
+                                    style: TextStyle(
+                                      color: AppColors.skyWhite,
+                                      fontFamily: AppString.appFontFamily,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: height / 60,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                       separatorBuilder: (context, index) => SizedBox(
                             width: width / 40,
@@ -104,36 +115,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 ListView.separated(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) => Container(
-                          height: height / 8,
-                          decoration: BoxDecoration(
-                            color: AppColors.skyWhite,
-                            borderRadius: BorderRadius.circular(width / 50),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    bottom: height / 15, left: width / 30),
-                                child: Text(data[index],
-                                    style: TextStyle(
-                                      fontSize: height / 35,
-                                      fontWeight: FontWeight.w600,
-                                      fontFamily: AppString.appFontFamily,
-                                      color: AppColors.black,
-                                    )),
-                              ),
-                              ClipRRect(
-                                borderRadius: BorderRadius.only(
-                                    bottomRight: Radius.circular(
-                                      width / 50,
-                                    ),
-                                    topRight: Radius.circular(width / 50)),
-                                child: Image.asset(
-                                    "${userModel!.roomFacility![index].facilityImage}"),
-                              )
-                            ],
+                    itemBuilder: (context, index) => InkWell(
+                          onTap: () => Navigator.pushNamed(
+                              context, RoutesName.categoriesScreen),
+                          child: Container(
+                            height: height / 8,
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(width / 50),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      bottom: height / 15, left: width / 30),
+                                  child: Text(data[index],
+                                      style: TextStyle(
+                                        fontSize: height / 35,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: AppString.appFontFamily,
+                                        color: AppColors.black,
+                                      )),
+                                ),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(
+                                        width / 50,
+                                      ),
+                                      topRight: Radius.circular(width / 50)),
+                                  child: Image.asset(
+                                      "${userModel!.roomFacility![index].facilityImage}"),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                     separatorBuilder: (context, index) => SizedBox(
@@ -171,6 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisSpacing: width / 20,
                     ),
                     itemBuilder: (context, index) => AppColumn(
+                          onTap: () {},
                           image:
                               "${userModel!.popularItem![index].popularImage}",
                           iconButton: IconButton(

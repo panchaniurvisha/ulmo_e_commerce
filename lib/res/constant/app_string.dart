@@ -55,7 +55,7 @@ class AppString {
   static const resetPassword = "Reset Password";
 
   ///categories screen
-  static const room = "Living room";
+  static const titleOfLivingRoom = "Living room";
   static const categories = "categories";
   static const furniture = "Furniture";
   static const lighting = "Lighting";

@@ -5,7 +5,9 @@ import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 class AppImageOutLineButton extends StatelessWidget {
   final String? text;
   final String? image;
-  const AppImageOutLineButton({super.key, this.image, this.text});
+  final void Function()? onPressed;
+  const AppImageOutLineButton(
+      {super.key, this.image, this.text, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class AppImageOutLineButton extends StatelessWidget {
       child: OutlinedButton(
         style: const ButtonStyle(
             backgroundColor: MaterialStatePropertyAll(AppColors.white)),
-        onPressed: () {},
+        onPressed: onPressed!,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
