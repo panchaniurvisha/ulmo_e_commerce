@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulmo_e_commerce_app/view/address_book_screen.dart';
 
 import '../model/first_screen_model.dart';
@@ -36,19 +37,26 @@ class _AccountScreenState extends State<AccountScreen> {
   FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  CollectionReference users = FirebaseFirestore.instance.collection('user');
+  late SharedPreferences sharedPreferences;
+
   AccountModel? userModel;
   User? user;
   XFile? image;
   File? cameraImage;
   String? imageUrl = "";
   Utils utils = Utils();
-  CollectionReference users = FirebaseFirestore.instance.collection('user');
 
   @override
   void initState() {
     // TODO: implement initState
-    getUser();
     super.initState();
+    SharedPreferences.getInstance().then((prefs) {
+      setState(() {
+        sharedPreferences = prefs;
+        getUser();
+      });
+    });
   }
 
   @override
@@ -191,18 +199,20 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                 ],
               ),
-              userModel==null?const CircularProgressIndicator():
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppText(
-                      text: userModel!.fullName, fontWeight: FontWeight.bold),
-                  AppText(
-                    text: userModel!.number,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ],
-              ),
+              userModel == null
+                  ? const CircularProgressIndicator()
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(
+                            text: userModel!.fullName,
+                            fontWeight: FontWeight.bold),
+                        AppText(
+                          text: userModel!.number,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ],
+                    ),
             ],
           ),
           ListView.builder(
@@ -363,6 +373,21 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   storeImageInCloudStorage() async {
+    // ... your existing code ...
+    Reference referenceDirImages = firebaseStorage.ref().child("images");
+    Reference referenceImageToUpload =
+        referenceDirImages.child("uniqueFileName");
+    try {
+      await referenceImageToUpload.putFile(cameraImage!);
+      imageUrl = await referenceImageToUpload.getDownloadURL();
+
+      // Save the image URL in SharedPreferences
+      sharedPreferences.setString('image', imageUrl!);
+    } on FirebaseException catch (e) {
+      utils.showSnackBar(context, message: e.message);
+    }
+  }
+  /*storeImageInCloudStorage() async {
     Reference referenceDirImages = firebaseStorage.ref().child("images");
     Reference referenceImageToUpload =
         referenceDirImages.child("uniqueFileName");
@@ -372,7 +397,7 @@ class _AccountScreenState extends State<AccountScreen> {
     } on FirebaseException catch (e) {
       utils.showSnackBar(context, message: e.message);
     }
-  }
+  }*/
 
   createUserData() {
     CollectionReference users = firebaseFireStore.collection('user');
@@ -401,18 +426,28 @@ class _AccountScreenState extends State<AccountScreen> {
             "User Added successfully  --------> ${jsonEncode(value.data())}");
         userModel = accountModelFromJson(jsonEncode(value.data()));
         setState(() {});
+
+        // Retrieve the image URL from SharedPreferences
+        if (userModel != null) {
+          String? imageUrl = sharedPreferences.getString('image');
+          userModel!.image = imageUrl;
+        }
       }).catchError((error) {
         debugPrint("Failed to get user  : $error");
       });
     }
   }
-  /* Future<Map<String, dynamic>> getUser() async {
-    CollectionReference users = firebaseFireStore.collection('user');
-    DocumentSnapshot documentSnapshot =
-        await users.doc(firebaseAuth.currentUser!.uid).get();
-    Map<String, dynamic> userData =
-        documentSnapshot.data() as Map<String, dynamic>;
-    AccountModel userModel = AccountModel.fromJson(userData);
-    return userData;
+  /* getUser() {
+    if (firebaseAuth.currentUser != null) {
+      CollectionReference users = firebaseFireStore.collection("user");
+      users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
+        debugPrint(
+            "User Added successfully  --------> ${jsonEncode(value.data())}");
+        userModel = accountModelFromJson(jsonEncode(value.data()));
+        setState(() {});
+      }).catchError((error) {
+        debugPrint("Failed to get user  : $error");
+      });
+    }
   }*/
 }
