@@ -38,21 +38,21 @@ class AppTextFormField extends StatelessWidget {
         fillColor: AppColors.white,
         labelText: labelText ?? "Email",
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: width / 2, color: AppColors.gray),
+          borderSide: BorderSide(color: AppColors.gray),
           borderRadius: BorderRadius.all(
-            Radius.circular(width / 4),
+            Radius.circular(width / 20),
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: width / 2, color: AppColors.blueColor),
+          borderSide: BorderSide(color: AppColors.blueColor),
           borderRadius: BorderRadius.all(
-            Radius.circular(width / 10),
+            Radius.circular(width / 20),
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(width: width / 2, color: AppColors.redColor),
+          borderSide: BorderSide(color: AppColors.redColor),
           borderRadius: BorderRadius.all(
-            Radius.circular(width / 10),
+            Radius.circular(width / 20),
           ),
         ),
       ),

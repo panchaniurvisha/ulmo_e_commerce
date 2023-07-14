@@ -19,7 +19,7 @@ class AppRatingBar extends StatelessWidget {
       // itemPadding: const EdgeInsets.symmetric(horizontal: .0),
       itemBuilder: (context, _) => Padding(
         padding: EdgeInsets.symmetric(horizontal: height / 80),
-        child: Icon(
+        child: const Icon(
           Icons.star,
           color: Colors.amber,
         ),

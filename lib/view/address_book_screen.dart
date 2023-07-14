@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,14 @@ class AddressBookScreen extends StatefulWidget {
 class _AddressBookScreenState extends State<AddressBookScreen> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
+  AccountModel? userModel;
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -33,23 +43,9 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
               const RowAppBar(
                 text: AppString.titleOfScreen,
               ),
-              FutureBuilder<Map<String, dynamic>>(
-                  future: getUser(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    }
-                    if (snapshot.hasError) {
-                      return const Text('Failed to fetch user data');
-                    }
-                    Map<String, dynamic>? userData = snapshot.data;
-                    String country = userData?['country'] ?? '';
-                    String city = userData?['city'] ?? '';
-                    String postCode = userData?["postCode"] ?? "";
-                    String street = userData?['street'] ?? '';
-                    String phoneNumber = userData?['number'] ?? '';
-
-                    return Row(children: [
+              userModel == null
+                  ? const CircularProgressIndicator()
+                  : Row(children: [
                       Icon(Icons.location_on_outlined, size: height / 22),
                       Padding(
                         padding: EdgeInsets.only(left: width / 30),
@@ -58,19 +54,19 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                           children: [
                             Row(
                               children: [
-                                AppText(text: country),
-                                AppText(text: city),
-                                AppText(text: street)
+                                AppText(text: userModel!.country),
+                                AppText(text: userModel!.city),
+                                AppText(text: ",${userModel!.street}"),
                               ],
                             ),
                             Row(
                               children: [
                                 AppText(
-                                    text: phoneNumber,
+                                    text: userModel!.number,
                                     color: AppColors.gray,
                                     fontSize: height / 60),
                                 AppText(
-                                    text: ",PostCode :$postCode,",
+                                    text: ",PostCode :${userModel!.postCode}",
                                     color: AppColors.gray,
                                     fontSize: height / 60),
                               ],
@@ -78,8 +74,7 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
                           ],
                         ),
                       )
-                    ]);
-                  }),
+                    ]),
               SizedBox(
                 height: height / 10,
               ),
@@ -99,13 +94,17 @@ class _AddressBookScreenState extends State<AddressBookScreen> {
     );
   }
 
-  Future<Map<String, dynamic>> getUser() async {
-    CollectionReference users = firebaseFireStore.collection('user');
-    DocumentSnapshot documentSnapshot =
-        await users.doc(firebaseAuth.currentUser!.uid).get();
-    Map<String, dynamic> userData =
-        documentSnapshot.data() as Map<String, dynamic>;
-    AccountModel userModel = AccountModel.fromJson(userData);
-    return userData;
+  getUser() {
+    if (firebaseAuth.currentUser != null) {
+      CollectionReference users = firebaseFireStore.collection("user");
+      users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
+        debugPrint(
+            "User Added successfully  --------> ${jsonEncode(value.data())}");
+        userModel = accountModelFromJson(jsonEncode(value.data()));
+        setState(() {});
+      }).catchError((error) {
+        debugPrint("Failed to get user  : $error");
+      });
+    }
   }
 }

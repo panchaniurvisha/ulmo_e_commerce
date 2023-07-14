@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
 
-  User? userData;
+  User? user;
   UserCredential? userCredential;
   Utils utils = Utils();
   TextEditingController passwordController = TextEditingController();
@@ -59,7 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
             text: AppString.loginTitle,
             fontWeight: FontWeight.bold,
             fontSize: height / 40),
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.skyWhite,
         elevation: 0,
       ),
       body: Form(
@@ -199,7 +199,7 @@ class _LoginScreenState extends State<LoginScreen> {
         debugPrint("Value=========>${value.user}");
         if (value.user!.emailVerified) {
           debugPrint("User is Login....");
-          userData = value.user;
+          user = value.user;
           getUser();
         } else {
           debugPrint("Please verify the email");
@@ -223,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
   ///------DATA STORE IN MODEL FROM  FIRESTORE DATABASE--------->>>
   getUser() {
     CollectionReference users = firebaseFireStore.collection('user');
-    users.doc(userData!.uid).get().then((value) {
+    users.doc(user!.uid).get().then((value) {
       debugPrint("User Added---->${jsonEncode(value.data())}");
       userModel = accountModelFromJson(jsonEncode(value.data()));
       utils.showToastMessage(message: "Login is successfully");
@@ -231,6 +231,7 @@ class _LoginScreenState extends State<LoginScreen> {
           context,
           MaterialPageRoute(builder: (context) => const HomeScreen()),
           (route) => false);
+      setState(() {});
     }).catchError((error) {
       debugPrint("Failed to add user: $error");
     });
@@ -254,8 +255,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // Once signed in, return the UserCredential
     userCredential = await firebaseAuth.signInWithCredential(credential);
-    userData = userCredential!.user;
-    debugPrint("userdata-->$userData");
+    user = userCredential!.user;
+    debugPrint("userdata-->$user");
     utils.showToastMessage(message: "Login is Successfully");
   }
 }

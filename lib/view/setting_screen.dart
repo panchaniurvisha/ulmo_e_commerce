@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -28,6 +30,7 @@ class _SettingScreenState extends State<SettingScreen> {
   ];
   bool switchValue = false;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  AccountModel? userModel;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
 
   @override
@@ -48,64 +51,58 @@ class _SettingScreenState extends State<SettingScreen> {
             const RowAppBar(
               text: AppString.settings,
             ),
-            FutureBuilder<Map<String, dynamic>>(
-                future: getUser(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  }
-                  if (snapshot.hasError) {
-                    return const Text('Failed to fetch user data');
-                  }
-                  Map<String, dynamic>? userData = snapshot.data;
-                  String country = userData?['country'] ?? '';
-                  return ListView.builder(
-                    itemBuilder: (context, index) => Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: height / 40, horizontal: width / 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          AppText(text: data[index][AppString.key]),
-                          index == 0
-                              ? AppText(text: country)
-                              : index == 1
-                                  ? AppText(text: data[index][AppString.name])
-                                  : index == 2
-                                      ? CupertinoSwitch(
-                                          value: switchValue,
-                                          trackColor: AppColors.white,
-                                          activeColor: AppColors.grayWhite,
-                                          thumbColor: AppColors.skyWhite70,
-                                          onChanged: (value) {
-                                            debugPrint("value---->$value");
+            ListView.builder(
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: height / 40, horizontal: width / 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    AppText(text: data[index][AppString.key]),
+                    index == 0
+                        ? userModel == null
+                            ? CircularProgressIndicator()
+                            : AppText(text: userModel!.country)
+                        : index == 1
+                            ? AppText(text: data[index][AppString.name])
+                            : index == 2
+                                ? CupertinoSwitch(
+                                    value: switchValue,
+                                    trackColor: AppColors.white,
+                                    activeColor: AppColors.grayWhite,
+                                    thumbColor: AppColors.skyWhite70,
+                                    onChanged: (value) {
+                                      debugPrint("value---->$value");
 
-                                            switchValue = value;
-                                            setState(() {});
-                                          },
-                                        )
-                                      : const SizedBox()
-                        ],
-                      ),
-                    ),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: data.length,
-                  );
-                })
+                                      switchValue = value;
+                                      setState(() {});
+                                    },
+                                  )
+                                : const SizedBox()
+                  ],
+                ),
+              ),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: data.length,
+            )
           ],
         ),
       ),
     );
   }
 
-  Future<Map<String, dynamic>> getUser() async {
-    CollectionReference users = firebaseFireStore.collection('user');
-    DocumentSnapshot documentSnapshot =
-        await users.doc(firebaseAuth.currentUser!.uid).get();
-    Map<String, dynamic> userData =
-        documentSnapshot.data() as Map<String, dynamic>;
-    AccountModel userModel = AccountModel.fromJson(userData);
-    return userData;
+  getUser() {
+    if (firebaseAuth.currentUser != null) {
+      CollectionReference users = firebaseFireStore.collection("user");
+      users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
+        debugPrint(
+            "User Added successfully  --------> ${jsonEncode(value.data())}");
+        userModel = accountModelFromJson(jsonEncode(value.data()));
+        setState(() {});
+      }).catchError((error) {
+        debugPrint("Failed to get user  : $error");
+      });
+    }
   }
 }

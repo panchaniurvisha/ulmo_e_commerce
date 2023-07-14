@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,11 +47,8 @@ class _AccountScreenState extends State<AccountScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    getUser();
     super.initState();
-    user = firebaseAuth.currentUser;
-    if (user != null) {
-      getUser();
-    }
   }
 
   @override
@@ -81,148 +79,131 @@ class _AccountScreenState extends State<AccountScreen> {
                 fontWeight: FontWeight.w600,
                 fontSize: height / 30),
           ),
-          FutureBuilder<Map<String, dynamic>>(
-            future: getUser(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              }
-              if (snapshot.hasError) {
-                return const Text('Failed to fetch user data');
-              }
-              Map<String, dynamic>? userData = snapshot.data;
-              // Access the user data here and display it in your widget
-              // For example:
-              String firstName = userData?['fullName'] ?? '';
-              String phoneNumber = userData?['number'] ?? '';
-
-              return Row(
+          Row(
+            children: [
+              Stack(
+                alignment: Alignment.bottomRight,
                 children: [
-                  Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      ClipRRect(
-                          borderRadius: BorderRadius.circular(width / 4),
-                          child: cameraImage != null
-                              ? Image.file(
-                                  cameraImage!,
-                                  height: height / 10,
-                                  width: width / 4.5,
-                                  fit: BoxFit.cover,
-                                )
-                              : Container(
-                                  decoration: const BoxDecoration(
-                                    color: AppColors.whiteTwo,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  width: width / 3.5,
-                                  height: height / 10,
-                                  child: const Icon(
-                                    Icons.camera_alt,
-                                    color: AppColors.grayShadow800,
-                                  ),
-                                )),
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: AppColors.grayWhite,
-                          shape: BoxShape.circle,
-                        ),
-                        height: height / 20,
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.camera_alt,
-                            size: height / 40,
-                          ),
-                          onPressed: () => showModalBottomSheet(
-                            isDismissible: true,
-                            context: context,
-                            backgroundColor: Colors.transparent,
-                            barrierColor: Colors.transparent,
-                            builder: (context) => Container(
-                              height: height / 5,
-                              width: double.infinity,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                  color: AppColors.lightBlack,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(width / 25),
-                                    topRight: Radius.circular(width / 25),
-                                  )),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: height / 40,
-                                    horizontal: width / 20),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(width / 4),
+                      child: cameraImage != null
+                          ? Image.file(
+                              cameraImage!,
+                              height: height / 10,
+                              width: width / 4.5,
+                              fit: BoxFit.cover,
+                            )
+                          : Container(
+                              decoration: const BoxDecoration(
+                                color: AppColors.whiteTwo,
+                                shape: BoxShape.circle,
+                              ),
+                              width: width / 3.5,
+                              height: height / 10,
+                              child: const Icon(
+                                Icons.camera_alt,
+                                color: AppColors.grayShadow800,
+                              ),
+                            )),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: AppColors.grayWhite,
+                      shape: BoxShape.circle,
+                    ),
+                    height: height / 20,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.camera_alt,
+                        size: height / 40,
+                      ),
+                      onPressed: () => showModalBottomSheet(
+                        isDismissible: true,
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        barrierColor: Colors.transparent,
+                        builder: (context) => Container(
+                          height: height / 5,
+                          width: double.infinity,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                              color: AppColors.lightBlack,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(width / 25),
+                                topRight: Radius.circular(width / 25),
+                              )),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: height / 40, horizontal: width / 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const AppText(
+                                    text: AppString.profilePhoto,
+                                    color: AppColors.white),
+                                SizedBox(
+                                  height: height / 50,
+                                ),
+                                Row(
                                   children: [
-                                    const AppText(
-                                        text: AppString.profilePhoto,
-                                        color: AppColors.white),
-                                    SizedBox(
-                                      height: height / 50,
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppColors.white12),
+                                          shape: BoxShape.circle),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          pickImageFromCamera();
+                                          Navigator.of(context).pop();
+                                        },
+                                        icon: const Icon(
+                                            Icons.camera_alt_rounded,
+                                            color: AppColors.white),
+                                      ),
                                     ),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: AppColors.white12),
-                                              shape: BoxShape.circle),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              pickImageFromCamera();
-                                              Navigator.of(context).pop();
-                                            },
-                                            icon: const Icon(
-                                                Icons.camera_alt_rounded,
-                                                color: AppColors.white),
-                                          ),
+                                    SizedBox(
+                                      width: width / 30,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: AppColors.white12),
+                                          shape: BoxShape.circle),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          pickImageFromGallery();
+                                          Navigator.of(context).pop();
+                                        },
+                                        icon: Padding(
+                                          padding: EdgeInsets.all(width / 100),
+                                          child: Image.asset(
+                                              AppImages.galleryIcon),
                                         ),
-                                        SizedBox(
-                                          width: width / 30,
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: AppColors.white12),
-                                              shape: BoxShape.circle),
-                                          child: IconButton(
-                                            onPressed: () {
-                                              pickImageFromGallery();
-                                              Navigator.of(context).pop();
-                                            },
-                                            icon: Padding(
-                                              padding:
-                                                  EdgeInsets.all(width / 100),
-                                              child: Image.asset(
-                                                  AppImages.galleryIcon),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
+                              ],
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppText(text: firstName, fontWeight: FontWeight.bold),
-                      AppText(
-                        text: '$phoneNumber,',
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ],
+                    ),
                   ),
                 ],
-              );
-            },
+              ),
+              userModel==null?const CircularProgressIndicator():
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AppText(
+                      text: userModel!.fullName, fontWeight: FontWeight.bold),
+                  AppText(
+                    text: userModel!.number,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ],
+              ),
+            ],
           ),
           ListView.builder(
             itemBuilder: (context, index) => ListTile(
@@ -412,7 +393,20 @@ class _AccountScreenState extends State<AccountScreen> {
     });
   }
 
-  Future<Map<String, dynamic>> getUser() async {
+  getUser() {
+    if (firebaseAuth.currentUser != null) {
+      CollectionReference users = firebaseFireStore.collection("user");
+      users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
+        debugPrint(
+            "User Added successfully  --------> ${jsonEncode(value.data())}");
+        userModel = accountModelFromJson(jsonEncode(value.data()));
+        setState(() {});
+      }).catchError((error) {
+        debugPrint("Failed to get user  : $error");
+      });
+    }
+  }
+  /* Future<Map<String, dynamic>> getUser() async {
     CollectionReference users = firebaseFireStore.collection('user');
     DocumentSnapshot documentSnapshot =
         await users.doc(firebaseAuth.currentUser!.uid).get();
@@ -420,5 +414,5 @@ class _AccountScreenState extends State<AccountScreen> {
         documentSnapshot.data() as Map<String, dynamic>;
     AccountModel userModel = AccountModel.fromJson(userData);
     return userData;
-  }
+  }*/
 }

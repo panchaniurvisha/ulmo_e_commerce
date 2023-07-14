@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,7 @@ class _AddressScreenState extends State<AddressScreen> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
   Utils utils = Utils();
+  AccountModel? userModel;
   final TextEditingController countryController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   final TextEditingController streetController = TextEditingController();
@@ -33,8 +36,8 @@ class _AddressScreenState extends State<AddressScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    getUser();
     super.initState();
-    user = firebaseAuth.currentUser;
   }
 
   @override
@@ -58,35 +61,22 @@ class _AddressScreenState extends State<AddressScreen> {
                   fontWeight: FontWeight.w600,
                   fontSize: height / 35,
                 ),
-                FutureBuilder<Map<String, dynamic>>(
-                  future: getUser(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    }
-                    if (snapshot.hasError) {
-                      return const Text('Failed to fetch user data');
-                    }
-                    Map<String, dynamic>? userData = snapshot.data;
-                    String fullName = userData?['fullName'] ?? '';
-                    String phoneNumber = userData?['number'] ?? '';
-                    String email = userData?["email"] ?? "";
-
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        AppListTile(
-                            titleText: AppString.nameLabelText,
-                            subTitleText: fullName),
-                        AppListTile(
-                            titleText: AppString.numberLabelText,
-                            subTitleText: phoneNumber),
-                        AppListTile(
-                            titleText: AppString.email, subTitleText: email),
-                      ],
-                    );
-                  },
-                ),
+                userModel == null
+                    ? const CircularProgressIndicator()
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AppListTile(
+                              titleText: AppString.nameLabelText,
+                              subTitleText: userModel!.fullName),
+                          AppListTile(
+                              titleText: AppString.numberLabelText,
+                              subTitleText: userModel!.number),
+                          AppListTile(
+                              titleText: AppString.email,
+                              subTitleText: userModel!.email),
+                        ],
+                      ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: height / 40),
                   child: AppText(
@@ -147,13 +137,17 @@ class _AddressScreenState extends State<AddressScreen> {
     });
   }
 
-  Future<Map<String, dynamic>> getUser() async {
-    CollectionReference users = firebaseFireStore.collection('user');
-    DocumentSnapshot documentSnapshot =
-        await users.doc(firebaseAuth.currentUser!.uid).get();
-    Map<String, dynamic> userData =
-        documentSnapshot.data() as Map<String, dynamic>;
-    AccountModel userModel = AccountModel.fromJson(userData);
-    return userData;
+  getUser() {
+    if (firebaseAuth.currentUser != null) {
+      CollectionReference users = firebaseFireStore.collection("user");
+      users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
+        debugPrint(
+            "User Added successfully  --------> ${jsonEncode(value.data())}");
+        userModel = accountModelFromJson(jsonEncode(value.data()));
+        setState(() {});
+      }).catchError((error) {
+        debugPrint("Failed to get user  : $error");
+      });
+    }
   }
 }

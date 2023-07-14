@@ -45,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             text: AppString.signupTitle,
             fontWeight: FontWeight.bold,
             fontSize: height / 40),
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.skyWhite,
         elevation: 0,
       ),
       body: Form(

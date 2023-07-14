@@ -1,6 +1,11 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 
+import '../model/first_screen_model.dart';
 import '../res/common/app_outline_button.dart';
 import '../res/common/row_app_bar.dart';
 import '../res/constant/app_colors.dart';
@@ -15,6 +20,16 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
+  AccountModel? userModel;
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
+  @override
+  void initState() {
+    // TODO: implement initState
+    getUser();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -127,31 +142,41 @@ class _OrderScreenState extends State<OrderScreen> {
                 )
               ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: height / 30),
-              child: Row(
-                children: [
-                  Icon(Icons.location_on_outlined, size: height / 30),
-                  SizedBox(
-                    width: width / 20,
+            userModel == null
+                ? const CircularProgressIndicator()
+                : Padding(
+                    padding: EdgeInsets.symmetric(vertical: height / 30),
+                    child: Row(children: [
+                      Icon(Icons.location_on_outlined, size: height / 30),
+                      Padding(
+                        padding: EdgeInsets.only(left: width / 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                AppText(text: userModel!.country),
+                                AppText(text: userModel!.city),
+                                AppText(text: ",${userModel!.street}"),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                AppText(
+                                    text: userModel!.number,
+                                    color: AppColors.gray,
+                                    fontSize: height / 60),
+                                AppText(
+                                    text: ",PostCode :${userModel!.postCode}",
+                                    color: AppColors.gray,
+                                    fontSize: height / 60),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ]),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppText(
-                        text: AppString.address,
-                        fontSize: height / 60,
-                      ),
-                      AppText(
-                        text: AppString.houseNumber,
-                        fontSize: height / 60,
-                        color: AppColors.gray,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -184,5 +209,19 @@ class _OrderScreenState extends State<OrderScreen> {
         ),
       ),
     );
+  }
+
+  getUser() {
+    if (firebaseAuth.currentUser != null) {
+      CollectionReference users = firebaseFireStore.collection("user");
+      users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
+        debugPrint(
+            "User Added successfully  --------> ${jsonEncode(value.data())}");
+        userModel = accountModelFromJson(jsonEncode(value.data()));
+        setState(() {});
+      }).catchError((error) {
+        debugPrint("Failed to get user  : $error");
+      });
+    }
   }
 }
