@@ -136,9 +136,8 @@ class _OrderScreenState extends State<OrderScreen> {
                 SizedBox(
                   width: width / 20,
                 ),
-                AppText(
+                const AppText(
                   text: AppString.byCourier,
-                  fontSize: height / 60,
                 )
               ],
             ),
