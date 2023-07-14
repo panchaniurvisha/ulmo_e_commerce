@@ -46,17 +46,18 @@ class _AccountScreenState extends State<AccountScreen> {
   File? cameraImage;
   String? imageUrl = "";
   Utils utils = Utils();
+  bool isImageLoaded = false;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    SharedPreferences.getInstance().then((prefs) {
-      setState(() {
-        sharedPreferences = prefs;
-        getUser();
-      });
-    });
+    getUser();
+    initializeSharedPreferences();
+  }
+
+  void initializeSharedPreferences() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    loadImageFromSharedPreferences();
   }
 
   @override
@@ -93,26 +94,33 @@ class _AccountScreenState extends State<AccountScreen> {
                 alignment: Alignment.bottomRight,
                 children: [
                   ClipRRect(
-                      borderRadius: BorderRadius.circular(width / 4),
-                      child: cameraImage != null
-                          ? Image.file(
-                              cameraImage!,
-                              height: height / 10,
-                              width: width / 4.5,
-                              fit: BoxFit.cover,
-                            )
-                          : Container(
-                              decoration: const BoxDecoration(
-                                color: AppColors.whiteTwo,
-                                shape: BoxShape.circle,
-                              ),
-                              width: width / 3.5,
-                              height: height / 10,
-                              child: const Icon(
-                                Icons.camera_alt,
-                                color: AppColors.grayShadow800,
-                              ),
-                            )),
+                    borderRadius: BorderRadius.circular(width / 4),
+                    child: isImageLoaded
+                        ? userModel?.image != null
+                            ? Image.network(
+                                userModel!.image!,
+                                height: height / 10,
+                                width: width / 4.5,
+                                fit: BoxFit.cover,
+                              )
+                            : Container(
+                                decoration: const BoxDecoration(
+                                  color: AppColors.whiteTwo,
+                                  shape: BoxShape.circle,
+                                ),
+                                width: width / 3.5,
+                                height: height / 10,
+                                child: const Icon(
+                                  Icons.camera_alt,
+                                  color: AppColors.grayShadow800,
+                                ),
+                              )
+                        : SizedBox(
+                            width: width / 3.5,
+                            height: height / 10,
+                            child: const CircularProgressIndicator(),
+                          ),
+                  ),
                   Container(
                     decoration: const BoxDecoration(
                       color: AppColors.grayWhite,
@@ -201,17 +209,20 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
               userModel == null
                   ? const CircularProgressIndicator()
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AppText(
-                            text: userModel!.fullName,
-                            fontWeight: FontWeight.bold),
-                        AppText(
-                          text: userModel!.number,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ],
+                  : Padding(
+                      padding: EdgeInsets.only(left: width / 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppText(
+                              text: userModel!.fullName,
+                              fontWeight: FontWeight.bold),
+                          AppText(
+                            text: "+${userModel!.number}",
+                            color: AppColors.gray,
+                          ),
+                        ],
+                      ),
                     ),
             ],
           ),
@@ -349,27 +360,42 @@ class _AccountScreenState extends State<AccountScreen> {
 
   pickImageFromCamera() async {
     image = await picker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      if (image != null) {
-        cameraImage = File(image!.path);
-        storeImageInCloudStorage();
-      } else {
-        debugPrint("No image selected------->");
-      }
-    });
+    if (image != null) {
+      cameraImage = File(image!.path);
+      await storeImageInCloudStorage();
+      await sharedPreferences.setString('image', imageUrl.toString());
+      setState(() {
+        userModel?.image = imageUrl;
+        isImageLoaded = true;
+      });
+    } else {
+      debugPrint("No image selected------->");
+    }
   }
 
   pickImageFromGallery() async {
     image = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (image != null) {
-        cameraImage = File(image!.path);
-        storeImageInCloudStorage();
-      } else {
-        debugPrint("No image selected");
-      }
-    });
+    if (image != null) {
+      cameraImage = File(image!.path);
+      await storeImageInCloudStorage();
+      await sharedPreferences.setString('image', imageUrl.toString());
+      setState(() {
+        userModel?.image = imageUrl;
+        isImageLoaded = true;
+      });
+    } else {
+      debugPrint("No image selected");
+    }
+  }
+
+  void loadImageFromSharedPreferences() {
+    String? imageUrl = sharedPreferences?.getString('image');
+    if (imageUrl != null) {
+      setState(() {
+        userModel?.image = imageUrl;
+        isImageLoaded = true;
+      });
+    }
   }
 
   storeImageInCloudStorage() async {
@@ -387,32 +413,23 @@ class _AccountScreenState extends State<AccountScreen> {
       utils.showSnackBar(context, message: e.message);
     }
   }
-  /*storeImageInCloudStorage() async {
-    Reference referenceDirImages = firebaseStorage.ref().child("images");
-    Reference referenceImageToUpload =
-        referenceDirImages.child("uniqueFileName");
-    try {
-      await referenceImageToUpload.putFile(cameraImage!);
-      imageUrl = await referenceImageToUpload.getDownloadURL();
-    } on FirebaseException catch (e) {
-      utils.showSnackBar(context, message: e.message);
-    }
-  }*/
 
-  createUserData() {
+  createUserData() async {
     CollectionReference users = firebaseFireStore.collection('user');
     users.doc(user!.uid).set(
       {
         'image': imageUrl.toString(),
       },
       SetOptions(merge: true),
-    ).then((value) {
+    ).then((value) async {
       utils.showToastMessage(message: 'User is added');
+      await sharedPreferences.setString('image', imageUrl.toString());
       Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MyDetailsScreen(),
-          ));
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MyDetailsScreen(),
+        ),
+      );
     }).catchError((error) {
       debugPrint("Failed to add user: $error");
     });
@@ -437,17 +454,4 @@ class _AccountScreenState extends State<AccountScreen> {
       });
     }
   }
-  /* getUser() {
-    if (firebaseAuth.currentUser != null) {
-      CollectionReference users = firebaseFireStore.collection("user");
-      users.doc(firebaseAuth.currentUser!.uid).get().then((value) {
-        debugPrint(
-            "User Added successfully  --------> ${jsonEncode(value.data())}");
-        userModel = accountModelFromJson(jsonEncode(value.data()));
-        setState(() {});
-      }).catchError((error) {
-        debugPrint("Failed to get user  : $error");
-      });
-    }
-  }*/
 }
