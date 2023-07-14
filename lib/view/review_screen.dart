@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_rating_bar.dart';
-import 'package:ulmo_e_commerce_app/res/common/app_row.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
@@ -78,14 +77,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ],
                 ),
               ),
-              AppRow(
-                icon: Icon(
-                  Icons.star_border_outlined,
-                  color: AppColors.grayWhite,
-                  size: height / 50,
-                ),
-                text: AppString.timeSecond,
-              ),
+              const AppRatingBar(),
               Padding(
                 padding: EdgeInsets.only(top: height / 40),
                 child: Row(
@@ -107,13 +99,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
               ),
               Padding(
                 padding: EdgeInsets.only(top: height / 50, bottom: height / 60),
-                child: AppRow(
-                    text: AppString.timeThird,
-                    iconOne: Icon(
-                      Icons.star,
-                      color: AppColors.lightYellowTwo,
-                      size: height / 50,
-                    )),
+                child: const AppRatingBar(),
               ),
               Row(
                 children: [

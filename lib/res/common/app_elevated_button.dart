@@ -37,8 +37,7 @@ class AppElevatedButton extends StatelessWidget {
             width: width / 30,
           ),
           sizeBox ??
-              Icon(
-                // <-- Icon
+              const Icon(
                 Icons.shopping_bag_outlined,
                 color: AppColors.black,
               ),

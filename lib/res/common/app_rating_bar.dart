@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class AppRatingBar extends StatelessWidget {
+  final double? size;
   const AppRatingBar({
     super.key,
+    this.size,
   });
 
   @override
@@ -17,13 +19,10 @@ class AppRatingBar extends StatelessWidget {
       allowHalfRating: true,
       itemCount: 5,
       // itemPadding: const EdgeInsets.symmetric(horizontal: .0),
-      itemBuilder: (context, _) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: height / 80),
-        child: const Icon(
-          Icons.star,
-          color: Colors.amber,
-        ),
-      ),
+      itemBuilder: (context, _) => SizedBox(
+          height: height / 60,
+          child: Icon(Icons.star,
+              color: Colors.amber, size: size ?? height / 100)),
       onRatingUpdate: (rating) {
         debugPrint("rating-------->$rating");
       },

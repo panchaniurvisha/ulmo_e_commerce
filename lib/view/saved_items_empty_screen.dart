@@ -22,7 +22,7 @@ class _SavedItemsEmptyScreenState extends State<SavedItemsEmptyScreen> {
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: width / 20, vertical: height / 10),
+              horizontal: width / 20, vertical: height / 20),
           child: Column(
             children: [
               Align(

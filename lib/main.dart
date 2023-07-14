@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
-import 'package:ulmo_e_commerce_app/view/account_screen.dart';
+import 'package:ulmo_e_commerce_app/view/bottom_bar/bottom_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +22,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const AccountScreen());
+        home: const BottomScreen());
   }
 }

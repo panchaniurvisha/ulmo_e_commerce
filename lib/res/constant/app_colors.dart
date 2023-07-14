@@ -17,4 +17,5 @@ class AppColors {
   static const Color blueColor = Colors.lightBlueAccent;
   static const Color redColor = Colors.red;
   static const Color green400 = Color(0xff66BB6A);
+  static const Color gray400 = Color(0xffBDBDBD);
 }

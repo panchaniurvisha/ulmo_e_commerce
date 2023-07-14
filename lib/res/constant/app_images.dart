@@ -74,4 +74,9 @@ class AppImages {
   static const String filterIcon = "${iconBasePath}filter_icon.png";
   static const String likeIcon = "${iconBasePath}heart_filled_icon.png";
   static const String disLikeIcon = "${iconBasePath}heart_shape_icon.png";
+
+  ///Bottom Screen Icon============>
+  static const String homeScreenIcon = "${iconBasePath}home_icon.png";
+  static const String homeScreenFilledIcon =
+      "${iconBasePath}home_filled_icon.png";
 }

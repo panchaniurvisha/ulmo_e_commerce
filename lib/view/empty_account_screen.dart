@@ -22,7 +22,7 @@ class _EmptyAccountScreenState extends State<EmptyAccountScreen> {
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: width / 20, vertical: height / 30),
+              horizontal: width / 20, vertical: height / 40),
           child: Column(
             children: [
               Align(

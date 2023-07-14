@@ -34,7 +34,7 @@ class _NewReviewScreenState extends State<NewReviewScreen> {
               ),
               Center(
                 child: AppRatingBar(
-                  size: height / 10,
+                  size: height / 30,
                 ),
               ),
               const AppListTile(
