@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulmo_e_commerce_app/view/address_book_screen.dart';
+import 'package:ulmo_e_commerce_app/view/my_details_screen.dart';
 
 import '../model/first_screen_model.dart';
 import '../res/common/app_elevated_button.dart';
@@ -16,7 +17,6 @@ import '../res/constant/app_colors.dart';
 import '../res/constant/app_images.dart';
 import '../res/constant/app_string.dart';
 import '../utils/utils.dart';
-import 'my_details_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -242,10 +242,10 @@ class _AccountScreenState extends State<AccountScreen> {
                             Icons.person_sharp,
                             color: AppColors.black,
                           ),
-                          onPressed: () {
-                            createUserData();
-                            debugPrint("My Details Screen====>");
-                          },
+                          onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MyDetailsScreen())),
                         )
                       : index == 2
                           ? IconButton(
@@ -389,7 +389,7 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   void loadImageFromSharedPreferences() {
-    String? imageUrl = sharedPreferences?.getString('image');
+    String? imageUrl = sharedPreferences.getString('image');
     if (imageUrl != null) {
       setState(() {
         userModel?.image = imageUrl;
@@ -399,7 +399,6 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   storeImageInCloudStorage() async {
-    // ... your existing code ...
     Reference referenceDirImages = firebaseStorage.ref().child("images");
     Reference referenceImageToUpload =
         referenceDirImages.child("uniqueFileName");
@@ -412,27 +411,24 @@ class _AccountScreenState extends State<AccountScreen> {
     } on FirebaseException catch (e) {
       utils.showSnackBar(context, message: e.message);
     }
+    createUserData();
   }
 
   createUserData() async {
     CollectionReference users = firebaseFireStore.collection('user');
-    users.doc(user!.uid).set(
-      {
-        'image': imageUrl.toString(),
-      },
-      SetOptions(merge: true),
-    ).then((value) async {
+
+    try {
+      await users.doc(user!.uid).set(
+        {
+          'image': imageUrl.toString(),
+        },
+        SetOptions(merge: true),
+      );
       utils.showToastMessage(message: 'User is added');
       await sharedPreferences.setString('image', imageUrl.toString());
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const MyDetailsScreen(),
-        ),
-      );
-    }).catchError((error) {
+    } catch (error) {
       debugPrint("Failed to add user: $error");
-    });
+    }
   }
 
   getUser() {

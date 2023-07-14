@@ -61,7 +61,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     AppText(text: data[index][AppString.key]),
                     index == 0
                         ? userModel == null
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : AppText(text: userModel!.country)
                         : index == 1
                             ? AppText(text: data[index][AppString.name])
