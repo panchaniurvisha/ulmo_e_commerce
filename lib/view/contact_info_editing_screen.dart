@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../res/common/app_elevated_button.dart';
 import '../res/common/app_text.dart';
@@ -27,6 +28,7 @@ class _ContactInfoEditingScreenState extends State<ContactInfoEditingScreen> {
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: EdgeInsets.all(height / 50),
           child: Form(
@@ -90,10 +92,15 @@ class _ContactInfoEditingScreenState extends State<ContactInfoEditingScreen> {
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const Spacer(),
-                const AppElevatedButton(
-                  sizeBox: SizedBox(),
-                  text: AppString.continueButton,
-                )
+                AppElevatedButton(
+                    sizeBox: const SizedBox(),
+                    text: AppString.continueButton,
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        Navigator.pushNamed(
+                            context, RoutesName.deliveryDetailsScreen);
+                      }
+                    })
               ],
             ),
           ),

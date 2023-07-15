@@ -5,6 +5,7 @@ import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 class ReviewScreen extends StatefulWidget {
   const ReviewScreen({Key? key}) : super(key: key);
@@ -22,7 +23,8 @@ class _ReviewScreenState extends State<ReviewScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
+          padding: EdgeInsets.symmetric(
+              horizontal: width / 30, vertical: height / 80),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -36,8 +38,14 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       Icons.arrow_back_rounded,
                     ),
                   ),
-                  const AppText(text: AppString.reviewText, fontWeight: FontWeight.w500),
-                  const AppText(text: AppString.newReview, fontWeight: FontWeight.w500),
+                  const AppText(
+                      text: AppString.reviewText, fontWeight: FontWeight.w500),
+                  InkWell(
+                      child: const AppText(
+                          text: AppString.newReview,
+                          fontWeight: FontWeight.w500),
+                      onTap: () => Navigator.pushNamed(
+                          context, RoutesName.newReviewScreen)),
                 ],
               ),
               const AppSearchBar(),

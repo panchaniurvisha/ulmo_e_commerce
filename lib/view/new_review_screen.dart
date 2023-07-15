@@ -28,9 +28,12 @@ class _NewReviewScreenState extends State<NewReviewScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const RowAppBar(
+              RowAppBar(
                 text: AppString.newReview,
-                icon: Icon(Icons.close),
+                icon: IconButton(
+                    icon: Icon(Icons.close,
+                        color: AppColors.black, size: height / 25),
+                    onPressed: () => Navigator.pop(context)),
               ),
               Center(
                 child: AppRatingBar(
@@ -95,6 +98,7 @@ class _NewReviewScreenState extends State<NewReviewScreen> {
                 sizeBox: const SizedBox(),
                 onPressed: () => showDialog(
                   context: context,
+                  barrierColor: AppColors.black,
                   builder: (BuildContext context) {
                     return Dialog(
                       shape: RoundedRectangleBorder(

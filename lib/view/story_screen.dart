@@ -17,45 +17,47 @@ class _StoryScreenState extends State<StoryScreen> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Image.asset(
+      body: Stack(
+        children: [
+          AspectRatio(
+            aspectRatio: width / height,
+            child: Image.asset(
               AppImages.storyImage,
+              fit: BoxFit.fitHeight,
             ),
-            Positioned(
-              left: width / 1.2,
-              top: height / 15,
-              child: Container(
-                decoration: const BoxDecoration(
-                    color: AppColors.skyWhite, shape: BoxShape.circle),
-                child: IconButton(
-                  onPressed: () => Navigator.pop(context),
-                  icon: Icon(Icons.close, size: height / 30),
-                ),
+          ),
+          Positioned(
+            left: width / 1.2,
+            top: height / 15,
+            child: Container(
+              decoration: const BoxDecoration(
+                  color: AppColors.skyWhite, shape: BoxShape.circle),
+              child: IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: Icon(Icons.close, size: height / 30),
               ),
             ),
-            Positioned(
-              top: height / 1.5,
-              left: width / 20,
-              child: AppText(
-                text: AppString.jar,
-                color: AppColors.skyWhite,
-                fontSize: height / 28,
-                fontWeight: FontWeight.w600,
-              ),
+          ),
+          Positioned(
+            top: height / 1.5,
+            left: width / 20,
+            child: AppText(
+              text: AppString.jar,
+              color: AppColors.skyWhite,
+              fontSize: height / 28,
+              fontWeight: FontWeight.w600,
             ),
-            Positioned(
-              top: height / 1.3,
-              left: width / 20,
-              child: AppText(
-                text: AppString.aboutJar,
-                color: AppColors.skyWhite,
-                fontSize: height / 40,
-              ),
+          ),
+          Positioned(
+            top: height / 1.3,
+            left: width / 20,
+            child: AppText(
+              text: AppString.aboutJar,
+              color: AppColors.skyWhite,
+              fontSize: height / 40,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
