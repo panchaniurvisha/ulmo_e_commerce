@@ -22,8 +22,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: width / 30, vertical: height / 80),
+          padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,15 +31,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 children: [
                   IconButton(
                     padding: EdgeInsets.only(right: width / 10),
-                    onPressed: () {},
+                    onPressed: () => Navigator.pop(context),
                     icon: const Icon(
                       Icons.arrow_back_rounded,
                     ),
                   ),
-                  const AppText(
-                      text: AppString.reviewText, fontWeight: FontWeight.w500),
-                  const AppText(
-                      text: AppString.newReview, fontWeight: FontWeight.w500),
+                  const AppText(text: AppString.reviewText, fontWeight: FontWeight.w500),
+                  const AppText(text: AppString.newReview, fontWeight: FontWeight.w500),
                 ],
               ),
               const AppSearchBar(),

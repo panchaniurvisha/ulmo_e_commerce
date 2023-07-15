@@ -40,9 +40,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               labelText: AppString.email,
               hintText: AppString.hintEmailName,
               controller: emailController,
-              validator: (value) => utils.isValidEmail(emailController.text)
-                  ? null
-                  : AppString.errorEmailTitle,
+              validator: (value) => utils.isValidEmail(emailController.text) ? null : AppString.errorEmailTitle,
               keyboardType: TextInputType.emailAddress,
             ),
             const SizedBox(
@@ -57,8 +55,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(400, 60),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
               ),
               icon: const Icon(Icons.email_outlined),
               label: const Text(
@@ -82,8 +79,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
     try {
       firebaseAuth.sendPasswordResetEmail(email: emailController.text.trim());
-      utils.showSnackBar(context,
-          message: "Password reset link sent! Check your email");
+      utils.showSnackBar(context, message: "Password reset link sent! Check your email");
       Navigator.of(context).popUntil((route) => route.isFirst);
     } on FirebaseAuthException catch (e) {
       debugPrint("e----->$e");

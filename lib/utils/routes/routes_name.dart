@@ -13,7 +13,6 @@ class RoutesName {
   static String noInternetScreen = "/NoInternetScreen";
   static String storyScreen = "/StoryScreen";
   static String productPage = "/ProductPage";
-  static String productInformationScreen = "/ProductInformationScreen";
   static String reviewScreen = "/ReviewScreen";
   static String newReviewScreen = "/NewReviewScreen";
   static String emptyBegScreen = "/EmptyBegScreen";

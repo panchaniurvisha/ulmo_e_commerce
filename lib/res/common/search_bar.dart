@@ -13,7 +13,6 @@ class AppSearchBar extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: height / 40),
       child: TextField(
-        autofocus: true,
         // enabled: true,
         //readOnly: true,
         style: TextStyle(
@@ -35,18 +34,13 @@ class AppSearchBar extends StatelessWidget {
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(width: height / 350, color: AppColors.black),
+              borderSide: BorderSide(width: height / 350, color: AppColors.black),
               borderRadius: BorderRadius.all(
                 Radius.circular(width / 35),
               ),
             ),
             hintText: AppString.search,
-            hintStyle: TextStyle(
-                fontFamily: AppString.appFontFamily,
-                fontSize: height / 50,
-                fontWeight: FontWeight.w400,
-                color: AppColors.gray),
+            hintStyle: TextStyle(fontFamily: AppString.appFontFamily, fontSize: height / 50, fontWeight: FontWeight.w400, color: AppColors.gray),
             filled: true,
             fillColor: AppColors.white),
       ),

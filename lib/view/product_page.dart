@@ -8,6 +8,7 @@ import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -20,12 +21,21 @@ class _ProductPageState extends State<ProductPage> {
   List<bool> likedList = [];
   FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
 
+  List<String> information = [
+    AppString.height,
+    AppString.width,
+    AppString.depth,
+    AppString.weight,
+  ];
+  List<String> composition = [
+    AppString.material,
+    AppString.weight,
+  ];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    likedList =
-        List.generate(userModel!.pageContentItem!.length, (index) => false);
+    likedList = List.generate(userModel!.pageContentItem!.length, (index) => false);
   }
 
   pressed(int index) {
@@ -36,6 +46,7 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
@@ -50,25 +61,19 @@ class _ProductPageState extends State<ProductPage> {
                     AppImages.bedSideTable,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: width / 30, vertical: height / 45),
+                    padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 45),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          decoration: const BoxDecoration(
-                              color: AppColors.skyWhite,
-                              shape: BoxShape.circle),
+                          decoration: const BoxDecoration(color: AppColors.skyWhite, shape: BoxShape.circle),
                           child: IconButton(
                             onPressed: () => Navigator.pop(context),
-                            icon: Icon(Icons.arrow_back_rounded,
-                                size: height / 30),
+                            icon: Icon(Icons.arrow_back_rounded, size: height / 30),
                           ),
                         ),
                         Container(
-                          decoration: const BoxDecoration(
-                              color: AppColors.skyWhite,
-                              shape: BoxShape.circle),
+                          decoration: const BoxDecoration(color: AppColors.skyWhite, shape: BoxShape.circle),
                           child: IconButton(
                             onPressed: () {},
                             icon: Icon(Icons.favorite, size: height / 30),
@@ -80,8 +85,7 @@ class _ProductPageState extends State<ProductPage> {
                   Positioned(
                     top: height / 1.850,
                     left: width / 2.5,
-                    child:
-                        Image.asset(AppImages.pageControl, height: height / 50),
+                    child: Image.asset(AppImages.pageControl, height: height / 50),
                   )
                 ],
               ),
@@ -107,12 +111,9 @@ class _ProductPageState extends State<ProductPage> {
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.black,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(width / 50)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(width / 50)),
                             ),
-                            icon: const Icon(Icons.circle_rounded,
-                                color: AppColors.orangeColor),
+                            icon: const Icon(Icons.circle_rounded, color: AppColors.orangeColor),
                             label: const Text(AppString.brown),
                           ),
                           SizedBox(
@@ -122,14 +123,10 @@ class _ProductPageState extends State<ProductPage> {
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.skyWhite,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(width / 50)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(width / 50)),
                             ),
-                            icon: const Icon(Icons.circle_rounded,
-                                color: AppColors.black),
-                            label: const Text(AppString.black,
-                                style: TextStyle(color: AppColors.black)),
+                            icon: const Icon(Icons.circle_rounded, color: AppColors.black),
+                            label: const Text(AppString.black, style: TextStyle(color: AppColors.black)),
                           ),
                         ],
                       ),
@@ -157,21 +154,112 @@ class _ProductPageState extends State<ProductPage> {
                           const AppText(
                             text: AppString.information,
                           ),
-                          Icon(
-                            Icons.navigate_next,
-                            size: height / 30,
-                          )
+                          InkWell(
+                              child: Icon(
+                                Icons.navigate_next,
+                                size: height / 30,
+                              ),
+                              onTap: () {
+                                showModalBottomSheet(
+                                  backgroundColor: Colors.transparent,
+                                  barrierColor: AppColors.black,
+                                  isScrollControlled: true,
+                                  isDismissible: true,
+                                  context: context,
+                                  builder: (context) => Container(
+                                    height: height / 1.1,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(width / 20),
+                                          topRight: Radius.circular(width / 20),
+                                        )),
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          IconButton(onPressed: () => Navigator.pop(context), padding: EdgeInsets.only(right: width / 10), icon: const Icon(Icons.close)),
+                                          AppText(
+                                            text: AppString.productInformation,
+                                            fontSize: height / 25,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(vertical: height / 25),
+                                            child: AppText(
+                                              text: AppString.measurements,
+                                              fontSize: height / 35,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          ListView.separated(
+                                            itemBuilder: (context, index) => Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                AppText(text: information[index]),
+                                                AppText(
+                                                    text: index == 0
+                                                        ? userModel.height
+                                                        : index == 1
+                                                            ? userModel.width
+                                                            : index == 2
+                                                                ? userModel.depth
+                                                                : userModel.weight,
+                                                    color: AppColors.gray),
+                                              ],
+                                            ),
+                                            separatorBuilder: (context, index) => SizedBox(
+                                              height: height / 20,
+                                            ),
+                                            itemCount: information.length,
+                                            physics: const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(vertical: height / 25),
+                                            child: AppText(
+                                              text: AppString.composition,
+                                              fontSize: height / 35,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          ListView.separated(
+                                            itemBuilder: (context, index) => Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                AppText(text: composition[index]),
+                                                AppText(text: index == 0 ? userModel.mainMaterial : userModel.percentage, color: AppColors.gray),
+                                              ],
+                                            ),
+                                            separatorBuilder: (context, index) => SizedBox(
+                                              height: height / 20,
+                                            ),
+                                            itemCount: composition.length,
+                                            physics: const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
                         ],
                       ),
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AppText(
-                          text: AppString.review,
+                        InkWell(
+                          child: const AppText(
+                            text: AppString.review,
+                          ),
+                          onTap: () => Navigator.pushNamed(context, RoutesName.reviewScreen),
                         ),
-                        AppText(
-                          text: AppString.number,
+                        const AppText(
+                          text: AppString.number32,
                           color: AppColors.gray,
                         ),
                       ],
@@ -208,23 +296,18 @@ class _ProductPageState extends State<ProductPage> {
                           crossAxisSpacing: width / 20,
                         ),
                         itemBuilder: (context, index) => AppColumn(
-                              image:
-                                  "${userModel!.pageContentItem![index].popularImage}",
+                              onTap: () {},
+                              image: "${userModel.pageContentItem![index].popularImage}",
                               iconButton: IconButton(
                                 icon: Image.asset(
-                                  likedList[index]
-                                      ? AppImages.disLikeIcon
-                                      : AppImages.likeIcon,
+                                  likedList[index] ? AppImages.disLikeIcon : AppImages.likeIcon,
                                   height: height / 40,
                                 ),
                                 onPressed: () => pressed(index),
                               ),
-                              text:
-                                  "${userModel!.pageContentItem![index].recentlyNew}",
-                              data:
-                                  "${userModel!.pageContentItem![index].price}",
-                              information:
-                                  "${userModel!.pageContentItem![index].itemName}",
+                              text: "${userModel.pageContentItem![index].recentlyNew}",
+                              data: "${userModel.pageContentItem![index].price}",
+                              information: "${userModel.pageContentItem![index].itemName}",
                               index: index,
                             )),
                   ],

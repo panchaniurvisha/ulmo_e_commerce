@@ -32,10 +32,10 @@ class AppColumn extends StatelessWidget {
       children: [
         Stack(children: [
           InkWell(
+              onTap: onTap!,
               child: Image.asset(
                 image!,
-              ),
-              onTap: onTap!),
+              )),
           index == 0
               ? Positioned(
                   left: width / 50,

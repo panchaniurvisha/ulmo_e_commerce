@@ -32,8 +32,7 @@ class _FilterOptionsScreenState extends State<FilterOptionsScreen> {
     return SafeArea(
         child: Scaffold(
       body: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
+        padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,15 +41,13 @@ class _FilterOptionsScreenState extends State<FilterOptionsScreen> {
               children: [
                 IconButton(
                   padding: EdgeInsets.only(right: width / 10),
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                   icon: const Icon(
                     Icons.arrow_back,
                   ),
                 ),
-                const AppText(
-                    text: AppString.category, fontWeight: FontWeight.w500),
-                const AppText(
-                    text: AppString.removeData, fontWeight: FontWeight.w500),
+                const AppText(text: AppString.category, fontWeight: FontWeight.w500),
+                const AppText(text: AppString.removeData, fontWeight: FontWeight.w500),
               ],
             ),
             GridView.builder(

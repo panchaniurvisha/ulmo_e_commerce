@@ -25,14 +25,12 @@ import '../../view/no_internet_screen.dart';
 import '../../view/order_screen.dart';
 import '../../view/otp_Scree.dart';
 import '../../view/payment_method_screen.dart';
-import '../../view/product_information_screen.dart';
 import '../../view/product_page.dart';
 import '../../view/review_screen.dart';
 import '../../view/saved_items_empty_screen.dart';
 import '../../view/saved_items_screen.dart';
 import '../../view/setting_screen.dart';
 import '../../view/sign_up_page/sign_up_screen.dart';
-import '../../view/sort_screen.dart';
 import '../../view/splash/splash_screen.dart';
 import '../../view/story_screen.dart';
 import '../../view/success_screen.dart';
@@ -46,20 +44,16 @@ Map<String, WidgetBuilder> appRoutes = {
   RoutesName.forgotPasswordPage: (context) => const ForgotPasswordPage(),
   RoutesName.loginWithPhoneNumber: (context) => const LoginWithPhoneNumber(),
   RoutesName.categoriesScreen: (context) => const CategoriesScreen(),
-  RoutesName.sortScreen: (context) => const SortScreen(),
   RoutesName.filterScreen: (context) => const FilterScreen(),
   RoutesName.filterOptionsScreen: (context) => const FilterOptionsScreen(),
   RoutesName.noInternetScreen: (context) => const NoInternetScreen(),
   RoutesName.storyScreen: (context) => const StoryScreen(),
   RoutesName.productPage: (context) => const ProductPage(),
-  RoutesName.productInformationScreen: (context) =>
-      const ProductInformationScreen(),
   RoutesName.reviewScreen: (context) => const ReviewScreen(),
   RoutesName.newReviewScreen: (context) => const NewReviewScreen(),
   RoutesName.emptyBegScreen: (context) => const EmptyBegScreen(),
   RoutesName.begScreen: (context) => const BegScreen(),
-  RoutesName.contactInfoEditingScreen: (context) =>
-      const ContactInfoEditingScreen(),
+  RoutesName.contactInfoEditingScreen: (context) => const ContactInfoEditingScreen(),
   RoutesName.deliveryAddress: (context) => const DeliveryAddress(),
   RoutesName.deliveryDetailsScreen: (context) => const DeliveryDetailsScreen(),
   RoutesName.paymentMethodScreen: (context) => const PaymentMethodScreen(),

@@ -3,6 +3,7 @@ import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({Key? key}) : super(key: key);
@@ -27,8 +28,7 @@ class _FilterScreenState extends State<FilterScreen> {
     return SafeArea(
         child: Scaffold(
       body: Padding(
-        padding:
-            EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
+        padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,20 +37,18 @@ class _FilterScreenState extends State<FilterScreen> {
               children: [
                 IconButton(
                   padding: EdgeInsets.only(right: width / 10),
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                   icon: const Icon(
                     Icons.close,
                   ),
                 ),
-                const AppText(
-                    text: AppString.filter, fontWeight: FontWeight.w500),
-                const AppText(
-                    text: AppString.removeData, fontWeight: FontWeight.w500),
+                const AppText(text: AppString.filter, fontWeight: FontWeight.w500),
+                const AppText(text: AppString.removeData, fontWeight: FontWeight.w500),
               ],
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 AppText(
                   text: AppString.startingDollar,
                   fontWeight: FontWeight.w500,
@@ -85,9 +83,7 @@ class _FilterScreenState extends State<FilterScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AppText(text: categories[index][AppString.name]),
-                        AppText(
-                            text: categories[index][AppString.key],
-                            color: AppColors.gray),
+                        TextButton(child: AppText(text: categories[index][AppString.key], color: AppColors.gray), onPressed: () => index == 0 ? Navigator.pushNamed(context, RoutesName.filterOptionsScreen) : Navigator.pushNamed(context, RoutesName.filterScreen)),
                       ],
                     )),
             SizedBox(

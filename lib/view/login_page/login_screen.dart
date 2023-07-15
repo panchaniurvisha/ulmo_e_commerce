@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../../model/first_screen_model.dart';
 import '../../res/common/app_text.dart';
@@ -13,10 +14,6 @@ import '../../res/common/app_textform_field.dart';
 import '../../res/constant/app_colors.dart';
 import '../../res/constant/app_string.dart';
 import '../../utils/utils.dart';
-import '../home/home_screen.dart';
-import '../sign_up_page/sign_up_screen.dart';
-import 'forgot_password_page.dart';
-import 'login_with_phone_number.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({
@@ -55,10 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: AppText(
-            text: AppString.loginTitle,
-            fontWeight: FontWeight.bold,
-            fontSize: height / 40),
+        title: AppText(text: AppString.loginTitle, fontWeight: FontWeight.bold, fontSize: height / 40),
         backgroundColor: AppColors.skyWhite,
         elevation: 0,
       ),
@@ -72,21 +66,11 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 const AppText(text: AppString.email),
-                AppTextFormField(
-                    labelText: AppString.email,
-                    hintText: AppString.hintEmailName,
-                    controller: emailController,
-                    validator: (value) =>
-                        utils.isValidEmail(emailController.text)
-                            ? null
-                            : AppString.errorEmailTitle,
-                    keyboardType: TextInputType.emailAddress),
+                AppTextFormField(labelText: AppString.email, hintText: AppString.hintEmailName, controller: emailController, validator: (value) => utils.isValidEmail(emailController.text) ? null : AppString.errorEmailTitle, keyboardType: TextInputType.emailAddress),
                 const AppText(text: AppString.password),
                 AppTextFormField(
                     suffixIcon: IconButton(
-                      icon: Icon(isSecurePassword
-                          ? Icons.visibility_off
-                          : Icons.visibility),
+                      icon: Icon(isSecurePassword ? Icons.visibility_off : Icons.visibility),
                       iconSize: height / 40,
                       color: const Color(0xff200E32),
                       onPressed: () {
@@ -101,24 +85,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: passwordController,
                     obscureText: isSecurePassword,
                     keyboardType: TextInputType.visiblePassword,
-                    validator: (value) =>
-                        utils.isValidPassword(passwordController.text)
-                            ? null
-                            : AppString.errorPasswordTitle),
+                    validator: (value) => utils.isValidPassword(passwordController.text) ? null : AppString.errorPasswordTitle),
                 Center(
                   child: TextButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const ForgotPasswordPage()));
+                        Navigator.pushNamed(context, RoutesName.forgotPasswordPage);
                       },
-                      child: AppText(
-                          text: AppString.forgetPassword,
-                          color: AppColors.redColor,
-                          fontSize: height / 60,
-                          fontWeight: FontWeight.bold)),
+                      child: AppText(text: AppString.forgetPassword, color: AppColors.redColor, fontSize: height / 60, fontWeight: FontWeight.bold)),
                 ),
                 AppElevatedButton(
                   onPressed: () {
@@ -130,9 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: AppString.login,
                   sizeBox: const SizedBox(),
                 ),
-                const Align(
-                    alignment: Alignment.center,
-                    child: AppText(text: AppString.or)),
+                const Align(alignment: Alignment.center, child: AppText(text: AppString.or)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -147,12 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     IconButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const LoginWithPhoneNumber(),
-                            ));
+                        Navigator.pushNamed(context, RoutesName.loginWithPhoneNumber);
                       },
                       icon: Image.asset(
                         AppImages.phoneLogo,
@@ -163,9 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AppText(
-                        text: AppString.doNotHaveAccount,
-                        fontSize: height / 60),
+                    AppText(text: AppString.doNotHaveAccount, fontSize: height / 60),
                     TextButton(
                       child: const AppText(
                         text: AppString.signup,
@@ -173,11 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignUpScreen(),
-                            ));
+                        Navigator.pushNamed(context, RoutesName.signUpScreen);
                         //signup screen
                       },
                     )
@@ -192,10 +152,7 @@ class _LoginScreenState extends State<LoginScreen> {
   ///-------CHECK EMAIL IN FIREBASEAUTH--------->>>
   loginUser() async {
     try {
-      await firebaseAuth
-          .signInWithEmailAndPassword(
-              email: emailController.text, password: passwordController.text)
-          .then((value) {
+      await firebaseAuth.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text).then((value) {
         debugPrint("Value=========>${value.user}");
         if (value.user!.emailVerified) {
           debugPrint("User is Login....");
@@ -227,10 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
       debugPrint("User Added---->${jsonEncode(value.data())}");
       userModel = accountModelFromJson(jsonEncode(value.data()));
       utils.showToastMessage(message: "Login is successfully");
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-          (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, RoutesName.homeScreen, (route) => false);
       setState(() {});
     }).catchError((error) {
       debugPrint("Failed to add user: $error");
@@ -244,8 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
     debugPrint("googleUser----->$googleUser");
 
     // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(

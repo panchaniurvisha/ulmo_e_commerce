@@ -8,7 +8,11 @@ import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
 
 import '../res/common/app_container.dart';
+import '../res/common/app_elevated_button.dart';
 import '../res/common/app_image_outline_button.dart';
+import '../res/common/app_text.dart';
+import '../res/common/check_box_button.dart';
+import '../res/constant/app_colors.dart';
 import '../utils/routes/routes_name.dart';
 
 class CatalogScreen extends StatefulWidget {
@@ -24,13 +28,18 @@ class _CatalogScreenState extends State<CatalogScreen> {
   FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
   List<bool> likedList = [];
   List<bool> disLikedList = [];
-
+  bool value = true;
+  List<String> sortTitle = [
+    AppString.priceHighToLow,
+    AppString.priceLowToHigh,
+    AppString.newFirst,
+    AppString.popularFirst,
+  ];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    disLikedList =
-        List.generate(userModel!.popularItem!.length, (index) => true);
+    disLikedList = List.generate(userModel!.popularItem!.length, (index) => true);
     likedList = List.generate(userModel!.catalogItem!.length, (index) => false);
   }
 
@@ -69,16 +78,76 @@ class _CatalogScreenState extends State<CatalogScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppImageOutLineButton(
-                      text: AppString.sortButton,
-                      image: AppImages.sortIcon,
-                      onPressed: () =>
-                          Navigator.pushNamed(context, RoutesName.sortScreen),
-                    ),
-                    AppImageOutLineButton(
-                        text: AppString.filterButton,
-                        image: AppImages.filterIcon,
-                        onPressed: () => Navigator.pushNamed(
-                            context, RoutesName.filterScreen))
+                        text: AppString.sortButton,
+                        image: AppImages.sortIcon,
+                        onPressed: () {
+                          showModalBottomSheet(
+                            barrierColor: AppColors.black,
+                            backgroundColor: Colors.transparent,
+                            isScrollControlled: true,
+                            isDismissible: true,
+                            context: context,
+                            builder: (context) => StatefulBuilder(
+                              builder: (context, setState) => Container(
+                                height: height / 1.7,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: AppColors.white,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(width / 20),
+                                      topRight: Radius.circular(width / 20),
+                                    )),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: height / 30, horizontal: width / 20),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      AppText(
+                                        text: AppString.sortTitle,
+                                        fontSize: height / 25,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      GridView.builder(
+                                        padding: EdgeInsets.only(bottom: height / 30),
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: sortTitle.length,
+                                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 1,
+                                          childAspectRatio: 2,
+                                          mainAxisExtent: height / 12,
+                                          crossAxisSpacing: width / 20,
+                                        ),
+                                        itemBuilder: (context, index) => Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            AppText(text: sortTitle[index]),
+                                            index == 0
+                                                ? CheckBoxButton(
+                                                    value: value,
+                                                    onTap: () {
+                                                      setState(() {
+                                                        value = !value;
+                                                      });
+                                                    },
+                                                  )
+                                                : const SizedBox(),
+                                          ],
+                                        ),
+                                      ),
+                                      const AppElevatedButton(
+                                        text: AppString.cancel,
+                                        color: AppColors.white,
+                                        sizeBox: SizedBox(),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                    AppImageOutLineButton(text: AppString.filterButton, image: AppImages.filterIcon, onPressed: () => Navigator.pushNamed(context, RoutesName.filterScreen))
                   ],
                 ),
                 SizedBox(
@@ -95,25 +164,17 @@ class _CatalogScreenState extends State<CatalogScreen> {
                       crossAxisSpacing: width / 20,
                     ),
                     itemBuilder: (context, index) => AppColumn(
-                          image:
-                              "${userModel!.popularItem![index].popularImage}",
-                          onTap: () => index == 0
-                              ? Navigator.pushNamed(
-                                  context, RoutesName.productPage)
-                              : Navigator.pushNamed(
-                                  context, RoutesName.catalogScreen),
+                          image: "${userModel!.popularItem![index].popularImage}",
+                          onTap: () => index == 0 ? Navigator.pushNamed(context, RoutesName.productPage) : Navigator.pushNamed(context, RoutesName.catalogScreen),
                           text: "${userModel!.popularItem![index].recentlyNew}",
                           iconButton: IconButton(
                               icon: Image.asset(
-                                disLikedList[index]
-                                    ? AppImages.disLikeIcon
-                                    : AppImages.likeIcon,
+                                disLikedList[index] ? AppImages.disLikeIcon : AppImages.likeIcon,
                                 height: height / 40,
                               ),
                               onPressed: () => _pressedDislike(index)),
                           data: "${userModel!.popularItem![index].price}",
-                          information:
-                              "${userModel!.popularItem![index].itemName}",
+                          information: "${userModel!.popularItem![index].itemName}",
                           index: index,
                         )),
                 const AppContainer(
@@ -133,21 +194,18 @@ class _CatalogScreenState extends State<CatalogScreen> {
                       crossAxisSpacing: width / 20,
                     ),
                     itemBuilder: (context, index) => AppColumn(
-                          image:
-                              "${userModel!.catalogItem![index].popularImage}",
+                          onTap: () {},
+                          image: "${userModel!.catalogItem![index].popularImage}",
                           text: "${userModel!.catalogItem![index].recentlyNew}",
                           data: "${userModel!.catalogItem![index].price}",
                           iconButton: IconButton(
                             icon: Image.asset(
-                              likedList[index]
-                                  ? AppImages.disLikeIcon
-                                  : AppImages.likeIcon,
+                              likedList[index] ? AppImages.disLikeIcon : AppImages.likeIcon,
                               height: height / 40,
                             ),
                             onPressed: () => pressed(index),
                           ),
-                          information:
-                              "${userModel!.catalogItem![index].itemName}",
+                          information: "${userModel!.catalogItem![index].itemName}",
                           index: index,
                         )),
               ],
