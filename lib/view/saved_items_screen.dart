@@ -26,7 +26,7 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding:
-            EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 10),
+            EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,13 +35,18 @@ class _SavedItemsScreenState extends State<SavedItemsScreen> {
                 fontWeight: FontWeight.w600,
                 fontSize: height / 30),
             const AppSearchBar(),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppImageOutLineButton(
-                    text: AppString.sortButton, image: AppImages.sortIcon),
+                    onPressed: () {},
+                    text: AppString.sortButton,
+                    image: AppImages.sortIcon),
                 AppImageOutLineButton(
-                    text: AppString.filterButton, image: AppImages.filterIcon)
+                  text: AppString.filterButton,
+                  image: AppImages.filterIcon,
+                  onPressed: () {},
+                )
               ],
             ),
             Row(

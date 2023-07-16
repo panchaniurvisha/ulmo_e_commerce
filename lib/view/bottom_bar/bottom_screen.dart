@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/view/beg_screen.dart';
-import 'package:ulmo_e_commerce_app/view/empty_account_screen.dart';
 import 'package:ulmo_e_commerce_app/view/home/home_screen.dart';
-import 'package:ulmo_e_commerce_app/view/saved_items_empty_screen.dart';
+
+import '../account_screen.dart';
+import '../saved_items_screen.dart';
 
 class BottomScreen extends StatefulWidget {
   const BottomScreen({Key? key}) : super(key: key);
@@ -18,8 +19,8 @@ class _BottomScreenState extends State<BottomScreen> {
   final List<Widget> listOfScreen = [
     const HomeScreen(),
     const BegScreen(),
-    const SavedItemsEmptyScreen(),
-    const EmptyAccountScreen(),
+    const SavedItemsScreen(),
+    const AccountScreen(),
   ];
   @override
   Widget build(BuildContext context) {

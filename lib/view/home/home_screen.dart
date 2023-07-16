@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     context, RoutesName.storyScreen)
                                 : Navigator.pushNamed(
                                     context,
-                                    RoutesName.homeScreen,
+                                    RoutesName.bottomScreen,
                                   ),
                             child: Stack(
                               children: [
@@ -116,8 +116,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) => InkWell(
-                          onTap: () => Navigator.pushNamed(
-                              context, RoutesName.categoriesScreen),
+                          onTap: () => index == 1
+                              ? Navigator.pushNamed(
+                                  context, RoutesName.categoriesScreen)
+                              : Navigator.pushNamed(
+                                  context,
+                                  RoutesName.bottomScreen,
+                                ),
                           child: Container(
                             height: height / 8,
                             decoration: BoxDecoration(
