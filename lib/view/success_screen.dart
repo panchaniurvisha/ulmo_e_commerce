@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../res/common/app_elevated_button.dart';
 import '../res/common/app_text.dart';
@@ -32,9 +33,11 @@ class SuccessScreen extends StatelessWidget {
             SizedBox(
               height: height / 2.5,
             ),
-            const AppElevatedButton(
+            AppElevatedButton(
               text: AppString.successButton,
-              sizeBox: SizedBox(),
+              sizeBox: const SizedBox(),
+              onPressed: () =>
+                  Navigator.pushNamed(context, RoutesName.myOrderScreen),
             )
           ],
         ),

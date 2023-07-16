@@ -7,8 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ulmo_e_commerce_app/view/address_book_screen.dart';
-import 'package:ulmo_e_commerce_app/view/my_details_screen.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../model/first_screen_model.dart';
 import '../res/common/app_elevated_button.dart';
@@ -71,7 +70,8 @@ class _AccountScreenState extends State<AccountScreen> {
         elevation: 0,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.pushNamed(context, RoutesName.settingScreen),
               icon: const Icon(
                 Icons.settings_outlined,
                 color: AppColors.black,
@@ -234,7 +234,8 @@ class _AccountScreenState extends State<AccountScreen> {
                         Icons.shopping_bag_outlined,
                         color: AppColors.black,
                       ),
-                      onPressed: () {},
+                      onPressed: () => Navigator.pushNamed(
+                          context, RoutesName.myOrderScreen),
                     )
                   : index == 1
                       ? IconButton(
@@ -242,22 +243,16 @@ class _AccountScreenState extends State<AccountScreen> {
                             Icons.person_sharp,
                             color: AppColors.black,
                           ),
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MyDetailsScreen())),
-                        )
+                          onPressed: () => Navigator.pushNamed(
+                              context, RoutesName.myDetailsScreen))
                       : index == 2
                           ? IconButton(
                               icon: const Icon(
                                 Icons.location_on_outlined,
                                 color: AppColors.black,
                               ),
-                              onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const AddressBookScreen())),
+                              onPressed: () => Navigator.pushNamed(
+                                  context, RoutesName.addressBookScreen),
                             )
                           : index == 3
                               ? IconButton(
@@ -265,8 +260,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                     Icons.payment_outlined,
                                     color: AppColors.black,
                                   ),
-                                  onPressed: () {},
-                                )
+                                  onPressed: () => Navigator.pushNamed(
+                                      context, RoutesName.paymentMethodScreen))
                               : IconButton(
                                   onPressed: () {
                                     showDialog(
@@ -352,7 +347,7 @@ class _AccountScreenState extends State<AccountScreen> {
             itemCount: data.length,
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-          )
+          ),
         ],
       ),
     );

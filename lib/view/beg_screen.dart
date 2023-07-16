@@ -159,7 +159,7 @@ class _BegScreenState extends State<BegScreen> {
                                 onPressed: () {
                                   utils.showSnackBar(
                                     margin: EdgeInsets.only(
-                                        bottom: height / 1.2,
+                                        bottom: height / 1.3,
                                         left: width / 25,
                                         right: width / 25),
                                     context,

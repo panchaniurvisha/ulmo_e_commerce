@@ -38,12 +38,21 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
       AppString.name: AppString.timeOfTransaction
     }
   ];
-  bool value = false;
+  List<bool> checkedList = [];
+  FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
+  // bool value = false;
+  @override
+  void initState() {
+    super.initState();
+// TODO: implement initState
+    checkedList = List.generate(transactionSource.length, (index) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    FirstScreenModel? userModel = FirstScreenModel.fromJson(userData);
+
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -82,45 +91,37 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                   mainAxisExtent: height / 12,
                   crossAxisSpacing: width / 20,
                 ),
-                itemBuilder: (context, index) => StatefulBuilder(
-                  builder: (context, setState) => Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            bottom: height / 40, right: width / 20),
-                        child: Icon(
-                            index == 0
-                                ? Icons.directions_car_outlined
-                                : Icons.shopping_cart_outlined,
-                            size: height / 30),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                              text: transactionSource[index][AppString.key]),
-                          AppText(
-                              text: transactionSource[index][AppString.name],
-                              color: AppColors.gray,
-                              fontSize: height / 55),
-                        ],
-                      ),
-                      Expanded(
-                        child: Padding(
-                            padding: EdgeInsets.only(
-                                left: index == 0 ? width / 2.8 : width / 3.5,
-                                bottom: width / 12),
-                            child: CheckBoxButton(
-                              value: value,
-                              onTap: () {
-                                setState(() {
-                                  value = !value;
-                                });
-                              },
-                            )),
-                      ),
-                    ],
-                  ),
+                itemBuilder: (context, index) => Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          bottom: height / 40, right: width / 20),
+                      child: Icon(
+                          index == 0
+                              ? Icons.directions_car_outlined
+                              : Icons.shopping_cart_outlined,
+                          size: height / 30),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AppText(text: transactionSource[index][AppString.key]),
+                        AppText(
+                            text: transactionSource[index][AppString.name],
+                            color: AppColors.gray,
+                            fontSize: height / 55),
+                      ],
+                    ),
+                    Spacer(),
+                    CheckBoxButton(
+                      value: checkedList[index],
+                      onTap: () {
+                        setState(() {
+                          checkedList[index] = !checkedList[index];
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ),
               AppText(
@@ -151,47 +152,47 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                             isScrollControlled: true,
                             isDismissible: true,
                             context: context,
-                            builder: (context) => StatefulBuilder(
-                              builder: (context, setState) => Container(
-                                height: height / 2,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(width / 20),
-                                      topRight: Radius.circular(width / 20),
-                                    )),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: height / 30,
-                                      horizontal: width / 20),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      AppText(
-                                        text: AppString.deliveryTitle,
-                                        fontSize: height / 30,
-                                        fontWeight: FontWeight.w600,
+                            builder: (context) => Container(
+                              height: height / 2,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(width / 20),
+                                    topRight: Radius.circular(width / 20),
+                                  )),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: height / 30,
+                                    horizontal: width / 20),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    AppText(
+                                      text: AppString.deliveryTitle,
+                                      fontSize: height / 30,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    SizedBox(
+                                      height: height / 40,
+                                    ),
+                                    GridView.builder(
+                                      padding:
+                                          EdgeInsets.only(bottom: height / 30),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: userModel!.address!.length,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 1,
+                                        childAspectRatio: 2,
+                                        mainAxisExtent: height / 12,
+                                        crossAxisSpacing: width / 20,
                                       ),
-                                      SizedBox(
-                                        height: height / 40,
-                                      ),
-                                      GridView.builder(
-                                        padding: EdgeInsets.only(
-                                            bottom: height / 30),
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemCount: userModel.address!.length,
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 1,
-                                          childAspectRatio: 2,
-                                          mainAxisExtent: height / 12,
-                                          crossAxisSpacing: width / 20,
-                                        ),
-                                        itemBuilder: (context, index) => Row(
+                                      itemBuilder: (context, index) =>
+                                          StatefulBuilder(
+                                        builder: (context, setState) => Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
@@ -209,36 +210,41 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                                               children: [
                                                 AppText(
                                                     text:
-                                                        "${userModel.address![index].street}",
+                                                        "${userModel!.address![index].street}",
                                                     fontSize: height / 50),
                                                 AppText(
                                                     text:
-                                                        "${userModel.address![index].home}",
+                                                        "${userModel!.address![index].home}",
                                                     color: AppColors.gray,
                                                     fontSize: height / 60),
                                               ],
                                             ),
-                                            CheckBoxButton(
-                                              value: value,
-                                              onTap: () {
-                                                setState(() {
-                                                  value = !value;
-                                                });
-                                              },
-                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  bottom: height / 40),
+                                              child: CheckBoxButton(
+                                                value: checkedList[index],
+                                                onTap: () {
+                                                  setState(() {
+                                                    checkedList[index] =
+                                                        !checkedList[index];
+                                                  });
+                                                },
+                                              ),
+                                            )
                                           ],
                                         ),
                                       ),
-                                      AppElevatedButton(
-                                        text: AppString.cancel,
-                                        color: AppColors.white,
-                                        onPressed: () => Navigator.pushNamed(
-                                            context,
-                                            RoutesName.deliveryDetailsScreen),
-                                        sizeBox: const SizedBox(),
-                                      )
-                                    ],
-                                  ),
+                                    ),
+                                    AppElevatedButton(
+                                      text: AppString.cancel,
+                                      color: AppColors.white,
+                                      onPressed: () => Navigator.pushNamed(
+                                          context,
+                                          RoutesName.deliveryDetailsScreen),
+                                      sizeBox: const SizedBox(),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
@@ -284,9 +290,11 @@ class _DeliveryDetailsScreenState extends State<DeliveryDetailsScreen> {
                 ),
               ),
               const Spacer(),
-              const AppElevatedButton(
+              AppElevatedButton(
                 sizeBox: SizedBox(),
                 text: AppString.continueButton,
+                onPressed: () => Navigator.pushNamed(
+                    context, RoutesName.paymentMethodScreen),
               )
             ],
           ),

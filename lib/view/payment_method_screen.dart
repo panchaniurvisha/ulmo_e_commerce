@@ -5,6 +5,7 @@ import 'package:ulmo_e_commerce_app/res/common/row_app_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_images.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_string.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../res/common/check_box_button.dart';
 
@@ -16,7 +17,7 @@ class PaymentMethodScreen extends StatefulWidget {
 }
 
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
-  bool value = false;
+  List<bool> checkedList = [];
   List<Map> paymentSource = [
     {
       "image": AppImages.mastercard,
@@ -34,6 +35,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
       "expiryDate": "",
     }
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    checkedList = List.generate(paymentSource.length, (index) => false);
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -66,63 +74,63 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               ListView.separated(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemBuilder: (context, index) => StatefulBuilder(
-                        builder: (context, setState) => Row(
-                          children: [
-                            Padding(
+                  itemBuilder: (context, index) => Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                bottom: index == 2 ? height / 35 : 2.5),
+                            child: Image.asset(
+                              paymentSource[index]["image"],
+                              height: index == 0
+                                  ? height / 60
+                                  : index == 1
+                                      ? height / 90
+                                      : height / 30,
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: width / 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                AppText(
+                                  text: paymentSource[index]["sourceName"],
+                                ),
+                                AppText(
+                                  text: paymentSource[index]["expiryDate"],
+                                  color: AppColors.gray,
+                                )
+                              ],
+                            ),
+                          ),
+                          Padding(
                               padding: EdgeInsets.only(
-                                  bottom: index == 2 ? height / 35 : 2.5),
-                              child: Image.asset(
-                                paymentSource[index]["image"],
-                                height: index == 0
-                                    ? height / 60
-                                    : index == 1
-                                        ? height / 90
-                                        : height / 30,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: width / 20),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  AppText(
-                                    text: paymentSource[index]["sourceName"],
-                                  ),
-                                  AppText(
-                                    text: paymentSource[index]["expiryDate"],
-                                    color: AppColors.gray,
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                                padding: EdgeInsets.only(
-                                    bottom: height / 40,
-                                    left: index == 0
-                                        ? width / 2.8
-                                        : index == 1
-                                            ? width / 2.3
-                                            : width / 2),
-                                child: CheckBoxButton(
-                                  value: value,
-                                  onTap: () {
-                                    setState(() {
-                                      value = !value;
-                                    });
-                                  },
-                                ))
-                          ],
-                        ),
+                                  bottom: height / 40,
+                                  left: index == 0
+                                      ? width / 2.8
+                                      : index == 1
+                                          ? width / 2.3
+                                          : width / 2),
+                              child: CheckBoxButton(
+                                value: checkedList[index],
+                                onTap: () {
+                                  setState(() {
+                                    checkedList[index] = !checkedList[index];
+                                  });
+                                },
+                              ))
+                        ],
                       ),
                   separatorBuilder: (context, index) => SizedBox(
                         height: height / 30,
                       ),
                   itemCount: paymentSource.length),
               const Spacer(),
-              const AppElevatedButton(
-                sizeBox: SizedBox(),
+              AppElevatedButton(
+                sizeBox: const SizedBox(),
                 text: AppString.payAmount,
+                onPressed: () =>
+                    Navigator.pushNamed(context, RoutesName.successScreen),
               )
             ],
           ),

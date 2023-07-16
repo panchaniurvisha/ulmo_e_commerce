@@ -36,19 +36,25 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
     return SafeArea(
       child: Scaffold(
           body: Padding(
-        padding: EdgeInsets.symmetric(vertical: height / 40, horizontal: width / 20),
+        padding:
+            EdgeInsets.symmetric(vertical: height / 40, horizontal: width / 20),
         child: Column(
           children: [
             const RowAppBar(
               actionText: AppString.actionOfHelp,
             ),
-            AppText(text: AppString.enterNumber, fontSize: height / 30, fontWeight: FontWeight.w600),
+            AppText(
+                text: AppString.enterNumber,
+                fontSize: height / 30,
+                fontWeight: FontWeight.w600),
             SizedBox(
               height: height / 30,
             ),
             Container(
               height: height / 14,
-              decoration: BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(width / 40)),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: BorderRadius.circular(width / 40)),
               child: Padding(
                 padding: EdgeInsets.only(left: width / 30),
                 child: Row(
@@ -57,11 +63,13 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                         width: width / 12,
                         child: TextField(
                           controller: countryCode,
-                          decoration: const InputDecoration(border: InputBorder.none),
+                          decoration:
+                              const InputDecoration(border: InputBorder.none),
                         )),
                     Text(
                       AppString.slash,
-                      style: TextStyle(fontSize: height / 40, color: Colors.grey),
+                      style:
+                          TextStyle(fontSize: height / 40, color: Colors.grey),
                     ),
                     SizedBox(
                       width: width / 40,
@@ -72,7 +80,9 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
                         onChanged: (value) {
                           phone = value;
                         },
-                        decoration: const InputDecoration(border: InputBorder.none, hintText: AppString.hintTextOfPhone),
+                        decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: AppString.hintTextOfPhone),
                       ),
                     )
                   ],
@@ -103,7 +113,10 @@ class _LoginWithPhoneNumberState extends State<LoginWithPhoneNumber> {
       },
       codeSent: (String verificationId, int? resendToken) {
         LoginWithPhoneNumber.verify = verificationId;
-        Navigator.pushNamed(context, RoutesName.otpScreen);
+        Navigator.pushNamed(
+          context,
+          RoutesName.otpScreen,
+        );
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_text.dart';
 import 'package:ulmo_e_commerce_app/res/common/search_bar.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../data/user_data_first_screen.dart';
 import '../model/first_screen_model.dart';
@@ -34,14 +35,19 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                 text: AppString.myOrders,
               ),
               const AppSearchBar(),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   AppImageOutLineButton(
-                      text: AppString.sortButton, image: AppImages.sortIcon),
+                    text: AppString.sortButton,
+                    image: AppImages.sortIcon,
+                    onPressed: () {},
+                  ),
                   AppImageOutLineButton(
-                      text: AppString.filterButton,
-                      image: AppImages.filterIcon),
+                    text: AppString.filterButton,
+                    image: AppImages.filterIcon,
+                    onPressed: () {},
+                  ),
                 ],
               ),
               ListView.builder(
@@ -56,9 +62,13 @@ class _MyOrderScreenState extends State<MyOrderScreen> {
                         AppText(
                           text: "${userModel!.order![index].time}",
                         ),
-                        AppText(
-                          text: "${userModel!.order![index].price},",
-                          fontWeight: FontWeight.w500,
+                        InkWell(
+                          onTap: () => Navigator.pushNamed(
+                              context, RoutesName.orderScreen),
+                          child: AppText(
+                            text: "${userModel!.order![index].price},",
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ],
                     ),

@@ -9,7 +9,6 @@ import '../../view/bottom_bar/bottom_screen.dart';
 import '../../view/catalog_screen.dart';
 import '../../view/categories_screen.dart';
 import '../../view/contact_info_editing_screen.dart';
-import '../../view/delivery_address.dart';
 import '../../view/delivery_details_screen.dart';
 import '../../view/empty_account_screen.dart';
 import '../../view/empty_bag_screen.dart';
@@ -53,8 +52,8 @@ Map<String, WidgetBuilder> appRoutes = {
   RoutesName.newReviewScreen: (context) => const NewReviewScreen(),
   RoutesName.emptyBegScreen: (context) => const EmptyBegScreen(),
   RoutesName.begScreen: (context) => const BegScreen(),
-  RoutesName.contactInfoEditingScreen: (context) => const ContactInfoEditingScreen(),
-  RoutesName.deliveryAddress: (context) => const DeliveryAddress(),
+  RoutesName.contactInfoEditingScreen: (context) =>
+      const ContactInfoEditingScreen(),
   RoutesName.deliveryDetailsScreen: (context) => const DeliveryDetailsScreen(),
   RoutesName.paymentMethodScreen: (context) => const PaymentMethodScreen(),
   RoutesName.successScreen: (context) => const SuccessScreen(),

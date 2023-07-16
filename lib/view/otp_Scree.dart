@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:ulmo_e_commerce_app/res/common/app_elevated_button.dart';
 import 'package:ulmo_e_commerce_app/res/common/row_app_bar.dart';
-import 'package:ulmo_e_commerce_app/view/account_screen.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../res/common/app_text.dart';
 import '../res/constant/app_string.dart';
@@ -110,12 +110,8 @@ class _OtpScreenState extends State<OtpScreen> {
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
           verificationId: LoginWithPhoneNumber.verify, smsCode: code);
       firebaseAuth.signInWithCredential(credential);
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const AccountScreen(),
-          ),
-          (route) => false);
+      Navigator.pushNamedAndRemoveUntil(
+          context, RoutesName.accountScreen, (route) => false);
     } catch (e) {
       debugPrint("Wrong Otp");
     }

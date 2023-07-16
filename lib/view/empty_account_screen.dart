@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
 
 import '../res/common/app_elevated_button.dart';
 import '../res/common/app_text.dart';
@@ -54,9 +55,11 @@ class _EmptyAccountScreenState extends State<EmptyAccountScreen> {
               SizedBox(
                 height: height / 3.5,
               ),
-              const AppElevatedButton(
-                text: AppString.phoneButton,
+              AppElevatedButton(
+                text: AppString.continueButton,
                 sizeBox: SizedBox(),
+                onPressed: () =>
+                    Navigator.pushNamed(context, RoutesName.accountScreen),
               )
             ],
           ),
