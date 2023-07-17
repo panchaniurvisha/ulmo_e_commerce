@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ulmo_e_commerce_app/utils/routes/routes_name.dart';
+import 'package:ulmo_e_commerce_app/view/photo_crop_screen.dart';
 
 import '../model/first_screen_model.dart';
 import '../res/common/app_elevated_button.dart';
@@ -43,6 +45,7 @@ class _AccountScreenState extends State<AccountScreen> {
   User? user;
   XFile? image;
   File? cameraImage;
+  Uint8List? imageToCrop;
   String? imageUrl = "";
   Utils utils = Utils();
   bool isImageLoaded = false;
@@ -97,12 +100,12 @@ class _AccountScreenState extends State<AccountScreen> {
                     borderRadius: BorderRadius.circular(width / 4),
                     child: isImageLoaded
                         ? userModel?.image != null
-                            ? Image.network(
-                                userModel!.image!,
-                                height: height / 10,
-                                width: width / 4.5,
-                                fit: BoxFit.cover,
-                              )
+                            ? Image.network(userModel!.image!,
+                                height: height / 11,
+                                width: width / 5,
+                                fit: BoxFit.cover
+                                // Adjust the fit property as needed
+                                )
                             : Container(
                                 decoration: const BoxDecoration(
                                   color: AppColors.whiteTwo,
@@ -187,7 +190,8 @@ class _AccountScreenState extends State<AccountScreen> {
                                       child: IconButton(
                                         onPressed: () {
                                           pickImageFromGallery();
-                                          Navigator.of(context).pop();
+
+                                          //Navigator.of(context).pop();
                                         },
                                         icon: Padding(
                                           padding: EdgeInsets.all(width / 100),
@@ -370,26 +374,22 @@ class _AccountScreenState extends State<AccountScreen> {
 
   pickImageFromGallery() async {
     image = await picker.pickImage(source: ImageSource.gallery);
+
     if (image != null) {
-      cameraImage = File(image!.path);
-      await storeImageInCloudStorage();
-      await sharedPreferences.setString('image', imageUrl.toString());
+      final imageBytes = await image!.readAsBytes();
+
       setState(() {
-        userModel?.image = imageUrl;
-        isImageLoaded = true;
+        imageToCrop = imageBytes;
       });
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PhotoCropScreen(imageBytes: imageBytes),
+        ),
+      );
+      // cameraImage = File(image!.path);
     } else {
       debugPrint("No image selected");
-    }
-  }
-
-  void loadImageFromSharedPreferences() {
-    String? imageUrl = sharedPreferences.getString('image');
-    if (imageUrl != null) {
-      setState(() {
-        userModel?.image = imageUrl;
-        isImageLoaded = true;
-      });
     }
   }
 
@@ -398,7 +398,7 @@ class _AccountScreenState extends State<AccountScreen> {
     Reference referenceImageToUpload =
         referenceDirImages.child("uniqueFileName");
     try {
-      await referenceImageToUpload.putFile(cameraImage!);
+      await referenceImageToUpload.putData(imageToCrop!);
       imageUrl = await referenceImageToUpload.getDownloadURL();
 
       // Save the image URL in SharedPreferences
@@ -409,6 +409,21 @@ class _AccountScreenState extends State<AccountScreen> {
     createUserData();
   }
 
+  /* pickImageFromGallery() async {
+    image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+     cameraImage = File(image!.path);
+
+      await storeImageInCloudStorage();
+      await sharedPreferences.setString('image', imageUrl.toString());
+      setState(() {
+        userModel?.image = imageUrl;
+        isImageLoaded = true;
+      });
+    } else {
+      debugPrint("No image selected");
+    }
+  }*/
   createUserData() async {
     CollectionReference users = firebaseFireStore.collection('user');
 
@@ -423,6 +438,16 @@ class _AccountScreenState extends State<AccountScreen> {
       await sharedPreferences.setString('image', imageUrl.toString());
     } catch (error) {
       debugPrint("Failed to add user: $error");
+    }
+  }
+
+  void loadImageFromSharedPreferences() {
+    String? imageUrl = sharedPreferences.getString('image');
+    if (imageUrl != null) {
+      setState(() {
+        userModel?.image = imageUrl;
+        isImageLoaded = true;
+      });
     }
   }
 

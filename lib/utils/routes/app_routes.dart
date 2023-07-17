@@ -70,4 +70,5 @@ Map<String, WidgetBuilder> appRoutes = {
   RoutesName.orderScreen: (context) => const OrderScreen(),
   RoutesName.bottomScreen: (context) => const BottomScreen(),
   RoutesName.catalogScreen: (context) => const CatalogScreen(),
+  //RoutesName.photoCropScreen: (context) => PhotoCropScreen(imageBytes: null),
 };

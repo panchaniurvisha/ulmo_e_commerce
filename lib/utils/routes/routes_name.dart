@@ -34,4 +34,5 @@ class RoutesName {
   static String myOrderScreen = "/MyOrderScreen";
   static String orderScreen = "/OrderScreen";
   static String bottomScreen = "/BottomScreen";
+  static String photoCropScreen = "/PhotoCropScreen";
 }
