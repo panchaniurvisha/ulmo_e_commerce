@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ulmo_e_commerce_app/res/constant/app_colors.dart';
@@ -37,14 +38,23 @@ class _SplashScreenState extends State<SplashScreen> {
     return Container(
       color: AppColors.lightYellow,
       child: Center(
-        child: Text(
-          AppString.appName,
-          style: TextStyle(
-              decoration: TextDecoration.none,
-              color: AppColors.black,
-              fontWeight: FontWeight.w600,
-              fontFamily: "Poppins",
-              fontSize: height / 20),
+        child: AnimatedTextKit(
+          isRepeatingAnimation: true,
+          animatedTexts: [
+            WavyAnimatedText(
+              AppString.appName,
+              textStyle: TextStyle(
+                fontSize: height / 20,
+                decoration: TextDecoration.none,
+                fontWeight: FontWeight.w600,
+                fontFamily: "Poppins",
+                color: AppColors.black,
+              ),
+            ),
+          ],
+          onTap: () {
+            debugPrint("I am executing");
+          },
         ),
       ),
     );
