@@ -139,7 +139,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         isDismissible: true,
                         context: context,
                         backgroundColor: Colors.transparent,
-                        barrierColor: Colors.transparent,
+                        barrierColor: AppColors.black,
                         builder: (context) => Container(
                           height: height / 5,
                           width: double.infinity,
