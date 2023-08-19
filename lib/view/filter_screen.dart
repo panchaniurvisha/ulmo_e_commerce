@@ -20,7 +20,7 @@ class _FilterScreenState extends State<FilterScreen> {
     {AppString.name: AppString.size, AppString.key: AppString.all},
     {AppString.name: AppString.quality, AppString.key: AppString.all},
   ];
-  double sliderValue = 0;
+  double sliderValue = 0.0;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -28,7 +28,8 @@ class _FilterScreenState extends State<FilterScreen> {
     return SafeArea(
         child: Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
+        padding:
+            EdgeInsets.symmetric(horizontal: width / 30, vertical: height / 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -42,25 +43,29 @@ class _FilterScreenState extends State<FilterScreen> {
                     Icons.close,
                   ),
                 ),
-                const AppText(text: AppString.filter, fontWeight: FontWeight.w500),
-                const AppText(text: AppString.removeData, fontWeight: FontWeight.w500),
+                const AppText(
+                    text: AppString.filter, fontWeight: FontWeight.w500),
+                const AppText(
+                    text: AppString.removeData, fontWeight: FontWeight.w500),
               ],
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 AppText(
-                  text: AppString.startingDollar,
+                  text: '\$${sliderValue.toStringAsFixed(2)}',
                   fontWeight: FontWeight.w500,
                 ),
-                AppText(
-                  text: AppString.endDollar,
-                  fontWeight: FontWeight.w500,
-                )
+                // AppText(
+                //   text: '\$${(700 - sliderValue).toStringAsFixed(2)}',
+                //   fontWeight: FontWeight.w500,
+                // ),
               ],
             ),
             Slider(
                 value: sliderValue,
+                min: 0.0,
+                max: 700,
                 activeColor: AppColors.lightYellowTwo,
                 inactiveColor: AppColors.whiteTwo,
                 onChanged: (value) {
@@ -83,7 +88,15 @@ class _FilterScreenState extends State<FilterScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         AppText(text: categories[index][AppString.name]),
-                        TextButton(child: AppText(text: categories[index][AppString.key], color: AppColors.gray), onPressed: () => index == 0 ? Navigator.pushNamed(context, RoutesName.filterOptionsScreen) : Navigator.pushNamed(context, RoutesName.filterScreen)),
+                        TextButton(
+                            child: AppText(
+                                text: categories[index][AppString.key],
+                                color: AppColors.gray),
+                            onPressed: () => index == 0
+                                ? Navigator.pushNamed(
+                                    context, RoutesName.filterOptionsScreen)
+                                : Navigator.pushNamed(
+                                    context, RoutesName.filterScreen)),
                       ],
                     )),
             SizedBox(

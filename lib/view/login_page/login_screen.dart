@@ -242,5 +242,8 @@ class _LoginScreenState extends State<LoginScreen> {
     user = userCredential!.user;
     debugPrint("userdata-->$user");
     utils.showToastMessage(message: "Login is Successfully");
+    Navigator.pushNamedAndRemoveUntil(
+        context, RoutesName.bottomScreen, (route) => false);
+    setState(() {});
   }
 }
